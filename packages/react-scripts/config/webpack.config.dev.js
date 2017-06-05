@@ -88,7 +88,11 @@ module.exports = {
     // We placed these paths second because we want `node_modules` to "win"
     // if there are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
-    modules: ['node_modules', paths.appNodeModules, paths.kotlinOutputPath].concat(
+    modules: [
+      'node_modules',
+      paths.appNodeModules,
+      paths.kotlinOutputPath,
+    ].concat(
       // It is guaranteed to exist because we tweak it in `env.js`
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
@@ -102,8 +106,11 @@ module.exports = {
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
       'kotlinx-html-js': '@hypnosphi/kotlinx-html-js',
-      'src': paths.appSrc
-    }
+      'kotlin-extensions': '@hypnosphi/kotlin-extensions',
+      'kotlin-react': '@hypnosphi/kotlin-react',
+      'kotlin-react-dom': '@hypnosphi/kotlin-react-dom',
+      src: paths.appSrc,
+    },
   },
   module: {
     strictExportPresence: true,
@@ -138,7 +145,7 @@ module.exports = {
         test: /\.js$/,
         include: paths.kotlinOutputPath,
         loader: require.resolve('source-map-loader'),
-        enforce: 'pre'
+        enforce: 'pre',
       },
 
       // "url" loader works like "file" loader except that it embeds assets
@@ -197,11 +204,11 @@ module.exports = {
       output: paths.kotlinOutputPath,
       moduleName: kotlinModuleName,
       libraries: [
-        'kotlin-extensions',
-        'kotlin-react',
-        'kotlin-react-dom',
-        '@hypnosphi/kotlinx-html-js'
-      ].map(pkg => require.resolve(pkg))
+        '@hypnosphi/kotlin-extensions',
+        '@hypnosphi/kotlin-react',
+        '@hypnosphi/kotlin-react-dom',
+        '@hypnosphi/kotlinx-html-js',
+      ].map(pkg => require.resolve(pkg)),
     }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:

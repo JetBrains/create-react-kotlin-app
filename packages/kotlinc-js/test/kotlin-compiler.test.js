@@ -12,8 +12,8 @@ kotlinCompiler
     sourceMaps: true,
     moduleKind: 'commonjs',
     libraries: [
-      'node_modules/kotlin-extensions/build/classes/main/kotlin-extensions.meta.js',
-      'node_modules/kotlin-react/build/classes/main/kotlin-react.meta.js',
+      'node_modules/@hypnosphi/kotlin-extensions/build/classes/main/kotlin-extensions.meta.js',
+      'node_modules/@hypnosphi/kotlin-react/build/classes/main/kotlin-react.meta.js',
     ],
   })
   .then(() => {
