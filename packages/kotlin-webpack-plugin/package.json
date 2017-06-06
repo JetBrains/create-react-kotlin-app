@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "globby": "6.1.0",
-    "kotlinc-js": ">1.1.0"
+    "kotlinc-js": "~0.0.4"
   },
   "devDependencies": {
     "@hypnosphi/kotlin-extensions": "0.0.4",

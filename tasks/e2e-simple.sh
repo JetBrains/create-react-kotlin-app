@@ -72,7 +72,7 @@ npm install
 mv package.json.bak package.json
 
 # We need to install create-react-app deps to test it
-cd "$root_path"/packages/create-react-app
+cd "$root_path"/packages/create-react-kotlin-app
 npm install
 cd "$root_path"
 
@@ -83,7 +83,7 @@ nodeMinor=`echo $nodeVersion | cut -d. -f2`
 if [[ nodeMajor -lt 6 ]]
 then
   cd $temp_app_path
-  err_output=`node "$root_path"/packages/create-react-app/index.js test-node-version 2>&1 > /dev/null || echo ''`
+  err_output=`node "$root_path"/packages/create-react-kotlin-app/index.js test-node-version 2>&1 > /dev/null || echo ''`
   [[ $err_output =~ You\ are\ running\ Node ]] && exit 0 || exit 1
 fi
 
@@ -99,7 +99,7 @@ fi
 
 # Lint own code
 ./node_modules/.bin/eslint --max-warnings 0 packages/babel-preset-react-app/
-./node_modules/.bin/eslint --max-warnings 0 packages/create-react-app/
+./node_modules/.bin/eslint --max-warnings 0 packages/create-react-kotlin-app/
 ./node_modules/.bin/eslint --max-warnings 0 packages/eslint-config-react-app/
 ./node_modules/.bin/eslint --max-warnings 0 packages/react-dev-utils/
 ./node_modules/.bin/eslint --max-warnings 0 packages/react-scripts/
@@ -131,7 +131,7 @@ npm start -- --smoke-test
 # ******************************************************************************
 
 # Pack CLI
-cd "$root_path"/packages/create-react-app
+cd "$root_path"/packages/create-react-kotlin-app
 cli_path=$PWD/`npm pack`
 
 # Go to react-scripts

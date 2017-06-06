@@ -67,7 +67,7 @@ function checkDependencies {
 }
 
 function create_react_app {
-  node "$temp_cli_path"/node_modules/create-react-app/index.js $*
+  node "$temp_cli_path"/node_modules/create-react-kotlin-app/index.js $*
 }
 
 # Exit the script with a helpful error message when any error is encountered
@@ -104,7 +104,7 @@ fi
 # ******************************************************************************
 
 # Pack CLI
-cd "$root_path"/packages/create-react-app
+cd "$root_path"/packages/create-react-kotlin-app
 cli_path=$PWD/`npm pack`
 
 # Install the CLI in a temporary location

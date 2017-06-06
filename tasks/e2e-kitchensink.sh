@@ -43,7 +43,7 @@ function handle_exit {
 }
 
 function create_react_app {
-  node "$temp_cli_path"/node_modules/create-react-app/index.js "$@"
+  node "$temp_cli_path"/node_modules/create-react-kotlin-app/index.js "$@"
 }
 
 # Check for the existence of one or more files.
@@ -87,7 +87,7 @@ fi
 # ******************************************************************************
 
 # Pack CLI
-cd "$root_path"/packages/create-react-app
+cd "$root_path"/packages/create-react-kotlin-app
 cli_path=$PWD/`npm pack`
 
 # Go to react-scripts
@@ -130,9 +130,6 @@ npm install test-integrity@^2.0.1
 
 # Enter the app directory
 cd "$temp_app_path/test-kitchensink"
-
-# Link to our preset
-npm link "$root_path"/packages/babel-preset-react-app
 
 # Link to test module
 npm link "$temp_module_path/node_modules/test-integrity"
@@ -186,16 +183,11 @@ E2E_FILE=./build/index.html \
 # Finally, let's check that everything still works after ejecting.
 # ******************************************************************************
 
-# Unlink our preset
-npm unlink "$root_path"/packages/babel-preset-react-app
 
 # Eject...
 echo yes | npm run eject
 
 # ...but still link to the local packages
-npm link "$root_path"/packages/babel-preset-react-app
-npm link "$root_path"/packages/eslint-config-react-app
-npm link "$root_path"/packages/react-dev-utils
 npm link "$root_path"/packages/react-scripts
 
 # Link to test module
