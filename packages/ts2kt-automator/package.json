@@ -1,0 +1,26 @@
+{
+  "name": "ts2kt-automator",
+  "version": "1.0.0",
+  "description": "A package that downloads TypeScript annotations from @types/*-group of packages and converts them to Kotlin.",
+  "main": "index.js",
+  "repository": "JetBrains/create-react-kotlin-app",
+  "scripts": {
+    "test": "rm -rf test/build && node test/lib.test.js"
+  },
+  "files": [
+    "index.js",
+    "lib.js"
+  ],
+  "keywords": [
+    "Kotlin",
+    "TypeScript",
+    "Converter",
+    "ts2kt"
+  ],
+  "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "minimist": "1.2.0",
+    "ts2kt": "0.0.12"
+  }
+}
