@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="kotlin-extensions">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/packages/react-scripts/node_modules/kotlin-extensions/build/classes/main" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

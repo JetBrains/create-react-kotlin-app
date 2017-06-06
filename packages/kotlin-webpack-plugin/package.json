@@ -1,0 +1,39 @@
+{
+  "name": "kotlin-webpack-plugin",
+  "version": "0.0.10",
+  "description": "Webpack kotlin plugin",
+  "main": "plugin.js",
+  "scripts": {
+    "start": "webpack-dev-server -d --inline --hot --devtool cheap-module-source-map --config example/webpack.config.js",
+    "build-example": "rm -rf example/build/ && webpack --config example/webpack.config.js --bail --devtool sourcemap",
+    "debug-build": "node --inspect-brk ./node_modules/.bin/webpack --config example/webpack.config.js",
+    "debug-dev-server": "node --inspect-brk ./node_modules/.bin/webpack-dev-server --config example/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Webpack",
+    "Kotlin"
+  ],
+  "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
+  "license": "Apache-2.0",
+  "files": [
+    "plugin.js"
+  ],
+  "dependencies": {
+    "globby": "6.1.0",
+    "kotlinc-js": ">0.0.4"
+  },
+  "devDependencies": {
+    "@hypnosphi/kotlinx-html-js": "^0.0.1",
+    "html-webpack-plugin": "^2.28.0",
+    "kotlin": "^1.1.0",
+    "kotlin-extensions": "^1.1.25",
+    "kotlin-react": "^1.1.17",
+    "kotlin-react-dom": "^1.1.17",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "source-map-loader": "0.1.5-jb",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "2.4.5"
+  }
+}

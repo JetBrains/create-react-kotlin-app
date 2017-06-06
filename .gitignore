@@ -1,4 +1,3 @@
-.idea/
 .vscode/
 node_modules/
 build
@@ -11,3 +10,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /.changelog
+.idea/dictionaries/
+.idea/watcherTasks.xml
+.idea/workspace.xml
+.idea/misc.xml

@@ -1,0 +1,25 @@
+.Logo {
+  position: relative;
+  display: inline-block;
+}
+
+.Logo-react {
+  animation: Logo-spin infinite 10s linear;
+  height: 100%;
+}
+
+.Logo-kotlin {
+  opacity: 0;
+  animation: Logo-spin infinite 10s 5s linear;
+  height: 72%;
+  position: absolute;
+  top: 14%;
+  right: 24%;
+}
+
+@keyframes Logo-spin {
+  from { transform: rotateY(-90deg); opacity: 1 }
+  50% { transform: rotateY(90deg); opacity: 1 }
+  51% { transform: rotateY(90deg); opacity: 0 }
+  to { transform: rotateY(270deg); opacity: 0 }
+}

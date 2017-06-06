@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "React Kotlin App",
+  "name": "Create React Kotlin App Sample",
   "icons": [
     {
       "src": "favicon.ico",

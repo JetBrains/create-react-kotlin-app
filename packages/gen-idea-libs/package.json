@@ -1,0 +1,8 @@
+{
+  "name": "gen-idea-libs",
+  "version": "1.0.0",
+  "description": "Generate IntelliJ Idea libs config from given npm kotlinJs dependencies",
+  "main": "generate",
+  "author": "Filipp Riabchun",
+  "license": "Apache-2.0"
+}
