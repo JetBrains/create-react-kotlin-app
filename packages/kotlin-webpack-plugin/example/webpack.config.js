@@ -21,7 +21,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, '../kotlin_build'),
-        use: ['source-map-loader'],
+        use: ['@princed/source-map-loader'],
         enforce: 'pre',
       },
     ],
