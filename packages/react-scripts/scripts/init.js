@@ -48,6 +48,7 @@ module.exports = function(
     test: 'react-scripts-kotlin test --env=jsdom',
     eject: 'react-scripts-kotlin eject',
     'gen-idea-libs': 'react-scripts-kotlin gen-idea-libs',
+    'get-types': 'ts2kt-automator dest=src/types',
   };
 
   fs.writeFileSync(
@@ -79,7 +80,10 @@ module.exports = function(
   if (process.argv.includes('--idea')) {
     const ideaPath = path.join(ownPath, 'template-idea');
     fs.copySync(ideaPath, appPath);
-    fs.renameSync(path.join(appPath, 'template-idea.iml'), path.join(appPath, `${appName}.iml`));
+    fs.renameSync(
+      path.join(appPath, 'template-idea.iml'),
+      path.join(appPath, `${appName}.iml`)
+    );
     const modulesPath = path.join(appPath, '.idea/modules.xml');
     const modules = fs.readFileSync(modulesPath, 'utf8');
     fs.writeFileSync(modulesPath, modules.replace(/%appName%/g, appName));

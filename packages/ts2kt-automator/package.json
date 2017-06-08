@@ -11,6 +11,9 @@
     "index.js",
     "lib.js"
   ],
+  "bin": {
+    "ts2kt-automator": "./index.js"
+  },
   "keywords": [
     "Kotlin",
     "TypeScript",
