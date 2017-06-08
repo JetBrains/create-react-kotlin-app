@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Webpack kotlin plugin",
   "main": "plugin.js",
+  "repository": "JetBrains/create-react-kotlin-app",
   "scripts": {
     "start": "webpack-dev-server -d --inline --hot --devtool cheap-module-source-map --config example/webpack.config.js",
     "build-example": "rm -rf example/build/ && webpack --config example/webpack.config.js --bail --devtool sourcemap",

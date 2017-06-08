@@ -4,5 +4,6 @@
   "description": "Generate IntelliJ Idea libs config from given npm kotlinJs dependencies",
   "main": "generate",
   "author": "Filipp Riabchun",
+  "repository": "JetBrains/create-react-kotlin-app",
   "license": "Apache-2.0"
 }
