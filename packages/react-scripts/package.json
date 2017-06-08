@@ -39,7 +39,7 @@
     "html-webpack-plugin": "2.28.0",
     "jest": "20.0.3",
     "kotlin": "1.1.0",
-    "kotlin-webpack-plugin": "^0.0.10",
+    "kotlin-webpack-plugin": "^1.0.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.5",
