@@ -18,7 +18,7 @@
     "createReactApp.js"
   ],
   "bin": {
-    "create-react-app": "./index.js"
+    "create-react-kotlin-app": "./index.js"
   },
   "dependencies": {
     "chalk": "^1.1.1",
