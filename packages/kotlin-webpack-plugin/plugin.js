@@ -4,22 +4,25 @@ const globby = require('globby');
 const fs = require('fs');
 
 const DEFAULT_OPTIONS = {
+  src: null, // An array or string with sources path
   output: 'kotlin_build',
   moduleName: 'kotlinApp',
   libraries: [],
   verbose: false,
-  sourceMaps: true
+  sourceMaps: true,
 };
 
 class KotlinWebpackPlugin {
   constructor(options) {
     this.options = Object.assign({}, DEFAULT_OPTIONS, options, {
       libraries: options.libraries.map(main =>
-        main.replace(/(?:\.js)?$/, '.meta.js'))
+        main.replace(/(?:\.js)?$/, '.meta.js')),
     });
     this.outputPath = `${this.options.output}/${this.options.moduleName}.js`;
 
-    this.compileIfKotlinFilesChanged = this.compileIfKotlinFilesChanged.bind(this);
+    this.compileIfKotlinFilesChanged = this.compileIfKotlinFilesChanged.bind(
+      this
+    );
     this.watchKotlinSources = this.watchKotlinSources.bind(this);
     this.compileIfFirstRun = this.compileIfFirstRun.bind(this);
 
@@ -54,30 +57,30 @@ class KotlinWebpackPlugin {
       return;
     }
 
-    this.log(`Compiling Kotlin sources because of changes in files: ${changedFiles.join(', ')}`);
-    this.compileKotlinSources()
-      .then(done)
-      .catch(err => {
-        compilation.errors.push(err);
-        done();
-      });
+    this.log(
+      `Compiling Kotlin sources because of changes in files: ${changedFiles.join(', ')}`
+    );
+    this.compileKotlinSources().then(done).catch(err => {
+      compilation.errors.push(err);
+      done();
+    });
   }
 
   compileKotlinSources() {
     return kotlinCompiler.compile({
       output: this.outputPath,
-      sources: [this.options.src],
+      sources: [].concat(this.options.src),
       sourceMaps: this.options.sourceMaps,
       moduleKind: 'commonjs',
       noWarn: 'true',
-      libraries: this.options.libraries
+      libraries: this.options.libraries,
     });
   }
 
   watchKotlinSources(compilation, done) {
     globby(['**/*.kt'], {
       cwd: this.options.src,
-      absolute: true
+      absolute: true,
     }).then(paths => {
       compilation.fileDependencies.push(...paths);
       done();
