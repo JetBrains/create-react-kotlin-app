@@ -343,7 +343,7 @@ function run(
 }
 
 function getInstallPackage(version) {
-  let packageToInstall = 'react-scripts';
+  let packageToInstall = 'react-scripts-kotlin';
   const validSemver = semver.valid(version);
   if (validSemver) {
     packageToInstall += `@${validSemver}`;
