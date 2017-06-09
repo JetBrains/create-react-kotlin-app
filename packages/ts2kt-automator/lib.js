@@ -29,9 +29,21 @@ function spawnChildProcess(command, args) {
   });
 }
 
+function getPackageDependencies() {
+  const pkg = require(path.resolve(process.cwd(), 'package.json'));
+  return pkg.dependencies;
+}
+
+function getPackageVersion(packageName) {
+  return getPackageDependencies()[packageName];
+}
+
 function installTypes(packageName) {
   const command = 'npm';
-  const args = ['install', `@types/${packageName}`, '--no-save'];
+  const [name, askedVersion] = packageName.split('@');
+  const version = askedVersion || getPackageVersion(packageName) || 'latest';
+
+  const args = ['install', `@types/${name}@${version}`, '--no-save'];
 
   return spawnChildProcess(command, args).then(() =>
     console.log(
@@ -60,4 +72,5 @@ function convertTypesToKotlin(packageName, destinationDir) {
 module.exports = {
   installTypes,
   convertTypesToKotlin,
+  getPackageDependencies,
 };

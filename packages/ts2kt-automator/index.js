@@ -10,15 +10,23 @@ const packageName = argv.packageName;
 const dest = `${argv.dest}/${packageName}`;
 
 if (!packageName) {
-  throw new Error('Package name should be specified like: packageName=jquery');
+  throw new Error(
+    'Package name should be specified like: --packageName=jquery'
+  );
 }
 
 if (!argv.dest) {
-  throw new Error('Destination folder should be specified like: dest=typings');
+  throw new Error(
+    'Destination folder should be specified like: --dest=typings'
+  );
 }
 
 mkdirp(dest, function() {
   lib
     .installTypes(packageName)
-    .then(() => lib.convertTypesToKotlin(packageName, dest));
+    .then(() => lib.convertTypesToKotlin(packageName, dest))
+    .catch(err => {
+      console.error(err);
+      process.exit(1);
+    });
 });

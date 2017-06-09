@@ -70,4 +70,7 @@ function testTypingsInPackage() {
     });
 }
 
-testLatestVersion().then(testSpecificVersion).then(testTypingsInPackage);
+testLatestVersion()
+  .then(testSpecificVersion)
+  .then(testTypingsInPackage)
+  .catch(() => process.exit(1));
