@@ -48,7 +48,7 @@ module.exports = function(
     test: 'react-scripts-kotlin test --env=jsdom',
     eject: 'react-scripts-kotlin eject',
     'gen-idea-libs': 'react-scripts-kotlin gen-idea-libs',
-    'get-types': 'ts2kt-automator dest=src/types',
+    'get-types': 'ts2kt-automator --dest=src/types',
   };
 
   fs.writeFileSync(

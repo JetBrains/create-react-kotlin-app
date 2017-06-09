@@ -48,7 +48,7 @@ function convertTypesToKotlin(packageName, destinationDir) {
   const args = [
     '-d',
     destinationDir,
-    path.resolve(__dirname, `./node_modules/@types/${name}/index.d.ts`),
+    path.resolve('.', `./node_modules/@types/${name}/index.d.ts`),
   ];
 
   return spawnChildProcess(command, args).then(() =>

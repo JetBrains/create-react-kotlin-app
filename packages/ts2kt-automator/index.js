@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict';
-const fs = require('fs');
 const lib = require('./lib');
 const minimist = require('minimist');
+const mkdirp = require('mkdirp');
 
 const argv = minimist(process.argv.slice(2));
 
@@ -17,10 +17,8 @@ if (!argv.dest) {
   throw new Error('Destination folder should be specified like: dest=typings');
 }
 
-if (!fs.existsSync(dest)) {
-  fs.mkdirSync(dest);
-}
-
-lib
-  .installTypes(packageName)
-  .then(() => lib.convertTypesToKotlin(packageName, dest));
+mkdirp(dest, function() {
+  lib
+    .installTypes(packageName)
+    .then(() => lib.convertTypesToKotlin(packageName, dest));
+});

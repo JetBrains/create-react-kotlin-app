@@ -12,7 +12,7 @@
     "lib.js"
   ],
   "bin": {
-    "ts2kt-automator": "./index.js"
+    "ts2kt-automator": "index.js"
   },
   "keywords": [
     "Kotlin",
@@ -24,6 +24,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "minimist": "1.2.0",
+    "mkdirp": "0.5.1",
     "ts2kt": "0.0.12"
   }
 }
