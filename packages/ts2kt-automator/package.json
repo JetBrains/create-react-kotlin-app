@@ -5,7 +5,8 @@
   "main": "index.js",
   "repository": "JetBrains/create-react-kotlin-app",
   "scripts": {
-    "test": "rm -rf test/build && node test/lib.test.js"
+    "test": "node test/lib.test.js",
+    "debug-test": "node --inspect-brk test/lib.test.js"
   },
   "files": [
     "index.js",

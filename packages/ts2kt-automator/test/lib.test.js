@@ -62,8 +62,8 @@ function testTypingsInPackage() {
     .installTypes(packageName)
     .then(() => lib.convertTypesToKotlin(packageName, dest))
     .then(() => {
-      if (fs.existsSync(DIST_FILE_PATH)) {
-        console.log('"Typing in package" test passed');
+      if (fs.existsSync(path.resolve(__dirname, './build/moment.kt'))) {
+        console.log('"Typing in package itself" test passed');
       } else {
         throw new Error('Result file was not found: ' + DIST_FILE_PATH);
       }
@@ -73,4 +73,7 @@ function testTypingsInPackage() {
 testLatestVersion()
   .then(testSpecificVersion)
   .then(testTypingsInPackage)
-  .catch(() => process.exit(1));
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });

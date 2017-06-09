@@ -1,6 +1,7 @@
 'use strict';
 const spawn = require('child_process').spawn;
 const path = require('path');
+const fs = require('fs');
 
 function spawnChildProcess(command, args) {
   console.log('Running command: ', command, args.join(' '));
@@ -11,7 +12,8 @@ function spawnChildProcess(command, args) {
 
     const errors = [];
 
-    proc.stderr.on('data', errorMessage => {
+    proc.stderr.on('data', err => {
+      const errorMessage = err.toString();
       errors.push(errorMessage);
     });
 
@@ -38,6 +40,33 @@ function getPackageVersion(packageName) {
   return getPackageDependencies()[packageName];
 }
 
+function getPackageTypeFilePath(name) {
+  const typePackage = require(`@types/${name}/package.json`);
+  // Looks like types packages always have just index.d.ts file
+  // See https://github.com/DefinitelyTyped/DefinitelyTyped#create-a-new-package
+  const typesFileName = typePackage.typings || 'index.d.ts';
+
+  const typingsFilePath = path.resolve(
+    '.',
+    `./node_modules/@types/${name}/${typesFileName}`
+  );
+
+  if (fs.existsSync(typingsFilePath)) {
+    return typingsFilePath;
+  }
+
+  console.log("Looks like package has embedded types. Let's check...");
+
+  const packageItself = require(`${name}/package.json`);
+  if (!packageItself.typings) {
+    throw new Error(
+      `Cannot find types for package ${name}. It has no types in @types/${name} and no "typings" field in package.json`
+    );
+  }
+
+  return path.resolve('.', `./node_modules/${name}/${packageItself.typings}`);
+}
+
 function installTypes(packageName) {
   const command = 'npm';
   const [name, askedVersion] = packageName.split('@');
@@ -45,10 +74,17 @@ function installTypes(packageName) {
 
   const args = ['install', `@types/${name}@${version}`, '--no-save'];
 
-  return spawnChildProcess(command, args).then(() =>
-    console.log(
-      `Package ${packageName} has been installed to node_modules/@types/${packageName}.`
-    ));
+  return spawnChildProcess(command, args)
+    .then(() =>
+      console.log(
+        `Package ${packageName} has been installed to node_modules/@types/${packageName}.`
+      ))
+    .catch(errorMessage => {
+      if (errorMessage.indexOf('npm WARN') !== -1) {
+        return;
+      }
+      return Promise.reject(errorMessage);
+    });
 }
 
 function convertTypesToKotlin(packageName, destinationDir) {
@@ -56,12 +92,7 @@ function convertTypesToKotlin(packageName, destinationDir) {
   const command = require.resolve('ts2kt');
 
   //TODO: *.d.ts file could be delivered with whole package instead like "moment" does
-  //TODO:  types-metadata.json should be used instead!
-  const args = [
-    '-d',
-    destinationDir,
-    path.resolve('.', `./node_modules/@types/${name}/index.d.ts`),
-  ];
+  const args = ['-d', destinationDir, getPackageTypeFilePath(name)];
 
   return spawnChildProcess(command, args).then(() =>
     console.log(
