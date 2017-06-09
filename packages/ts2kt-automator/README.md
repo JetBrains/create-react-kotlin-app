@@ -5,7 +5,7 @@ It autodownloads specified package typings from "@types/%packagename%" and runs 
 
 ## Usage: 
 ```bash
-ts2kt --dest=types --packageName=jquery
+ts2kt-automator --dest=types --packageName=jquery
 ```
 
 Where:
