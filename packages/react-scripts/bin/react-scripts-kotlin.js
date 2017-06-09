@@ -18,6 +18,8 @@ switch (script) {
   case 'build':
   case 'eject':
   case 'start':
+  case 'gen-idea-libs':
+  case 'get-types':
   case 'test': {
     const result = spawn.sync(
       'node',
