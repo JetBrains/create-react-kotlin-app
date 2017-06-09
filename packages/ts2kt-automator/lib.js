@@ -91,7 +91,6 @@ function convertTypesToKotlin(packageName, destinationDir) {
   const [name] = packageName.split('@');
   const command = require.resolve('ts2kt');
 
-  //TODO: *.d.ts file could be delivered with whole package instead like "moment" does
   const args = ['-d', destinationDir, getPackageTypeFilePath(name)];
 
   return spawnChildProcess(command, args).then(() =>
