@@ -98,11 +98,12 @@ then
 fi
 
 # Lint own code
-./node_modules/.bin/eslint --max-warnings 0 packages/babel-preset-react-app/
 ./node_modules/.bin/eslint --max-warnings 0 packages/create-react-kotlin-app/
-./node_modules/.bin/eslint --max-warnings 0 packages/eslint-config-react-app/
-./node_modules/.bin/eslint --max-warnings 0 packages/react-dev-utils/
+./node_modules/.bin/eslint --max-warnings 0 packages/gen-idea-libs/
+./node_modules/.bin/eslint --max-warnings 0 packages/kotlin-webpack-plugin/
+./node_modules/.bin/eslint --max-warnings 0 packages/kotlinc-js/
 ./node_modules/.bin/eslint --max-warnings 0 packages/react-scripts/
+./node_modules/.bin/eslint --max-warnings 0 packages/ts2kt-automator/
 
 # ******************************************************************************
 # First, test the create-react-app development environment.
@@ -227,19 +228,19 @@ function verify_module_scope {
   # Create stub json file
   echo "{}" >> sample.json
 
-  # Save App.js, we're going to modify it
-  cp src/App.js src/App.js.bak
+  # Save App.kt, we're going to modify it
+  cp src/app/App.kt src/app/App.kt.bak
 
   # Add an out of scope import
-  echo "import sampleJson from '../sample'" | cat - src/App.js > src/App.js.temp && mv src/App.js.temp src/App.js
+  echo "val sampleJson = require(\"../sample\")" >> src/app/App.kt
 
   # Make sure the build fails
   npm run build; test $? -eq 1 || exit 1
   # TODO: check for error message
 
-  # Restore App.js
-  rm src/App.js
-  mv src/App.js.bak src/App.js
+  # Restore App.kt
+  rm src/app/App.kt
+  mv src/app/App.kt.bak src/app/App.kt
 }
 
 # Enter the app directory
@@ -276,10 +277,11 @@ verify_module_scope
 echo yes | npm run eject
 
 # ...but still link to the local packages
-npm link "$root_path"/packages/babel-preset-react-app
-npm link "$root_path"/packages/eslint-config-react-app
-npm link "$root_path"/packages/react-dev-utils
+npm link "$root_path"/packages/gen-idea-libs
+npm link "$root_path"/packages/kotlin-webpack-plugin
+npm link "$root_path"/packages/kotlinc-js
 npm link "$root_path"/packages/react-scripts
+npm link "$root_path"/packages/ts2kt-automator
 
 # Test the build
 npm run build
@@ -294,7 +296,7 @@ exists build/favicon.ico
 # `CI=true npm test` won't work here because `npm test` becomes just `jest`.
 # We should either teach Jest to respect CI env variable, or make
 # `scripts/test.js` survive ejection (right now it doesn't).
-npm test -- --watch=no
+# npm test -- --watch=no
 # Uncomment when snapshot testing is enabled by default:
 # exists src/__snapshots__/App.test.js.snap
 

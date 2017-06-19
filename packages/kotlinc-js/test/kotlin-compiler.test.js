@@ -1,9 +1,10 @@
+'use strict';
 const path = require('path');
 const kotlinCompiler = require('../kotlin-compiler');
 const fs = require('fs');
 
 const DIST_FILE_PATH = path.resolve(__dirname, './build/dist.js');
-const REFERENCE_PATH = path.resolve(__dirname, './reference.js');
+const REFERENCE_PATH = path.resolve(__dirname, './reference.js.ref');
 
 kotlinCompiler
   .compile({
