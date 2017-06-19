@@ -49,7 +49,7 @@ function exists {
 # Check for accidental dependencies in package.json
 function checkDependencies {
   if ! awk '/"dependencies": {/{y=1;next}/},/{y=0; next}y' package.json | \
-  grep -v -q -E '^\s*"react(-dom|-scripts)?"'; then
+  grep -v -q -E '^\s*"react(-dom|-scripts-kotlin)?"'; then
    echo "Dependencies are correct"
   else
    echo "There are extraneous dependencies in package.json"
@@ -58,7 +58,7 @@ function checkDependencies {
 
 
   if ! awk '/"devDependencies": {/{y=1;next}/},/{y=0; next}y' package.json | \
-  grep -v -q -E '^\s*"react(-dom|-scripts)?"'; then
+  grep -v -q -E '^\s*"react(-dom|-scripts-kotlin)?"'; then
    echo "Dev Dependencies are correct"
   else
    echo "There are extraneous devDependencies in package.json"
@@ -116,12 +116,12 @@ npm install "$cli_path"
 # ******************************************************************************
 
 cd "$temp_app_path"
-create_react_app --scripts-version=0.4.0 test-app-version-number
+create_react_app --scripts-version=1.0.3 test-app-version-number
 cd test-app-version-number
 
 # Check corresponding scripts version is installed.
-exists node_modules/react-scripts
-grep '"version": "0.4.0"' node_modules/react-scripts/package.json
+exists node_modules/react-scripts-kotlin
+grep '"version": "1.0.3"' node_modules/react-scripts-kotlin/package.json
 checkDependencies
 
 # ******************************************************************************
@@ -129,12 +129,12 @@ checkDependencies
 # ******************************************************************************
 
 cd "$temp_app_path"
-create_react_app --scripts-version=https://registry.npmjs.org/react-scripts/-/react-scripts-0.4.0.tgz test-app-tarball-url
+create_react_app --scripts-version=https://registry.npmjs.org/react-scripts-kotlin/-/react-scripts-kotlin-1.0.3.tgz test-app-tarball-url
 cd test-app-tarball-url
 
 # Check corresponding scripts version is installed.
-exists node_modules/react-scripts
-grep '"version": "0.4.0"' node_modules/react-scripts/package.json
+exists node_modules/react-scripts-kotlin
+grep '"version": "1.0.3"' node_modules/react-scripts-kotlin/package.json
 checkDependencies
 
 # ******************************************************************************
