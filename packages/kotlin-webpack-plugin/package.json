@@ -25,6 +25,7 @@
     "dce-plugin.js"
   ],
   "dependencies": {
+    "glob": "7.1.2",
     "globby": "6.1.0",
     "kotlin-compiler": "1.1.4-dev-956",
     "kotlinc-js": "^1.0.3",
