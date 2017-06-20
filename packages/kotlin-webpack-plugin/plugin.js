@@ -14,8 +14,9 @@ const DEFAULT_OPTIONS = {
 
 class KotlinWebpackPlugin {
   constructor(options) {
-    this.options = Object.assign({}, DEFAULT_OPTIONS, options, {
-      libraries: options.libraries.map(main =>
+    const opts = Object.assign({}, DEFAULT_OPTIONS, options);
+    this.options = Object.assign({}, opts, {
+      libraries: opts.libraries.map(main =>
         main.replace(/(?:\.js)?$/, '.meta.js')),
     });
     this.outputPath = `${this.options.output}/${this.options.moduleName}.js`;
