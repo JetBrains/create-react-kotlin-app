@@ -125,7 +125,7 @@ CI=true npm test
 # exists template/src/__snapshots__/App.test.js.snap
 
 # Test local start command
-npm start -- --smoke-test
+# npm start -- --smoke-test
 
 # ******************************************************************************
 # Next, pack react-scripts and create-react-app so we can verify they work.
@@ -261,7 +261,7 @@ CI=true npm test
 # exists src/__snapshots__/App.test.js.snap
 
 # Test the server
-npm start -- --smoke-test
+# npm start -- --smoke-test
 
 # Test environment handling
 verify_env_url
@@ -301,7 +301,7 @@ exists build/favicon.ico
 # exists src/__snapshots__/App.test.js.snap
 
 # Test the server
-npm start -- --smoke-test
+# npm start -- --smoke-test
 
 # Test environment handling
 verify_env_url

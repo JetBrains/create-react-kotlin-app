@@ -197,20 +197,20 @@ cd test-app-nested-paths-t1
 mkdir -p test-app-nested-paths-t1/aa/bb/cc/dd
 create_react_app test-app-nested-paths-t1/aa/bb/cc/dd
 cd test-app-nested-paths-t1/aa/bb/cc/dd
-npm start -- --smoke-test
+npm run build
 
 # Testing a path that does not exist
 cd "$temp_app_path"
 create_react_app test-app-nested-paths-t2/aa/bb/cc/dd
 cd test-app-nested-paths-t2/aa/bb/cc/dd
-npm start -- --smoke-test
+npm run build
 
 # Testing a path that is half exists
 cd "$temp_app_path"
 mkdir -p test-app-nested-paths-t3/aa
 create_react_app test-app-nested-paths-t3/aa/bb/cc/dd
 cd test-app-nested-paths-t3/aa/bb/cc/dd
-npm start -- --smoke-test
+npm run build
 
 # Cleanup
 cleanup
