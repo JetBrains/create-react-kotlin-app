@@ -21,7 +21,7 @@ function clean() {
  */
 function testLatestVersion() {
   clean();
-  const packageName = 'jquery';
+  const packageName = 'fancybox';
   return lib
     .installTypes(packageName)
     .then(() => lib.convertTypesToKotlin(packageName, dest))
@@ -39,7 +39,7 @@ function testLatestVersion() {
  */
 function testSpecificVersion() {
   clean();
-  const packageName = 'jquery@1.10.29';
+  const packageName = 'fancybox@2.1.28';
   return lib
     .installTypes(packageName)
     .then(() => lib.convertTypesToKotlin(packageName, dest))
