@@ -30,7 +30,7 @@ root_path=$PWD
 trigger_commit_message="[Publish patch versions]"
 
 # Release after trigger only
-if [[ $(git log -1 --pretty=tformat:%B) == "*$trigger_commit_message*" ]]; then
+if [[ $(git log -1 --pretty=tformat:%B) != "*$trigger_commit_message*" ]]; then
   echo "Commit message doesn't contain \"$trigger_commit_message\", not releasing anything";
   exit 0;
 fi;
