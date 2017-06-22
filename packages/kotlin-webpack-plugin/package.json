@@ -1,6 +1,6 @@
 {
   "name": "kotlin-webpack-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Webpack kotlin plugin",
   "main": "plugin.js",
   "repository": "JetBrains/create-react-kotlin-app",
@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "globby": "6.1.0",
-    "kotlinc-js": "^1.0.2"
+    "kotlinc-js": "^1.0.3"
   },
   "devDependencies": {
     "@hypnosphi/kotlin-extensions": "0.0.4",
