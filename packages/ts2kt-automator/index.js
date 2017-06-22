@@ -6,8 +6,8 @@ const mkdirp = require('mkdirp');
 const fs = require('fs');
 
 const argv = minimist(process.argv.slice(2));
+const packageName = process.argv[process.argv.length - 1];
 
-const packageName = argv.packageName;
 const dest = argv.dest;
 
 if (!argv.dest) {
