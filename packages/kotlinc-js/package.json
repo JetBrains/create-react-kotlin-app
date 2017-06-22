@@ -7,6 +7,9 @@
     "test": "node ./test/kotlin-compiler.test"
   },
   "repository": "JetBrains/create-react-kotlin-app",
+  "engines": {
+    "node": ">=6"
+  },
   "files": [
     "compiler",
     "kotlin-compiler.js"

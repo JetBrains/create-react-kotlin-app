@@ -15,6 +15,9 @@
     "Webpack",
     "Kotlin"
   ],
+  "engines": {
+    "node": ">=6"
+  },
   "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
   "license": "Apache-2.0",
   "files": [

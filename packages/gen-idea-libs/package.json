@@ -5,5 +5,8 @@
   "main": "generate",
   "author": "Filipp Riabchun",
   "repository": "JetBrains/create-react-kotlin-app",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=6"
+  }
 }
