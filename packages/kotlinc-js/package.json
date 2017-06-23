@@ -27,5 +27,8 @@
     "@hypnosphi/kotlin-react": "0.0.2",
     "kotlin": "^1.1.0",
     "react": "^15.5.4"
+  },
+  "dependencies": {
+    "kotlin-compiler": "dev *"
   }
 }

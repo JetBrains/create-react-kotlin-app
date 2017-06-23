@@ -8,8 +8,8 @@
   }
   var package$test = _.test || (_.test = {});
   package$test.main_kand9s$ = main;
-  main([]);
   Kotlin.defineModule('dist', _);
+  main([]);
   return _;
 }(module.exports, require('kotlin'), require('react'), require('kotlin-extensions')));
 
