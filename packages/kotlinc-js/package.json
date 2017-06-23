@@ -29,6 +29,6 @@
     "react": "^15.5.4"
   },
   "dependencies": {
-    "kotlin-compiler": "dev *"
+    "kotlin-compiler": "dev"
   }
 }
