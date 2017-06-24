@@ -21,7 +21,8 @@
   "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
   "license": "Apache-2.0",
   "files": [
-    "plugin.js"
+    "plugin.js",
+    "dce-plugin.js"
   ],
   "dependencies": {
     "globby": "6.1.0",
