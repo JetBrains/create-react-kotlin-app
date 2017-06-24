@@ -25,8 +25,9 @@
   ],
   "dependencies": {
     "globby": "6.1.0",
+    "kotlin-compiler": "1.1.4-dev-956",
     "kotlinc-js": "^1.0.3",
-    "kotlin-compiler": "1.1.4-dev-956"
+    "read-dir-files": "^0.1.1"
   },
   "devDependencies": {
     "@hypnosphi/kotlin-extensions": "0.0.4",

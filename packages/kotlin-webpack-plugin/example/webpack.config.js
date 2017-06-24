@@ -36,6 +36,7 @@ module.exports = {
     new KotlinWebpackPlugin({
       src: __dirname,
       verbose: true,
+      optimize: false,
       libraries: [
         '@hypnosphi/kotlin-extensions',
         '@hypnosphi/kotlin-react',

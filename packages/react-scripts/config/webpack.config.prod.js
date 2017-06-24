@@ -214,6 +214,7 @@ module.exports = {
       src: paths.appSrc,
       output: paths.kotlinOutputPath,
       moduleName: kotlinModuleName,
+      // optimize: true,
       libraries: [
         '@hypnosphi/kotlin-extensions',
         '@hypnosphi/kotlin-react',

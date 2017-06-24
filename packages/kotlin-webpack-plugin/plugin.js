@@ -2,6 +2,8 @@
 const kotlinCompiler = require('kotlinc-js');
 const globby = require('globby');
 const fs = require('fs');
+const path = require('path');
+const DCEPlugin = require('./dce-plugin');
 
 const DEFAULT_OPTIONS = {
   src: null, // An array or string with sources path
@@ -10,22 +12,27 @@ const DEFAULT_OPTIONS = {
   libraries: [],
   verbose: false,
   sourceMaps: true,
+  optimize: false,
 };
 
 class KotlinWebpackPlugin {
   constructor(options) {
     const opts = Object.assign({}, DEFAULT_OPTIONS, options);
+    this.librariesMainFiles = opts.libraries;
     this.options = Object.assign({}, opts, {
       libraries: opts.libraries.map(main =>
         main.replace(/(?:\.js)?$/, '.meta.js')),
     });
-    this.outputPath = `${this.options.output}/${this.options.moduleName}.js`;
+    this.outputPath = path.resolve(
+      `${this.options.output}/${this.options.moduleName}.js`
+    );
 
     this.compileIfKotlinFilesChanged = this.compileIfKotlinFilesChanged.bind(
       this
     );
     this.watchKotlinSources = this.watchKotlinSources.bind(this);
     this.compileIfFirstRun = this.compileIfFirstRun.bind(this);
+    this.optimizeDeadCode = this.optimizeDeadCode.bind(this);
 
     this.startTime = Date.now();
     this.prevTimestamps = {};
@@ -42,6 +49,10 @@ class KotlinWebpackPlugin {
     compiler.plugin('before-compile', this.compileIfFirstRun);
     compiler.plugin('make', this.compileIfKotlinFilesChanged);
     compiler.plugin('emit', this.watchKotlinSources);
+
+    if (this.options.optimize) {
+      compiler.plugin('compilation', this.optimizeDeadCode);
+    }
   }
 
   compileIfKotlinFilesChanged(compilation, done) {
@@ -105,6 +116,24 @@ class KotlinWebpackPlugin {
         fs.utimesSync(`${this.outputPath}.map`, timestamp, timestamp);
       })
       .then(done, done);
+  }
+
+  optimizeDeadCode(compilation) {
+    if (compilation.compiler.parentCompilation) {
+      //Do not deal with child compilations like html-webpack-plugins'
+      return;
+    }
+    this.log(`Optimizing Kotlin runtime...`);
+    compilation.plugin(
+      'optimize-tree',
+      (chunks, modules, callback) => DCEPlugin.optimize({
+        compilation,
+        ouputPath: this.outputPath,
+        librariesPaths: [].concat(this.librariesMainFiles),
+        modules,
+        callback,
+      })
+    );
   }
 }
 
