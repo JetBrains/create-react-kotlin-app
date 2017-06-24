@@ -11,8 +11,8 @@ function eliminateDeadCode(options) {
       options.files,
       { stdio: [process.stdin, process.stdout, 'pipe'] }
     );
-    const hasErrors = false;
-    const errors = '';
+    let hasErrors = false;
+    let errors = '';
 
     compilation.stderr.on('data', data => {
       hasErrors = true;
