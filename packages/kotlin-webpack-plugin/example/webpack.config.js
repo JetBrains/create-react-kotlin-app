@@ -7,13 +7,7 @@ module.exports = {
   entry: 'kotlinApp', // this is the default value for moduleName option
 
   resolve: {
-    modules: ['node_modules', 'kotlin_build'],
-    alias: {
-      'kotlinx-html-js': '@hypnosphi/kotlinx-html-js',
-      'kotlin-extensions': '@hypnosphi/kotlin-extensions',
-      'kotlin-react': '@hypnosphi/kotlin-react',
-      'kotlin-react-dom': '@hypnosphi/kotlin-react-dom',
-    },
+    modules: ['kotlin_build', 'node_modules'],
   },
 
   module: {
@@ -36,7 +30,7 @@ module.exports = {
     new KotlinWebpackPlugin({
       src: __dirname,
       verbose: true,
-      optimize: false,
+      optimize: true,
       libraries: [
         '@hypnosphi/kotlin-extensions',
         '@hypnosphi/kotlin-react',

@@ -1,7 +1,7 @@
 'use strict';
 const kotlinCompiler = require('kotlinc-js');
 const globby = require('globby');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const DCEPlugin = require('./dce-plugin');
 
@@ -33,6 +33,7 @@ class KotlinWebpackPlugin {
     this.watchKotlinSources = this.watchKotlinSources.bind(this);
     this.compileIfFirstRun = this.compileIfFirstRun.bind(this);
     this.optimizeDeadCode = this.optimizeDeadCode.bind(this);
+    this.setPastDate = this.setPastDate.bind(this);
 
     this.startTime = Date.now();
     this.prevTimestamps = {};
@@ -49,10 +50,16 @@ class KotlinWebpackPlugin {
     compiler.plugin('before-compile', this.compileIfFirstRun);
     compiler.plugin('make', this.compileIfKotlinFilesChanged);
     compiler.plugin('emit', this.watchKotlinSources);
+  }
 
-    if (this.options.optimize) {
-      compiler.plugin('compilation', this.optimizeDeadCode);
-    }
+  copyLibraries() {
+    const files = this.librariesMainFiles.concat(
+      this.librariesMainFiles.map(main => `${main}.map`)
+    );
+    return Promise.all(
+      files.map(file =>
+        fs.copy(file, path.join(this.options.output, path.basename(file))))
+    );
   }
 
   compileIfKotlinFilesChanged(compilation, done) {
@@ -79,14 +86,20 @@ class KotlinWebpackPlugin {
   }
 
   compileKotlinSources() {
-    return kotlinCompiler.compile({
-      output: this.outputPath,
-      sources: [].concat(this.options.src),
-      sourceMaps: this.options.sourceMaps,
-      moduleKind: 'commonjs',
-      noWarn: 'true',
-      libraries: this.options.libraries,
-    });
+    return kotlinCompiler
+      .compile({
+        output: this.outputPath,
+        sources: [].concat(this.options.src),
+        sourceMaps: this.options.sourceMaps,
+        moduleKind: 'commonjs',
+        noWarn: 'true',
+        libraries: this.options.libraries,
+      })
+      .then(() => {
+        if (this.options.optimize) {
+          return this.optimizeDeadCode();
+        }
+      });
   }
 
   watchKotlinSources(compilation, done) {
@@ -110,30 +123,37 @@ class KotlinWebpackPlugin {
     this.log('Initial compilation of Kotlin sources...');
     this.compileKotlinSources()
       .then(() => {
-        //Hack around multiple recompilations on start: set past modify date
-        const timestamp = 100;
-        fs.utimesSync(this.outputPath, timestamp, timestamp);
-        fs.utimesSync(`${this.outputPath}.map`, timestamp, timestamp);
+        if (!this.options.optimize) {
+          return this.copyLibraries();
+        }
       })
+      .then(this.setPastDate)
       .then(done, done);
   }
 
-  optimizeDeadCode(compilation) {
-    if (compilation.compiler.parentCompilation) {
-      //Do not deal with child compilations like html-webpack-plugins'
-      return;
-    }
+  optimizeDeadCode() {
     this.log(`Optimizing Kotlin runtime...`);
-    compilation.plugin(
-      'optimize-tree',
-      (chunks, modules, callback) => DCEPlugin.optimize({
-        compilation,
-        ouputPath: this.outputPath,
-        librariesPaths: [].concat(this.librariesMainFiles),
-        modules,
-        callback,
-      })
-    );
+    return DCEPlugin.optimize({
+      outputDir: this.options.output,
+      outputPath: this.outputPath,
+      librariesPaths: [].concat(this.librariesMainFiles),
+    });
+  }
+
+  setPastDate() {
+    //Hack around multiple recompilations on start: set past modify date
+    const timestamp = 100;
+    const output = this.options.output;
+
+    return fs
+      .readdir(output)
+      .then(files => Promise.all(
+        files.map(file => {
+          return fs.utimes(path.resolve(output, file), timestamp, timestamp);
+        })
+      ))
+      // discard the value
+      .then(() => {});
   }
 }
 

@@ -1,14 +1,11 @@
 'use strict';
 const spawn = require('child_process').spawn;
-const path = require('path');
-const fs = require('fs');
-const readDirFiles = require('read-dir-files');
 
-function eliminateDeadCode(options) {
+function eliminateDeadCode(args) {
   return new Promise((resolve, reject) => {
     const compilation = spawn(
       require.resolve('kotlin-compiler/bin/kotlin-dce-js'),
-      options.files,
+      args,
       { stdio: [process.stdin, process.stdout, 'pipe'] }
     );
     let hasErrors = false;
@@ -29,59 +26,15 @@ function eliminateDeadCode(options) {
   });
 }
 
-function deleteFolderRecursive(path) {
-  if (fs.existsSync(path)) {
-    fs.readdirSync(path).forEach(function(file) {
-      const curPath = path + '/' + file;
-      if (fs.statSync(curPath).isDirectory()) {
-        deleteFolderRecursive(curPath);
-      } else {
-        fs.unlinkSync(curPath);
-      }
-    });
-    fs.rmdirSync(path);
-  }
-}
-
 function optimize(options) {
-  const files = [
-    options.ouputPath,
+  const args = [
+    '-output-dir',
+    options.outputDir,
+    options.outputPath,
     options.runtimePath || require.resolve('kotlin'),
   ].concat(options.librariesPaths);
 
-  eliminateDeadCode({ files })
-    .then(() => {
-      return new Promise((resolve, reject) => {
-        readDirFiles.read(path.resolve('.', './min'), (err, files) => {
-          if (err) {
-            return reject(err);
-          }
-          deleteFolderRecursive(path.resolve('.', './min'));
-          resolve(files);
-        });
-      });
-    })
-    .then(optimizedFiles => {
-      options.modules.forEach(module => {
-        if (
-          files.indexOf(module.resource) !== -1 &&
-          module.resource !== options.ouputPath
-        ) {
-          const filename = path.basename(module.resource);
-
-          module._source = new module._source.constructor(
-            optimizedFiles[filename].toString(),
-            module._source.name
-          );
-        }
-      });
-
-      options.callback();
-    })
-    .catch(err => {
-      options.compilation.errors.push(err);
-      options.callback();
-    });
+  return eliminateDeadCode(args);
 }
 
 module.exports = {
