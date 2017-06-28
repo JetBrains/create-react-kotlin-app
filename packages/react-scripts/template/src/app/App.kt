@@ -2,11 +2,8 @@ package app
 
 import react.*
 import react.dom.*
-import kotlinext.js.*
 import logo.*
 import ticker.*
-
-val appStyles = require("src/app/App.css")
 
 class App: RComponent<RProps, RState>() {
   override fun RBuilder.render(): ReactElement? {

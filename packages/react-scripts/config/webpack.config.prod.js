@@ -85,9 +85,9 @@ module.exports = {
     // if there are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
     modules: [
+      paths.kotlinOutputPath,
       'node_modules',
       paths.appNodeModules,
-      paths.kotlinOutputPath,
     ].concat(
       // It is guaranteed to exist because we tweak it in `env.js`
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
@@ -101,10 +101,6 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-      'kotlinx-html-js': '@hypnosphi/kotlinx-html-js',
-      'kotlin-extensions': '@hypnosphi/kotlin-extensions',
-      'kotlin-react': '@hypnosphi/kotlin-react',
-      'kotlin-react-dom': '@hypnosphi/kotlin-react-dom',
       src: paths.appSrc,
     },
   },
@@ -214,7 +210,7 @@ module.exports = {
       src: paths.appSrc,
       output: paths.kotlinOutputPath,
       moduleName: kotlinModuleName,
-      // optimize: true,
+      optimize: true,
       libraries: [
         '@hypnosphi/kotlin-extensions',
         '@hypnosphi/kotlin-react',

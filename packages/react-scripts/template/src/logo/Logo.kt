@@ -5,8 +5,6 @@ import react.dom.*
 import kotlinext.js.*
 import kotlinx.html.style
 
-val logoStyles = require("src/logo/Logo.css")
-
 @JsModule("src/logo/react.svg")
 external val reactLogo: dynamic
 @JsModule("src/logo/kotlin.svg")
