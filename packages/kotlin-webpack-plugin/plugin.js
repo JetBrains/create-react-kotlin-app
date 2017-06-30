@@ -12,6 +12,7 @@ const DEFAULT_OPTIONS = {
   libraries: [],
   verbose: false,
   sourceMaps: true,
+  metaInfo: false,
   optimize: false,
 };
 
@@ -91,6 +92,7 @@ class KotlinWebpackPlugin {
         output: this.outputPath,
         sources: [].concat(this.options.src),
         sourceMaps: this.options.sourceMaps,
+        metaInfo: this.options.metaInfo,
         moduleKind: 'commonjs',
         noWarn: 'true',
         libraries: this.options.libraries,

@@ -5,6 +5,8 @@ import kotlinext.js.*
 import react.dom.*
 import kotlin.browser.*
 
+val _ = require("src/index/index.css")
+
 fun main(args: Array<String>) {
   require("src/index/index.css")
   require("src/app/App.css")
