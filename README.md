@@ -66,19 +66,19 @@ my-app/
     index.html
     manifest.json
   src/
-	app/
-		App.css
-		App.kt
+    app/
+      App.css
+      App.kt
     index/
-	    index.css
-	    index.kt
-		logo/
-			kotlin.svg
-			Logo.css
-			Logo.kt
-			react.svg
-		ticker/
-			Ticker.kt
+      index.css
+      index.kt
+    logo/
+      kotlin.svg
+      Logo.css
+      Logo.kt
+      react.svg
+    ticker/
+      Ticker.kt
 ```
 
 It's a simple app that shows the current time.<br>
