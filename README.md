@@ -72,13 +72,13 @@ my-app/
     index/
 	    index.css
 	    index.kt
-	logo/
-		kotlin.svg
-		Logo.css
-		Logo.kt
+		logo/
+			kotlin.svg
+			Logo.css
+			Logo.kt
 			react.svg
-	ticker/
-		Ticker.kt
+		ticker/
+			Ticker.kt
 ```
 
 It's a simple app that shows the current time.<br>
