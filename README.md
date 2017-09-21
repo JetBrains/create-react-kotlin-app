@@ -4,7 +4,6 @@ Create [React](https://facebook.github.io/react/) apps in [Kotlin](https://kotli
 
 * [Getting Started](#getting-started) – How to create a new app.
 
-Create React App works on macOS, Windows, and Linux.<br>
 If something doesn’t work please [file an issue](https://github.com/JetBrains/create-react-kotlin-app/issues/new).
 
 ## Quick Overview
@@ -174,4 +173,4 @@ We'd love to have your helping hand on `create-react-kotlin-app`! See [CONTRIBUT
 
 ## Acknowledgements
 
-This project is based on Facebook's [Create React App](https://github.com/facebookincubator/create-react-app). Thank you to its authors for their work and inspiration.
+This project is based on Facebook's [Create React App](https://github.com/facebookincubator/create-react-app). We thank its its authors for their work and inspiration.
