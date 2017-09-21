@@ -1,5 +1,7 @@
 # Create React App [![Build Status](https://teamcity.jetbrains.com/app/rest/builds/buildType:JetBrainsUi_CreateReactKotlinApp/statusIcon.svg)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=JetBrainsUi_CreateReactKotlinApp&guest=1)
 
+[![JetBrains incubator project](http://jb.gg/badges/incubator-flat-square.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+
 Create React apps with no build configuration.
 
 * [Getting Started](#getting-started) – How to create a new app.
