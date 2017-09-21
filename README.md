@@ -8,15 +8,19 @@ Create React App works on macOS, Windows, and Linux.<br>
 If something doesn’t work please [file an issue](https://github.com/JetBrains/create-react-kotlin-app/issues/new).
 
 ## Quick Overview
-
+Install `create-react-kotlin-app` using npm:
 ```sh
 npm install -g create-react-kotlin-app
-
-create-react-kotlin-app my-app
+```
+Create a new project. Add `--idea` if you're going to work with it in [IntelliJ IDEA](https://www.jetbrains.com/idea/):
+```sh
+create-react-kotlin-app my-app --idea
+````
+Run the project:
+```sh
 cd my-app/
 npm start
 ```
-
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
 When you’re ready to deploy to production, create a minified bundle with `npm run build`.
 
@@ -48,11 +52,12 @@ npm install -g create-react-kotlin-app
 To create a new app, run:
 
 ```sh
-create-react-kotlin-app my-app
+create-react-kotlin-app my-app --idea
 cd my-app
 ```
 
 It will create a directory called `my-app` inside the current folder.<br>
+`--idea` option will preconfigure the project for working with it in [IntelliJ IDEA](https://www.jetbrains.com/idea/). Don't add it if you're using a different editor.<br>
 Inside that directory, it will generate the initial project structure and install the transitive dependencies:
 
 ```
