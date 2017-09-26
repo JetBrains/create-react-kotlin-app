@@ -6,7 +6,7 @@
   ],
   "description": "Create React apps with no build configuration.",
   "repository": "JetBrains/create-react-kotlin-app",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "engines": {
     "node": ">=4"
   },
