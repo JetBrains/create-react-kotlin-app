@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="kotlin-react-dom">
+  <library name="kotlin-react-dom" type="kotlin.js">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/packages/react-scripts/node_modules/@hypnosphi/kotlin-react-dom/build/classes/main" />
     </CLASSES>

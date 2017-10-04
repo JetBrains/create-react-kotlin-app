@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="kotlinx-html-js">
+  <library name="kotlinx-html-js" type="kotlin.js">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/packages/react-scripts/node_modules/@hypnosphi/kotlinx-html-js/target/classes" />
     </CLASSES>
