@@ -77,7 +77,7 @@ module.exports = function(
     return;
   }
 
-  if (process.argv.includes('--idea')) {
+  if (!process.argv.includes('--no-idea')) {
     const ideaPath = path.join(ownPath, 'template-idea');
     fs.copySync(ideaPath, appPath);
     fs.renameSync(
