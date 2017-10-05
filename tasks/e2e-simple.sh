@@ -65,37 +65,11 @@ set -x
 cd ..
 root_path=$PWD
 
-# Prevent lerna bootstrap, we only want top-level dependencies
-cp package.json package.json.bak
-grep -v "lerna bootstrap" package.json > temp && mv temp package.json
-npm install
-mv package.json.bak package.json
+# Install Yarn so that the test can use it to install packages.
+npm install -g yarn
 
-# We need to install create-react-app deps to test it
-cd "$root_path"/packages/create-react-kotlin-app
-npm install
-cd "$root_path"
-
-# If the node version is < 6, the script should just give an error.
-nodeVersion=`node --version | cut -d v -f2`
-nodeMajor=`echo $nodeVersion | cut -d. -f1`
-nodeMinor=`echo $nodeVersion | cut -d. -f2`
-if [[ nodeMajor -lt 6 ]]
-then
-  cd $temp_app_path
-  err_output=`node "$root_path"/packages/create-react-kotlin-app/index.js test-node-version 2>&1 > /dev/null || echo ''`
-  [[ $err_output =~ You\ are\ running\ Node ]] && exit 0 || exit 1
-fi
-
-# We removed the postinstall, so do it manually here
-./node_modules/.bin/lerna bootstrap --concurrency=1
-
-if [ "$USE_YARN" = "yes" ]
-then
-  # Install Yarn so that the test can use it to install packages.
-  npm install -g yarn
-  yarn cache clean
-fi
+# Install all dependencies
+yarn install
 
 # Lint own code
 ./node_modules/.bin/eslint --max-warnings 0 packages/create-react-kotlin-app/

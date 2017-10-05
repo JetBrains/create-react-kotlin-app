@@ -83,21 +83,11 @@ set -x
 cd ..
 root_path=$PWD
 
-# Prevent lerna bootstrap, we only want top-level dependencies
-cp package.json package.json.bak
-grep -v "lerna bootstrap" package.json > temp && mv temp package.json
-npm install
-mv package.json.bak package.json
+# Install Yarn so that the test can use it to install packages.
+npm install -g yarn
 
-if [ "$USE_YARN" = "yes" ]
-then
-  # Install Yarn so that the test can use it to install packages.
-  npm install -g yarn
-  yarn cache clean
-fi
-
-# We removed the postinstall, so do it manually
-./node_modules/.bin/lerna bootstrap --concurrency=1
+# Install all dependencies
+yarn install
 
 # ******************************************************************************
 # First, pack and install create-react-app.
