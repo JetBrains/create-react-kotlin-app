@@ -67,7 +67,8 @@ cd ..
 root_path=$PWD
 
 # Install Yarn so that the test can use it to install packages.
-yarn -v || curl -o- -L https://yarnpkg.com/install.sh | bash && export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+yarn -v || curl -o- -L https://yarnpkg.com/install.sh | bash
 
 # Install all dependencies
 yarn install
