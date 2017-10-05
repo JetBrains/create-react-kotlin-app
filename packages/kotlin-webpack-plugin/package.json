@@ -1,6 +1,6 @@
 {
   "name": "kotlin-webpack-plugin",
-  "version": "1.0.6",
+  "version": "1.0.7-0",
   "description": "Webpack kotlin plugin",
   "main": "plugin.js",
   "repository": "JetBrains/create-react-kotlin-app",
@@ -29,19 +29,19 @@
     "glob": "7.1.2",
     "globby": "6.1.0",
     "kotlin-compiler": "1.1.4-dev-970",
-    "kotlinc-js": "^1.0.5",
+    "kotlinc-js": "^1.0.6-0",
     "read-dir-files": "^0.1.1"
   },
   "devDependencies": {
-    "@hypnosphi/kotlin-extensions": "0.0.4",
-    "@hypnosphi/kotlin-react": "0.0.2",
-    "@hypnosphi/kotlin-react-dom": "0.0.3",
     "@hypnosphi/kotlinx-html-js": "^0.0.1",
+    "@jetbrains/kotlin-extensions": "^1.0.0-pre.2",
+    "@jetbrains/kotlin-react": "^16.0.0-pre.2",
+    "@jetbrains/kotlin-react-dom": "^16.0.0-pre.2",
     "@princed/source-map-loader": "0.2.1",
     "html-webpack-plugin": "^2.28.0",
-    "kotlin": "^1.1.4",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "kotlin": "^1.1.51",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "webpack": "^2.6.1",
     "webpack-dev-server": "2.4.5"
   }

@@ -52,7 +52,7 @@ root_path=$PWD
 # ******************************************************************************
 
 # Install all our packages
-"$root_path"/node_modules/.bin/lerna bootstrap
+yarn install
 
 cd packages/react-scripts
 

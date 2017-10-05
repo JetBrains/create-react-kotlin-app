@@ -45,7 +45,6 @@ module.exports = function(
   appPackage.scripts = {
     start: 'react-scripts-kotlin start',
     build: 'react-scripts-kotlin build',
-    test: 'react-scripts-kotlin test --env=jsdom',
     eject: 'react-scripts-kotlin eject',
     'gen-idea-libs': 'react-scripts-kotlin gen-idea-libs',
     'get-types': 'react-scripts-kotlin get-types --dest=src/types',

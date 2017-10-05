@@ -30,8 +30,8 @@ class Ticker(props: TickerProps): RComponent<TickerProps, TickerState>(props) {
     window.clearInterval(timerID!!)
   }
 
-  override fun RBuilder.render(): ReactElement? {
-    return span { +state.secondsElapsed.toString() }
+  override fun RBuilder.render() {
+    span { +state.secondsElapsed.toString() }
   }
 }
 

@@ -212,9 +212,9 @@ module.exports = {
       moduleName: kotlinModuleName,
       optimize: true,
       libraries: [
-        '@hypnosphi/kotlin-extensions',
-        '@hypnosphi/kotlin-react',
-        '@hypnosphi/kotlin-react-dom',
+        '@jetbrains/kotlin-extensions',
+        '@jetbrains/kotlin-react',
+        '@jetbrains/kotlin-react-dom',
         '@hypnosphi/kotlinx-html-js',
       ].map(pkg => require.resolve(pkg)),
     }),

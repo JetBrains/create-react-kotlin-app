@@ -13,11 +13,7 @@ const fs = require('fs');
   }, '.')
 */
 
-module.exports = function generate(
-  packages,
-  projectDir,
-  imlPath
-) {
+module.exports = function generate(packages, projectDir, imlPath) {
   const libTemplate = fs.readFileSync(
     path.join(__dirname, './libTemplate.xml'),
     'utf8'
@@ -35,7 +31,7 @@ module.exports = function generate(
         `${path.basename(path.resolve(projectDir))}.iml`
       );
       iml = fs.readFileSync(_imlPath, 'utf8');
-    } catch(e) {
+    } catch (e) {
       _imlPath = path.join(
         projectDir,
         `${path.basename(path.resolve(projectDir))}.iml`
@@ -44,8 +40,8 @@ module.exports = function generate(
     }
   }
   Object.keys(packages).forEach(name => {
-    const pkg = packages[name]
-    const classes = path.relative(projectDir, path.join(pkg, '..'))
+    const pkg = packages[name];
+    const classes = path.relative(projectDir, path.join(pkg, '..'));
     fs.writeFile(
       path.join(projectDir, `.idea/libraries/${name.replace(/-/g, '_')}.xml`),
       libTemplate.replace(/%name%/g, name).replace(/%classes%/g, classes)
@@ -53,8 +49,8 @@ module.exports = function generate(
 
     const dep = depTemplate.replace(/%name%/g, name);
     if (!iml.includes(dep)) {
-      iml = iml.replace(/(\n\s+)<\/component>/, `$1  ${dep}$&`)
+      iml = iml.replace(/(\n\s+)<\/component>/, `$1  ${dep}$&`);
     }
-  })
+  });
   fs.writeFile(_imlPath, iml);
 };
