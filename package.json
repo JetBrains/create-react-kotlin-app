@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "node packages/react-scripts/scripts/build.js",
+    "build": "yarn --cwd packages/react-scripts build",
     "changelog": "lerna-changelog",
     "create-react-kotlin-app": "tasks/cra.sh",
     "e2e": "tasks/e2e-simple.sh",

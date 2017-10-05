@@ -21,6 +21,9 @@
   "bin": {
     "react-scripts-kotlin": "./bin/react-scripts-kotlin.js"
   },
+  "scripts": {
+    "build": "node ./scripts/build"
+  },
   "dependencies": {
     "@hypnosphi/kotlin-extensions": "0.0.4",
     "@hypnosphi/kotlin-react": "0.0.2",
