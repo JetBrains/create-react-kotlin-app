@@ -42,11 +42,7 @@ fi
 
 cd "$root_path"
 
-# Prevent lerna bootstrap, we only want top-level dependencies
-cp package.json package.json.bak
-grep -v "lerna bootstrap" package.json > temp && mv temp package.json
-npm install
-mv package.json.bak package.json
+yarn install
 
 # Go!
 ./node_modules/.bin/lerna publish --independent --yes --cd-version patch "$@"
