@@ -138,7 +138,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: paths.kotlinOutputPath,
-        loader: require.resolve('@princed/source-map-loader'),
+        loader: require.resolve('source-map-loader'),
         enforce: 'pre',
       },
 
