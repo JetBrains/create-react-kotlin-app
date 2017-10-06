@@ -12,6 +12,7 @@ const DEFAULT_OPTIONS = {
   libraries: [],
   verbose: false,
   sourceMaps: true,
+  sourceMapEmbedSources: 'always',
   metaInfo: false,
   optimize: false,
 };
@@ -87,15 +88,19 @@ class KotlinWebpackPlugin {
   }
 
   compileKotlinSources() {
+    const options = this.options;
     return kotlinCompiler
       .compile({
         output: this.outputPath,
-        sources: [].concat(this.options.src),
-        sourceMaps: this.options.sourceMaps,
-        metaInfo: this.options.metaInfo,
+        sources: [].concat(options.src),
+        sourceMaps: options.sourceMaps,
+        sourceMapEmbedSources: options.sourceMapEmbedSources,
+        sourceMapPrefix: options.sourceMapPrefix,
+        sourceMapSourceRoots: options.sourceMapSourceRoots,
+        metaInfo: options.metaInfo,
         moduleKind: 'commonjs',
         noWarn: 'true',
-        libraries: this.options.libraries,
+        libraries: options.libraries,
       })
       .then(() => {
         if (this.options.optimize) {

@@ -15,7 +15,8 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, '../kotlin_build'),
-        use: ['@princed/source-map-loader'],
+        exclude: /kotlinx-html-js/, //TODO: include it back when kotlinx sourcemaps get fixed
+        use: ['source-map-loader'],
         enforce: 'pre',
       },
     ],
@@ -30,7 +31,7 @@ module.exports = {
     new KotlinWebpackPlugin({
       src: __dirname,
       verbose: true,
-      optimize: true,
+      optimize: true, // Turn it off to work with sourcemaps
       libraries: [
         '@jetbrains/kotlin-extensions',
         '@jetbrains/kotlin-react',
