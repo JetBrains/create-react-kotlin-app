@@ -133,6 +133,9 @@ module.exports = {
       {
         test: /\.js$/,
         include: paths.kotlinOutputPath,
+        exclude: [
+          /kotlinx-html-js/, //TODO: include it back when kotlinx sourcemaps get fixed
+        ],
         loader: require.resolve('source-map-loader'),
         enforce: 'pre',
       },
