@@ -1,6 +1,6 @@
 {
   "name": "kotlinc-js",
-  "version": "1.0.6-0",
+  "version": "1.0.6",
   "description": "KotlincJS compiler wrapper for NodeJS",
   "main": "kotlin-compiler.js",
   "scripts": {

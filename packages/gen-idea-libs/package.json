@@ -1,6 +1,6 @@
 {
   "name": "gen-idea-libs",
-  "version": "1.0.4-0",
+  "version": "1.0.4",
   "description": "Generate IntelliJ Idea libs config from given npm kotlinJs dependencies",
   "main": "generate",
   "author": "Filipp Riabchun",
