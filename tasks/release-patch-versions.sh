@@ -42,6 +42,11 @@ fi
 
 cd "$root_path"
 
+# Install Yarn so that the test can use it to install packages.
+export PATH="$HOME/.yarn/bin:$PATH"
+yarn -v || curl -o- -L https://yarnpkg.com/install.sh | bash
+
+# Install all dependencies
 yarn install
 
 # Go!
