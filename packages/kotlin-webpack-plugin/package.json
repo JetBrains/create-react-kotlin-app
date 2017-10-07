@@ -34,9 +34,9 @@
   },
   "devDependencies": {
     "@hypnosphi/kotlinx-html-js": "^0.0.1",
-    "@jetbrains/kotlin-extensions": "^1.0.0-pre.2",
-    "@jetbrains/kotlin-react": "^16.0.0-pre.2",
-    "@jetbrains/kotlin-react-dom": "^16.0.0-pre.2",
+    "@jetbrains/kotlin-extensions": "^1.0.0-pre.3",
+    "@jetbrains/kotlin-react": "^16.0.0-pre.3",
+    "@jetbrains/kotlin-react-dom": "^16.0.0-pre.3",
     "html-webpack-plugin": "^2.28.0",
     "kotlin": "^1.1.51",
     "react": "^16.0.0",

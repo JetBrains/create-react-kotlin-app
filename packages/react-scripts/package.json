@@ -27,9 +27,9 @@
   },
   "dependencies": {
     "@hypnosphi/kotlinx-html-js": "^0.0.1",
-    "@jetbrains/kotlin-extensions": "^1.0.0-pre.2",
-    "@jetbrains/kotlin-react": "^16.0.0-pre.2",
-    "@jetbrains/kotlin-react-dom": "^16.0.0-pre.2",
+    "@jetbrains/kotlin-extensions": "^1.0.0-pre.3",
+    "@jetbrains/kotlin-react": "^16.0.0-pre.3",
+    "@jetbrains/kotlin-react-dom": "^16.0.0-pre.3",
     "autoprefixer": "7.1.0",
     "case-sensitive-paths-webpack-plugin": "1.1.4",
     "chalk": "1.1.3",
