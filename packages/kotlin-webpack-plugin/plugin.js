@@ -79,7 +79,7 @@ class KotlinWebpackPlugin {
     }
 
     this.log(
-      `Compiling Kotlin sources because of changes in files: ${changedFiles.join(', ')}`
+      `Compiling Kotlin sources because the following files were changed: ${changedFiles.join(', ')}`
     );
     this.compileKotlinSources().then(done).catch(err => {
       compilation.errors.push(err);

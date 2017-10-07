@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: 'kotlinApp', // this is the default value for moduleName option
+  entry: 'kotlinApp', // kotlinApp is the default module name
 
   resolve: {
     modules: ['kotlin_build', 'node_modules'],

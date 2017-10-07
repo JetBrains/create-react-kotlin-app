@@ -95,7 +95,7 @@ function convertTypesToKotlin(packageName, destinationDir) {
 
   return spawnChildProcess(command, args).then(() =>
     console.log(
-      `Types for ${name} has been converted and put into ${destinationDir}.`
+      `Types for ${name} have been converted and put into ${destinationDir}.`
     ));
 }
 

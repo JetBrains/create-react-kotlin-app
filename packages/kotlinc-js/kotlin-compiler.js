@@ -77,7 +77,7 @@ function compile(options) {
 
     compilation.on('error', err => {
       hasErrors = true;
-      errors += 'kotlin-js failed. do you have kotlin installed?';
+      errors += 'kotlin-js failed. Do you have Kotlin installed?';
       errors += JSON.stringify(err);
     });
 

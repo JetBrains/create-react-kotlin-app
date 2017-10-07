@@ -1,7 +1,7 @@
 {
   "name": "kotlin-webpack-plugin",
   "version": "1.0.7",
-  "description": "Webpack kotlin plugin",
+  "description": "Kotlin plugin for webpack",
   "main": "plugin.js",
   "repository": "JetBrains/create-react-kotlin-app",
   "scripts": {

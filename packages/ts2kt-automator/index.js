@@ -12,7 +12,7 @@ const dest = argv.dest;
 
 if (!argv.dest) {
   throw new Error(
-    'Destination folder should be specified like: --dest=typings'
+    'Destination folder should be specified as follows: --dest=typings'
   );
 }
 

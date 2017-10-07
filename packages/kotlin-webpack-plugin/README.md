@@ -1,6 +1,6 @@
 # kotlin-webpack-plugin
 
-A webpack plugin that compiles kotlin sources
+A webpack plugin that compiles Kotlin sources
 
 ## Installation
 
@@ -10,15 +10,15 @@ npm i kotlin-webpack-plugin --save-dev
 
 ## Usage
 
-Example webpack configuration:
+Example of webpack configuration:
 ```js
 const KotlinWebpackPlugin = require('../plugin');
 
 module.exports = {
-  entry: 'kotlinApp', // this is the default value for moduleName option
+  entry: 'kotlinApp', // kotlinApp is the default module name
 
   resolve: {
-    // We include 'kotlin_build" in modules because there will be compiled "kotlinApp.js" file
+    // "kotlin_build" is where the compiled Kotlin code (kotlinApp.js) is outputted
     modules: ['node_modules', 'kotlin_build']
   },
 
