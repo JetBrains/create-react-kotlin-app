@@ -23,7 +23,8 @@ class KotlinWebpackPlugin {
     this.librariesMainFiles = opts.libraries;
     this.options = Object.assign({}, opts, {
       libraries: opts.libraries.map(main =>
-        main.replace(/(?:\.js)?$/, '.meta.js')),
+        main.replace(/(?:\.js)?$/, '.meta.js')
+      ),
     });
     this.outputPath = path.resolve(
       `${this.options.output}/${this.options.moduleName}.js`
@@ -60,7 +61,8 @@ class KotlinWebpackPlugin {
     );
     return Promise.all(
       files.map(file =>
-        fs.copy(file, path.join(this.options.output, path.basename(file))))
+        fs.copy(file, path.join(this.options.output, path.basename(file)))
+      )
     );
   }
 
@@ -79,12 +81,16 @@ class KotlinWebpackPlugin {
     }
 
     this.log(
-      `Compiling Kotlin sources because the following files were changed: ${changedFiles.join(', ')}`
+      `Compiling Kotlin sources because the following files were changed: ${changedFiles.join(
+        ', '
+      )}`
     );
-    this.compileKotlinSources().then(done).catch(err => {
-      compilation.errors.push(err);
-      done();
-    });
+    this.compileKotlinSources()
+      .then(done)
+      .catch(err => {
+        compilation.errors.push(err);
+        done();
+      });
   }
 
   compileKotlinSources() {
@@ -152,15 +158,23 @@ class KotlinWebpackPlugin {
     const timestamp = 100;
     const output = this.options.output;
 
-    return fs
-      .readdir(output)
-      .then(files => Promise.all(
-        files.map(file => {
-          return fs.utimes(path.resolve(output, file), timestamp, timestamp);
-        })
-      ))
-      // discard the value
-      .then(() => {});
+    return (
+      fs
+        .readdir(output)
+        .then(files =>
+          Promise.all(
+            files.map(file => {
+              return fs.utimes(
+                path.resolve(output, file),
+                timestamp,
+                timestamp
+              );
+            })
+          )
+        )
+        // discard the value
+        .then(() => {})
+    );
   }
 }
 

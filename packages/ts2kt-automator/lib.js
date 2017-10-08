@@ -78,7 +78,8 @@ function installTypes(packageName) {
     .then(() =>
       console.log(
         `Package ${packageName} has been installed to node_modules/@types/${packageName}.`
-      ))
+      )
+    )
     .catch(errorMessage => {
       if (errorMessage.indexOf('npm WARN') !== -1) {
         return;
@@ -96,7 +97,8 @@ function convertTypesToKotlin(packageName, destinationDir) {
   return spawnChildProcess(command, args).then(() =>
     console.log(
       `Types for ${name} have been converted and put into ${destinationDir}.`
-    ));
+    )
+  );
 }
 
 module.exports = {

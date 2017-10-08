@@ -22,7 +22,7 @@ function eliminateDeadCode(args) {
       errors += JSON.stringify(err);
     });
 
-    compilation.on('close', () => hasErrors ? reject(errors) : resolve());
+    compilation.on('close', () => (hasErrors ? reject(errors) : resolve()));
   });
 }
 

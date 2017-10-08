@@ -18,7 +18,8 @@ module.exports = function generate(packages, projectDir, imlPath) {
     path.join(__dirname, './libTemplate.xml'),
     'utf8'
   );
-  const depTemplate = '<orderEntry type="library" name="%name%" level="project" />';
+  const depTemplate =
+    '<orderEntry type="library" name="%name%" level="project" />';
   let iml;
   let _imlPath = imlPath;
   if (_imlPath) {

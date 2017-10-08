@@ -18,13 +18,13 @@ kotlinCompiler
     ].map(lib => require.resolve(lib).replace(/(?:\.js)?$/, '.meta.js')),
   })
   .then(() => {
-    return new Promise(
-      resolve => fs.readFile(DIST_FILE_PATH, (error, data) => resolve(data))
+    return new Promise(resolve =>
+      fs.readFile(DIST_FILE_PATH, (error, data) => resolve(data))
     );
   })
   .then(compiledFileContent => {
-    return new Promise(
-      resolve => fs.readFile(REFERENCE_PATH, (error, data) => resolve(data))
+    return new Promise(resolve =>
+      fs.readFile(REFERENCE_PATH, (error, data) => resolve(data))
     ).then(reference => ({
       compiledFileContent,
       reference,

@@ -13,5 +13,7 @@ const text = aFileWithExtUnknown.includes('base64')
   : aFileWithExtUnknown;
 
 export default () => (
-  <a id="feature-unknown-ext-inclusion" href={text}>aFileWithExtUnknown</a>
+  <a id="feature-unknown-ext-inclusion" href={text}>
+    aFileWithExtUnknown
+  </a>
 );
