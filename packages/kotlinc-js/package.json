@@ -22,12 +22,6 @@
   ],
   "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
   "license": "Apache-2.0",
-  "devDependencies": {
-    "@jetbrains/kotlin-extensions": "^1.0.0-pre.0",
-    "@jetbrains/kotlin-react": "^16.0.0-pre.0",
-    "kotlin": "^1.1.51",
-    "react": "^16.0.0"
-  },
   "dependencies": {
     "kotlin-compiler": "^1.1.51"
   }
