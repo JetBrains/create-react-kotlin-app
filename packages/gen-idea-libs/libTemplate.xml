@@ -1,5 +1,5 @@
 <component name="libraryTable">
-    <library name="%name%">
+    <library name="%name%" type=“kotlin.js”>
         <CLASSES>
             <root url="file://$PROJECT_DIR$/%classes%" />
         </CLASSES>

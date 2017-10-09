@@ -1,6 +1,6 @@
 {
-  "name": "kotlinc-js",
-  "version": "1.0.4",
+  "name": "@jetbrains/kotlinc-js-api",
+  "version": "1.1.2",
   "description": "KotlincJS compiler wrapper for NodeJS",
   "main": "kotlin-compiler.js",
   "scripts": {
@@ -22,13 +22,7 @@
   ],
   "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
   "license": "Apache-2.0",
-  "devDependencies": {
-    "@hypnosphi/kotlin-extensions": "0.0.4",
-    "@hypnosphi/kotlin-react": "0.0.2",
-    "kotlin": "^1.1.0",
-    "react": "^15.5.4"
-  },
   "dependencies": {
-    "kotlin-compiler": "dev"
+    "kotlin-compiler": "^1.1.51"
   }
 }

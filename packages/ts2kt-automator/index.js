@@ -12,7 +12,7 @@ const dest = argv.dest;
 
 if (!argv.dest) {
   throw new Error(
-    'Destination folder should be specified like: --dest=typings'
+    'Destination folder should be specified as follows: --dest=typings'
   );
 }
 
@@ -38,29 +38,26 @@ function installAllPackages() {
   const dependencies = lib.getPackageDependencies();
 
   Object.keys(dependencies)
-    .reduce(
-      (promise, packageName) => {
-        const [name] = packageName.split('@');
-        const packageDest = `${dest}/${name}`;
+    .reduce((promise, packageName) => {
+      const [name] = packageName.split('@');
+      const packageDest = `${dest}/${name}`;
 
-        if (fs.existsSync(packageDest)) {
-          console.log(
-            `Path "${packageDest}" already exists and will not be overridden.`
-          );
-          return promise;
+      if (fs.existsSync(packageDest)) {
+        console.log(
+          `Path "${packageDest}" already exists and will not be overridden.`
+        );
+        return promise;
+      }
+
+      return promise.then(() => installOnePackage(name, dest)).catch(err => {
+        try {
+          fs.unlinkSync(packageDest);
+        } catch (err) {
+          console.error('Cannot clear folder after error', packageDest, err);
         }
-
-        return promise.then(() => installOnePackage(name, dest)).catch(err => {
-          try {
-            fs.unlinkSync(packageDest);
-          } catch (err) {
-            console.error('Cannot clear folder after error', packageDest, err);
-          }
-          console.error(err);
-        });
-      },
-      Promise.resolve()
-    )
+        console.error(err);
+      });
+    }, Promise.resolve())
     .catch(err => {
       console.error(err);
       process.exit(1);

@@ -1,12 +1,12 @@
 {
   "name": "create-react-kotlin-app",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "keywords": [
     "react"
   ],
   "description": "Create React apps with no build configuration.",
   "repository": "JetBrains/create-react-kotlin-app",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "engines": {
     "node": ">=4"
   },

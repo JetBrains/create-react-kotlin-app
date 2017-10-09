@@ -1,11 +1,13 @@
 (function (_, Kotlin, $module$react, $module$kotlin_extensions) {
   'use strict';
+  var $$importsForInline$$ = _.$$importsForInline$$ || (_.$$importsForInline$$ = {});
   var println = Kotlin.kotlin.io.println_s8jyv4$;
   function main(args) {
     var obj = {};
     var el = $module$react.createElement('test', obj, 'test');
     println(JSON.stringify(el));
   }
+  $$importsForInline$$['kotlin-extensions'] = $module$kotlin_extensions;
   var package$test = _.test || (_.test = {});
   package$test.main_kand9s$ = main;
   main([]);

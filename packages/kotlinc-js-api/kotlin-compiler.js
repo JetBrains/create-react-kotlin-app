@@ -1,8 +1,15 @@
 'use strict';
 const spawn = require('child_process').spawn;
 
+function addOptionWithValue(options, optionName, optionValue) {
+  if (optionValue) {
+    return options.concat(optionName, optionValue);
+  }
+  return options;
+}
+
 function convertOptionsIntoArguments(options) {
-  var argumentsList = [
+  let argumentsList = [
     '-output',
     options.output,
     options.sourceMaps ? '-source-map' : null,
@@ -12,13 +19,34 @@ function convertOptionsIntoArguments(options) {
     options.verbose ? '-verbose' : null,
   ];
 
-  if (options.main) {
-    argumentsList = argumentsList.concat('-main', options.main);
-  }
+  argumentsList = addOptionWithValue(argumentsList, '-main', options.main);
 
-  if (options.moduleKind) {
-    argumentsList = argumentsList.concat('-module-kind', options.moduleKind);
-  }
+  argumentsList = addOptionWithValue(
+    argumentsList,
+    '-source-map-embed-sources',
+    options.sourceMapEmbedSources
+  );
+  argumentsList = addOptionWithValue(
+    argumentsList,
+    '-source-map-prefix',
+    options.sourceMapPrefix
+  );
+  argumentsList = addOptionWithValue(
+    argumentsList,
+    '-source-map-source-roots',
+    options.sourceMapSourceRoots
+  );
+
+  argumentsList = addOptionWithValue(
+    argumentsList,
+    '-kotlin-home',
+    options.kotlinHome
+  );
+  argumentsList = addOptionWithValue(
+    argumentsList,
+    '-module-kind',
+    options.moduleKind
+  );
 
   if (options.libraries && options.libraries.length) {
     argumentsList = argumentsList.concat(
@@ -34,13 +62,13 @@ function convertOptionsIntoArguments(options) {
 
 function compile(options) {
   return new Promise((resolve, reject) => {
-    var compilation = spawn(
+    const compilation = spawn(
       require.resolve('kotlin-compiler/bin/kotlinc-js'),
       convertOptionsIntoArguments(options),
       { stdio: [process.stdin, process.stdout, 'pipe'] }
     );
-    var hasErrors = false;
-    var errors = '';
+    let hasErrors = false;
+    let errors = '';
 
     compilation.stderr.on('data', data => {
       hasErrors = true;
@@ -49,7 +77,7 @@ function compile(options) {
 
     compilation.on('error', err => {
       hasErrors = true;
-      errors += 'kotlin-js failed. do you have kotlin installed?';
+      errors += 'kotlin-js failed. Do you have Kotlin installed?';
       errors += JSON.stringify(err);
     });
 

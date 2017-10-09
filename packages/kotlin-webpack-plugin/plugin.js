@@ -1,5 +1,5 @@
 'use strict';
-const kotlinCompiler = require('kotlinc-js');
+const kotlinCompiler = require('@jetbrains/kotlinc-js-api');
 const globby = require('globby');
 const fs = require('fs-extra');
 const path = require('path');
@@ -12,6 +12,7 @@ const DEFAULT_OPTIONS = {
   libraries: [],
   verbose: false,
   sourceMaps: true,
+  sourceMapEmbedSources: 'always',
   metaInfo: false,
   optimize: false,
 };
@@ -22,7 +23,8 @@ class KotlinWebpackPlugin {
     this.librariesMainFiles = opts.libraries;
     this.options = Object.assign({}, opts, {
       libraries: opts.libraries.map(main =>
-        main.replace(/(?:\.js)?$/, '.meta.js')),
+        main.replace(/(?:\.js)?$/, '.meta.js')
+      ),
     });
     this.outputPath = path.resolve(
       `${this.options.output}/${this.options.moduleName}.js`
@@ -59,7 +61,8 @@ class KotlinWebpackPlugin {
     );
     return Promise.all(
       files.map(file =>
-        fs.copy(file, path.join(this.options.output, path.basename(file))))
+        fs.copy(file, path.join(this.options.output, path.basename(file)))
+      )
     );
   }
 
@@ -78,24 +81,32 @@ class KotlinWebpackPlugin {
     }
 
     this.log(
-      `Compiling Kotlin sources because of changes in files: ${changedFiles.join(', ')}`
+      `Compiling Kotlin sources because the following files were changed: ${changedFiles.join(
+        ', '
+      )}`
     );
-    this.compileKotlinSources().then(done).catch(err => {
-      compilation.errors.push(err);
-      done();
-    });
+    this.compileKotlinSources()
+      .then(done)
+      .catch(err => {
+        compilation.errors.push(err);
+        done();
+      });
   }
 
   compileKotlinSources() {
+    const options = this.options;
     return kotlinCompiler
       .compile({
         output: this.outputPath,
-        sources: [].concat(this.options.src),
-        sourceMaps: this.options.sourceMaps,
-        metaInfo: this.options.metaInfo,
+        sources: [].concat(options.src),
+        sourceMaps: options.sourceMaps,
+        sourceMapEmbedSources: options.sourceMapEmbedSources,
+        sourceMapPrefix: options.sourceMapPrefix,
+        sourceMapSourceRoots: options.sourceMapSourceRoots,
+        metaInfo: options.metaInfo,
         moduleKind: 'commonjs',
         noWarn: 'true',
-        libraries: this.options.libraries,
+        libraries: options.libraries,
       })
       .then(() => {
         if (this.options.optimize) {
@@ -147,15 +158,23 @@ class KotlinWebpackPlugin {
     const timestamp = 100;
     const output = this.options.output;
 
-    return fs
-      .readdir(output)
-      .then(files => Promise.all(
-        files.map(file => {
-          return fs.utimes(path.resolve(output, file), timestamp, timestamp);
-        })
-      ))
-      // discard the value
-      .then(() => {});
+    return (
+      fs
+        .readdir(output)
+        .then(files =>
+          Promise.all(
+            files.map(file => {
+              return fs.utimes(
+                path.resolve(output, file),
+                timestamp,
+                timestamp
+              );
+            })
+          )
+        )
+        // discard the value
+        .then(() => {})
+    );
   }
 }
 

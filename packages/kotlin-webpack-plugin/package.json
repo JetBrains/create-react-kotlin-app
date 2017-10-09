@@ -1,12 +1,12 @@
 {
-  "name": "kotlin-webpack-plugin",
-  "version": "1.0.5",
-  "description": "Webpack kotlin plugin",
+  "name": "@jetbrains/kotlin-webpack-plugin",
+  "version": "1.0.9",
+  "description": "Kotlin plugin for webpack",
   "main": "plugin.js",
   "repository": "JetBrains/create-react-kotlin-app",
   "scripts": {
-    "start": "webpack-dev-server -d --inline --hot --devtool cheap-module-source-map --config example/webpack.config.js",
-    "build-example": "rm -rf example/build/ && webpack --config example/webpack.config.js --bail --devtool sourcemap",
+    "start": "webpack-dev-server -d --inline --hot --devtool source-map --config example/webpack.config.js",
+    "build-example": "rm -rf example/build/ && webpack --config example/webpack.config.js --bail --devtool source-map",
     "debug-build": "node --inspect-brk ./node_modules/.bin/webpack --config example/webpack.config.js",
     "debug-dev-server": "node --inspect-brk ./node_modules/.bin/webpack-dev-server --config example/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,24 +25,17 @@
     "dce-plugin.js"
   ],
   "dependencies": {
+    "@jetbrains/kotlinc-js-api": "^1.1.2",
     "fs-extra": "3.0.1",
     "glob": "7.1.2",
     "globby": "6.1.0",
-    "kotlin-compiler": "1.1.4-dev-970",
-    "kotlinc-js": "^1.0.4",
+    "kotlin-compiler": "1.1.51",
     "read-dir-files": "^0.1.1"
   },
   "devDependencies": {
-    "@hypnosphi/kotlin-extensions": "0.0.4",
-    "@hypnosphi/kotlin-react": "0.0.2",
-    "@hypnosphi/kotlin-react-dom": "0.0.3",
-    "@hypnosphi/kotlinx-html-js": "^0.0.1",
-    "@princed/source-map-loader": "0.2.1",
-    "html-webpack-plugin": "^2.28.0",
-    "kotlin": "^1.1.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "2.4.5"
+    "html-webpack-plugin": "^2.30.1",
+    "source-map-loader": "0.2.2",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "2.9.1"
   }
 }

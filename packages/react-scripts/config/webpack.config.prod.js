@@ -1,11 +1,9 @@
 // @remove-on-eject-begin
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 // @remove-on-eject-end
 'use strict';
@@ -17,7 +15,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const KotlinWebpackPlugin = require('kotlin-webpack-plugin');
+const KotlinWebpackPlugin = require('@jetbrains/kotlin-webpack-plugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
@@ -135,7 +133,10 @@ module.exports = {
       {
         test: /\.js$/,
         include: paths.kotlinOutputPath,
-        loader: require.resolve('@princed/source-map-loader'),
+        exclude: [
+          /kotlinx-html-js/, //TODO: include it back when kotlinx sourcemaps get fixed
+        ],
+        loader: require.resolve('source-map-loader'),
         enforce: 'pre',
       },
 
@@ -212,9 +213,9 @@ module.exports = {
       moduleName: kotlinModuleName,
       optimize: true,
       libraries: [
-        '@hypnosphi/kotlin-extensions',
-        '@hypnosphi/kotlin-react',
-        '@hypnosphi/kotlin-react-dom',
+        '@jetbrains/kotlin-extensions',
+        '@jetbrains/kotlin-react',
+        '@jetbrains/kotlin-react-dom',
         '@hypnosphi/kotlinx-html-js',
       ].map(pkg => require.resolve(pkg)),
     }),

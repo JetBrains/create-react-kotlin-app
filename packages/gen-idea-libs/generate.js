@@ -3,26 +3,23 @@ const path = require('path');
 const fs = require('fs');
 
 /* sample usage:
-  const generate = require('gen-idea-libs')
+  const generate = require('@jetbrains/gen-idea-libs')
 
   generate({
-    'kotlin-extensions': require.resolve('kotlin-extensions'),
-    'kotlin-react': require.resolve('kotlin-react'),
-    'kotlin-react-dom': require.resolve('kotlin-react-dom'),
+    'kotlin-extensions': require.resolve('@jetbrains/kotlin-extensions'),
+    'kotlin-react': require.resolve('@jetbrains/kotlin-react'),
+    'kotlin-react-dom': require.resolve('@jetbrains/kotlin-react-dom'),
     'kotlinx-html-js': require.resolve('@hypnosphi/kotlinx-html-js')
   }, '.')
 */
 
-module.exports = function generate(
-  packages,
-  projectDir,
-  imlPath
-) {
+module.exports = function generate(packages, projectDir, imlPath) {
   const libTemplate = fs.readFileSync(
     path.join(__dirname, './libTemplate.xml'),
     'utf8'
   );
-  const depTemplate = '<orderEntry type="library" name="%name%" level="project" />';
+  const depTemplate =
+    '<orderEntry type="library" name="%name%" level="project" />';
   let iml;
   let _imlPath = imlPath;
   if (_imlPath) {
@@ -35,7 +32,7 @@ module.exports = function generate(
         `${path.basename(path.resolve(projectDir))}.iml`
       );
       iml = fs.readFileSync(_imlPath, 'utf8');
-    } catch(e) {
+    } catch (e) {
       _imlPath = path.join(
         projectDir,
         `${path.basename(path.resolve(projectDir))}.iml`
@@ -44,8 +41,8 @@ module.exports = function generate(
     }
   }
   Object.keys(packages).forEach(name => {
-    const pkg = packages[name]
-    const classes = path.relative(projectDir, path.join(pkg, '..'))
+    const pkg = packages[name];
+    const classes = path.relative(projectDir, path.join(pkg, '..'));
     fs.writeFile(
       path.join(projectDir, `.idea/libraries/${name.replace(/-/g, '_')}.xml`),
       libTemplate.replace(/%name%/g, name).replace(/%classes%/g, classes)
@@ -53,8 +50,8 @@ module.exports = function generate(
 
     const dep = depTemplate.replace(/%name%/g, name);
     if (!iml.includes(dep)) {
-      iml = iml.replace(/(\n\s+)<\/component>/, `$1  ${dep}$&`)
+      iml = iml.replace(/(\n\s+)<\/component>/, `$1  ${dep}$&`);
     }
-  })
+  });
   fs.writeFile(_imlPath, iml);
 };

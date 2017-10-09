@@ -42,11 +42,12 @@ fi
 
 cd "$root_path"
 
-# Prevent lerna bootstrap, we only want top-level dependencies
-cp package.json package.json.bak
-grep -v "lerna bootstrap" package.json > temp && mv temp package.json
-npm install
-mv package.json.bak package.json
+# Install Yarn so that the test can use it to install packages.
+export PATH="$HOME/.yarn/bin:$PATH"
+yarn -v || curl -o- -L https://yarnpkg.com/install.sh | bash
+
+# Install all dependencies
+yarn install
 
 # Go!
 ./node_modules/.bin/lerna publish --independent --yes --cd-version patch "$@"

@@ -13,18 +13,18 @@ kotlinCompiler
     sourceMaps: true,
     moduleKind: 'commonjs',
     libraries: [
-      'node_modules/@hypnosphi/kotlin-extensions/build/classes/main/kotlin-extensions.meta.js',
-      'node_modules/@hypnosphi/kotlin-react/build/classes/main/kotlin-react.meta.js',
-    ],
+      '@jetbrains/kotlin-extensions',
+      '@jetbrains/kotlin-react',
+    ].map(lib => require.resolve(lib).replace(/(?:\.js)?$/, '.meta.js')),
   })
   .then(() => {
-    return new Promise(
-      resolve => fs.readFile(DIST_FILE_PATH, (error, data) => resolve(data))
+    return new Promise(resolve =>
+      fs.readFile(DIST_FILE_PATH, (error, data) => resolve(data))
     );
   })
   .then(compiledFileContent => {
-    return new Promise(
-      resolve => fs.readFile(REFERENCE_PATH, (error, data) => resolve(data))
+    return new Promise(resolve =>
+      fs.readFile(REFERENCE_PATH, (error, data) => resolve(data))
     ).then(reference => ({
       compiledFileContent,
       reference,

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: 'kotlinApp', // this is the default value for moduleName option
+  entry: 'kotlinApp', // kotlinApp is the default module name
 
   resolve: {
     modules: ['kotlin_build', 'node_modules'],
@@ -15,7 +15,11 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, '../kotlin_build'),
-        use: ['@princed/source-map-loader'],
+        exclude: [
+          /kotlinx-html-js/, //TODO: include it back when kotlinx sourcemaps get fixed
+          /kotlin\.js$/, // Kotlin runtime doesn't have sourcemaps at the moment
+        ],
+        use: ['source-map-loader'],
         enforce: 'pre',
       },
     ],
@@ -32,9 +36,9 @@ module.exports = {
       verbose: true,
       optimize: true,
       libraries: [
-        '@hypnosphi/kotlin-extensions',
-        '@hypnosphi/kotlin-react',
-        '@hypnosphi/kotlin-react-dom',
+        '@jetbrains/kotlin-extensions',
+        '@jetbrains/kotlin-react',
+        '@jetbrains/kotlin-react-dom',
         '@hypnosphi/kotlinx-html-js',
       ].map(pkg => require.resolve(pkg)),
     }),

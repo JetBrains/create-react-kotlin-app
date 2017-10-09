@@ -1,29 +1,41 @@
 {
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "node packages/react-scripts/scripts/build.js",
+    "build": "yarn --cwd packages/react-scripts build",
     "changelog": "lerna-changelog",
-    "create-react-kotlin-app": "tasks/cra.sh",
+    "create-react-kotlin-app": "tasks/cra.sh my-app",
     "e2e": "tasks/e2e-simple.sh",
-    "postinstall": "lerna bootstrap",
     "publish": "tasks/release.sh",
-    "start": "node packages/react-scripts/scripts/start.js",
-    "test": "node packages/react-scripts/scripts/test.js --env=jsdom",
+    "start": "yarn --cwd packages/react-scripts start",
     "format": "prettier --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "eslint": "3.19.0",
-    "husky": "^0.13.2",
-    "lerna": "2.0.0-rc.5",
-    "lerna-changelog": "^0.2.3",
-    "lint-staged": "^3.3.1",
-    "prettier": "^0.21.0"
+    "@hypnosphi/kotlinx-html-js": "^0.0.1",
+    "@jetbrains/kotlin-extensions": "^1.0.0-pre.3",
+    "@jetbrains/kotlin-react": "^16.0.0-pre.3",
+    "@jetbrains/kotlin-react-dom": "^16.0.0-pre.3",
+    "eslint": "4.8.0",
+    "husky": "^0.14.3",
+    "kotlin": "^1.1.51",
+    "lerna": "^2.4.0",
+    "lerna-changelog": "^0.6.0",
+    "lint-staged": "^4.2.3",
+    "prettier": "^1.7.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "lint-staged": {
     "*.js": [
       "prettier --trailing-comma es5 --single-quote --write",
       "git add"
     ]
+  },
+  "engines": {
+    "node": ">=8.0.0",
+    "yarn": ">=1.0.0"
   }
 }

@@ -1,10 +1,8 @@
 #!/bin/bash
 # Copyright (c) 2015-present, Facebook, Inc.
-# All rights reserved.
-#
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree. An additional grant
-# of patent rights can be found in the PATENTS file in the same directory.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 
 # ******************************************************************************
 # This is an end-to-end kitchensink test intended to run on CI.
@@ -66,21 +64,12 @@ set -x
 cd ..
 root_path=$PWD
 
-# Prevent lerna bootstrap, we only want top-level dependencies
-cp package.json package.json.bak
-grep -v "lerna bootstrap" package.json > temp && mv temp package.json
-npm install
-mv package.json.bak package.json
+# Install Yarn so that the test can use it to install packages.
+export PATH="$HOME/.yarn/bin:$PATH"
+yarn -v || curl -o- -L https://yarnpkg.com/install.sh | bash
 
-if [ "$USE_YARN" = "yes" ]
-then
-  # Install Yarn so that the test can use it to install packages.
-  npm install -g yarn
-  yarn cache clean
-fi
-
-# We removed the postinstall, so do it manually
-./node_modules/.bin/lerna bootstrap --concurrency=1
+# Install all dependencies
+yarn install
 
 # ******************************************************************************
 # First, pack react-scripts and create-react-app so we can use them.
