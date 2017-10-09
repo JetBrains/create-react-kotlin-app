@@ -1,7 +1,7 @@
 {
   "name": "@jetbrains/gen-idea-libs",
   "version": "1.0.6",
-  "description": "Generates IntelliJ IDEA library configuration from given npm dependencies",
+  "description": "Generates IntelliJ IDEA library configuration from given Kotlin/JS npm dependencies",
   "main": "generate",
   "author": "Filipp Riabchun",
   "repository": "JetBrains/create-react-kotlin-app",
