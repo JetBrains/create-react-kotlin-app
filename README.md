@@ -11,9 +11,9 @@ Install `create-react-kotlin-app` using npm:
 ```sh
 npm install -g create-react-kotlin-app
 ```
-Create a new project. Add `--idea` if you're going to work with it in [IntelliJ IDEA](https://www.jetbrains.com/idea/):
+Create a new project:
 ```sh
-create-react-kotlin-app my-app --idea
+create-react-kotlin-app my-app
 ````
 Run the project:
 ```sh
@@ -51,12 +51,12 @@ npm install -g create-react-kotlin-app
 To create a new app, run:
 
 ```sh
-create-react-kotlin-app my-app --idea
+create-react-kotlin-app my-app
 cd my-app
 ```
 
 It will create a directory called `my-app` inside the current folder.<br>
-`--idea` option will preconfigure the project for working with it in [IntelliJ IDEA](https://www.jetbrains.com/idea/). Don't add it if you're using a different editor.<br>
+The project will preconfigure the project for working with it in [IntelliJ IDEA](https://www.jetbrains.com/idea/). If you don't want to create the `.idea` folder that is required for IntelliJ IDEA, add `--no-idea` option.<br>
 Inside that directory, it will generate the initial project structure and install the transitive dependencies:
 
 ```
@@ -97,13 +97,6 @@ The page will reload if you make edits.<br>
 You will see the build errors and lint warnings in the console.
 
 <img src='https://camo.githubusercontent.com/41678b3254cf583d3186c365528553c7ada53c6e/687474703a2f2f692e696d6775722e636f6d2f466e4c566677362e706e67' width='600' alt='Build errors'>
-
-### `npm test` or `yarn test`
-
-Runs the test watcher in an interactive mode.<br>
-By default, runs tests related to files changed since the last commit.
-
-[Read more about testing.](https://github.com/JetBrains/create-react-kotlin-app/blob/master/packages/react-scripts/template/README.md#running-tests)
 
 ### `npm run build` or `yarn build`
 
@@ -155,7 +148,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## What’s Inside?
 
 The tools used by Create React Kotlin App are subject to change.
-Currently it is a thin layer on top of many amazing community projects, such as:
+Currently it is a thin layer on top of other projects, such as:
 
 * KotlinC-JS Compiler
 * Kotlin React wrapper
