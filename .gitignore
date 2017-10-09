@@ -11,8 +11,6 @@ lerna-debug.log
 my-app*
 node_modules/
 npm-debug.log*
-package-lock.json
 template/src/__tests__/__snapshots__/
 yarn-debug.log*
 yarn-error.log*
-yarn.lock
