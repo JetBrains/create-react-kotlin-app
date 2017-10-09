@@ -5,13 +5,13 @@ A node wrapper for kotlinc-js compiler.
 ## Installation
 
 ```bash
-npm i kotlinc-js --save
+npm i @jetbrains/kotlinc-js-api --save
 ```
 
 ## Usage
 
 ```js
-const kotlinCompiler = require('../kotlin-compiler');
+const kotlinCompiler = require('@jetbrains/kotlinc-js-api');
 
 kotlinCompiler
   .compile({

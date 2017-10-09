@@ -2,7 +2,7 @@
  * Created by jetbrains on 31/05/2017.
  */
 'use strict';
-const generate = require('gen-idea-libs');
+const generate = require('@jetbrains/gen-idea-libs');
 
 const paths = require('../config/paths');
 

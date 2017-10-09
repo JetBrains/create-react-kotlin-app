@@ -15,7 +15,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const KotlinWebpackPlugin = require('kotlin-webpack-plugin');
+const KotlinWebpackPlugin = require('@jetbrains/kotlin-webpack-plugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 

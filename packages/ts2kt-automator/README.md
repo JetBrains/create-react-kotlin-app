@@ -3,6 +3,12 @@
 This package wraps [ts2kt](https://github.com/Kotlin/ts2kt), a converter of TypeScript definition files to Kotlin declarations (stubs).
 It downloads the specified package typings from "@types/%packagename%" and runs ts2kt on them.
 
+## Installation
+
+```bash
+npm i @jetbrains/ts2kt-automator --save
+```
+
 ## Usage: 
 ```bash
 ts2kt-automator --dest=types jquery

@@ -1,5 +1,5 @@
 {
-  "name": "gen-idea-libs",
+  "name": "@jetbrains/gen-idea-libs",
   "version": "1.0.5",
   "description": "Generates IntelliJ IDEA library configuration from given npm dependencies",
   "main": "generate",

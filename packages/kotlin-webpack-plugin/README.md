@@ -5,7 +5,7 @@ A webpack plugin that compiles Kotlin sources
 ## Installation
 
 ```bash
-npm i kotlin-webpack-plugin --save-dev
+npm i @jetbrains/kotlin-webpack-plugin --save-dev
 ```
 
 ## Usage

@@ -1,5 +1,5 @@
 'use strict';
-const kotlinCompiler = require('kotlinc-js');
+const kotlinCompiler = require('@jetbrains/kotlinc-js-api');
 const globby = require('globby');
 const fs = require('fs-extra');
 const path = require('path');

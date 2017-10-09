@@ -74,7 +74,7 @@ yarn install
 ./node_modules/.bin/eslint --max-warnings 0 packages/create-react-kotlin-app/
 ./node_modules/.bin/eslint --max-warnings 0 packages/gen-idea-libs/
 ./node_modules/.bin/eslint --max-warnings 0 packages/kotlin-webpack-plugin/
-./node_modules/.bin/eslint --max-warnings 0 packages/kotlinc-js/
+./node_modules/.bin/eslint --max-warnings 0 packages/kotlinc-js-api/
 ./node_modules/.bin/eslint --max-warnings 0 packages/react-scripts/
 ./node_modules/.bin/eslint --max-warnings 0 packages/ts2kt-automator/
 
@@ -252,7 +252,7 @@ echo yes | npm run eject
 # ...but still link to the local packages
 npm link "$root_path"/packages/gen-idea-libs
 npm link "$root_path"/packages/kotlin-webpack-plugin
-npm link "$root_path"/packages/kotlinc-js
+npm link "$root_path"/packages/kotlinc-js-api
 npm link "$root_path"/packages/react-scripts
 npm link "$root_path"/packages/ts2kt-automator
 

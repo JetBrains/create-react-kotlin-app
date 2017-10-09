@@ -1,5 +1,5 @@
 {
-  "name": "ts2kt-automator",
+  "name": "@jetbrains/ts2kt-automator",
   "version": "1.0.5",
   "description": "A package that downloads TypeScript annotations from @types/*-group of packages and converts them to Kotlin.",
   "main": "index.js",

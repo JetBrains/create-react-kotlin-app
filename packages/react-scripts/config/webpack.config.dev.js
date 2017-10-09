@@ -15,7 +15,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const KotlinWebpackPlugin = require('kotlin-webpack-plugin');
+const KotlinWebpackPlugin = require('@jetbrains/kotlin-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
