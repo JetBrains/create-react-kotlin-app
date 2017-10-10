@@ -87,7 +87,7 @@ my-app/
       Ticker.kt
 ```
 
-It's a simple app that shows the current time.<br>
+It's a simple app that shows the time that passed since the app was opened.<br>
 Once the installation is done, you can run some commands inside the project folder:
 
 ### `npm start` or `yarn start`
@@ -120,7 +120,7 @@ Please refer to the [User Guide](https://github.com/jetbrains/create-react-kotli
 
 ## Philosophy
 
-* **One Dependency:** There is just one build dependency. It uses Webpack, Babel, ESLint, and other amazing projects, but provides a cohesive curated experience on top of them.
+* **One Dependency:** There is just one build dependency. It uses Webpack and other amazing projects, but provides a cohesive curated experience on top of them.
 
 * **No Configuration Required:** You don't need to configure anything. Reasonably good configuration of both development and production builds is handled for you so you can focus on writing code.
 
@@ -139,7 +139,7 @@ With `create-react-kotlin-app` you can quickly bootstrap a new application using
 
 **If you’re a power user** and you aren’t happy with the default configuration, you can “eject” from the tool and use it as a boilerplate generator.
 
-Running `npm run eject` copies all the configuration files and the transitive dependencies (webpack, Kotlin Compiler, Babel, etc) right into your project so you have full control over them. Commands like `npm start` and `npm run build` will still work, but they will point to the copied scripts so you can tweak them. At this point, you’re on your own.
+Running `npm run eject` copies all the configuration files and the transitive dependencies (webpack, Kotlin Compiler, etc) right into your project so you have full control over them. Commands like `npm start` and `npm run build` will still work, but they will point to the copied scripts so you can tweak them. At this point, you’re on your own.
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -155,9 +155,7 @@ Currently it is a thin layer on top of other projects, such as:
 * KotlinC-JS Compiler
 * Kotlin React wrapper
 * [webpack](https://webpack.github.io/) with [webpack-dev-server](https://github.com/webpack/webpack-dev-server), [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) and [style-loader](https://github.com/webpack/style-loader)
-* [Babel](http://babeljs.io/) with ES6 and extensions used by Facebook (JSX, [object spread](https://github.com/sebmarkbage/ecmascript-rest-spread/commits/master), [class properties](https://github.com/jeffmo/es-class-public-fields))
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
-* [Jest](http://facebook.github.io/jest)
 * and others.
 
 All of them are transitive dependencies of the provided npm package.
