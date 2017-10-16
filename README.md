@@ -22,8 +22,7 @@ npm start
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
 When you’re ready to deploy to production, create a minified bundle with `npm run build`.
 
-You **don’t** need to install or configure tools like Kotlin, webpack or the IDE.<br>
-They are preconfigured and hidden so that you can focus on the code.
+Create React Kotlin App will configure Kotlin, webpack, and IntelliJ IDEA so that you can focus on the code instead.
 
 Just create a project, and you’re good to go.
 
@@ -39,7 +38,7 @@ npm install -g create-react-kotlin-app
 
 You can skip this step if you have `create-react-app` already installed.
 
-**You’ll need to have Node >= 6 on your machine**. You can use [nvm](https://github.com/creationix/nvm#usage) to easily switch Node versions between different projects.
+**You’ll need to have Node >= 6 on your machine**. You can use [nvm](https://github.com/creationix/nvm#usage) to easily switch between Node versions for different projects.
 
 **This tool doesn’t assume a Node backend**. The Node installation is only required for Create React Kotlin App itself.
 
@@ -59,9 +58,9 @@ create-react-app my-app --scripts-version react-scripts-kotlin
 cd my-app
 ```
 
-It will create a directory called `my-app` inside the current folder.<br>
+It will create a folder called `my-app` inside the current folder.<br>
 The project will be preconfigured for working with it in [IntelliJ IDEA](https://www.jetbrains.com/idea/). If you don't want to create the `.idea` folder that is required for IntelliJ IDEA, add `--no-idea` option.<br>
-Inside that directory, it will generate the initial project structure and install the transitive dependencies:
+The initial project structure will be created and dependencies will be installed:
 
 ```
 my-app/
@@ -97,15 +96,15 @@ Once the installation is done, you can run some commands inside the project fold
 Runs the app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will see the build errors and lint warnings in the console.
+The page will reload automatically when you make edits.<br>
+You will see build errors and lint warnings in the console.
 
 ### `npm run build` or `yarn build`
 
 Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It ensures that React is bundled in production mode and the build is optimized for best performance.
 
-The build is minified and the filenames include the hashes. Your app is ready to be deployed.
+The build is minified and the filenames include hashes for cache management. Your app is ready to be deployed.
 
 ## Philosophy
 
@@ -140,7 +139,7 @@ With `create-react-kotlin-app` you can quickly bootstrap a new application using
 
 You can “eject” from the tool and use it as a boilerplate generator.
 
-Running `npm run eject` copies all the configuration files and the transitive dependencies (webpack, Kotlin Compiler, etc) right into your project so you have full control over them. Commands like `npm start` and `npm run build` will still work, but they will point to the copied scripts so you can tweak them. At this point, you’re on your own.
+Running `npm run eject` copies all configuration files and transitive dependencies (webpack, Kotlin Compiler, etc) right into your project so you have full control over them. Commands like `npm start` and `npm run build` will still work, but they will point to the copied scripts so you can tweak them. At this point, you’re on your own.
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -152,4 +151,4 @@ The contributing guide is coming soon.
 
 ## Acknowledgements
 
-This project is based on Facebook's [Create React App](https://github.com/facebookincubator/create-react-app). We thank its authors for their work and inspiration.
+This project is based on Facebook's [Create React App](https://github.com/facebookincubator/create-react-app). Many thanks to its authors for their work and inspiration.
