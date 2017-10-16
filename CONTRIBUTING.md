@@ -75,7 +75,7 @@ All functionality must be retained (and configuration given to the user) if they
 
 1. Clone the repo with `git clone https://github.com/facebookincubator/create-react-app`
 
-2. Run `npm install` in the root `create-react-app` folder.
+2. Run `yarn install` in the root `create-react-app` folder.
 
 Once it is done, you can modify any file locally and run `npm start`, `npm test` or `npm run build` just like in a generated project.
 
@@ -87,8 +87,6 @@ cd my-app
 ```
 
 and then run `npm start` or `npm run build`.
-
-*Note: if you are using yarn, we suggest that you use `yarn install --no-lockfile` instead of the bare `yarn` or `yarn install` because we [intentionally](https://github.com/facebookincubator/create-react-app/pull/2014#issuecomment-300811661) do not ignore or add yarn.lock to our repo.*
 
 ## Cutting a Release
 
