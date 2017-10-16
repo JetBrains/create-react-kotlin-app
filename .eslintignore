@@ -1,6 +1,6 @@
-node_modules/
 build
-my-app*
-packages/react-scripts/template
-packages/react-scripts/fixtures
 kotlin_build
+my-app*
+node_modules/
+packages/react-scripts/fixtures
+packages/react-scripts/template
