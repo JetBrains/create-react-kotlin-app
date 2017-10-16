@@ -16,7 +16,6 @@ module.exports = {
         test: /\.js$/,
         include: path.resolve(__dirname, '../kotlin_build'),
         exclude: [
-          /kotlinx-html-js/, //TODO: include it back when kotlinx sourcemaps get fixed
           /kotlin\.js$/, // Kotlin runtime doesn't have sourcemaps at the moment
         ],
         use: ['source-map-loader'],
@@ -39,7 +38,7 @@ module.exports = {
         '@jetbrains/kotlin-extensions',
         '@jetbrains/kotlin-react',
         '@jetbrains/kotlin-react-dom',
-        '@hypnosphi/kotlinx-html-js',
+        'kotlinx-html',
       ].map(pkg => require.resolve(pkg)),
     }),
     new HtmlWebpackPlugin({

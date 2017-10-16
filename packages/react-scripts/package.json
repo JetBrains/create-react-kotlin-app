@@ -26,11 +26,10 @@
     "start": "node ./scripts/start"
   },
   "dependencies": {
-    "@hypnosphi/kotlinx-html-js": "^0.0.1",
     "@jetbrains/gen-idea-libs": "^1.0.6",
-    "@jetbrains/kotlin-extensions": "^1.0.0-pre.3",
-    "@jetbrains/kotlin-react": "^16.0.0-pre.3",
-    "@jetbrains/kotlin-react-dom": "^16.0.0-pre.3",
+    "@jetbrains/kotlin-extensions": "^1.0.0-pre.4",
+    "@jetbrains/kotlin-react": "^16.0.0-pre.4",
+    "@jetbrains/kotlin-react-dom": "^16.0.0-pre.4",
     "@jetbrains/kotlin-webpack-plugin": "^1.0.9",
     "@jetbrains/ts2kt-automator": "^1.0.6",
     "autoprefixer": "7.1.5",
@@ -43,6 +42,7 @@
     "fs-extra": "4.0.2",
     "html-webpack-plugin": "2.30.1",
     "kotlin": "^1.1.51",
+    "kotlinx-html": "^0.6.4-eap.1",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
