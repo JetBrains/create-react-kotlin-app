@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-kotlin",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Configuration and scripts for Create React App.",
   "repository": "JetBrains/create-react-kotlin-app",
   "license": "MIT",
@@ -26,11 +26,11 @@
     "start": "node ./scripts/start"
   },
   "dependencies": {
-    "@jetbrains/gen-idea-libs": "^1.0.6",
+    "@jetbrains/gen-idea-libs": "^1.0.7",
     "@jetbrains/kotlin-extensions": "^1.0.0-pre.4",
     "@jetbrains/kotlin-react": "^16.0.0-pre.4",
     "@jetbrains/kotlin-react-dom": "^16.0.0-pre.4",
-    "@jetbrains/kotlin-webpack-plugin": "^1.0.9",
+    "@jetbrains/kotlin-webpack-plugin": "^1.0.10",
     "@jetbrains/ts2kt-automator": "^1.0.6",
     "autoprefixer": "7.1.5",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
