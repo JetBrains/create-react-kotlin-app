@@ -20,11 +20,9 @@ class App: RComponent<RProps, RState>() {
       code { +"app/App.kt" }
       +" and save to reload."
     }
-    p("App-ticker.ticker") {
+    p("App-ticker") {
       key = "ticker"
-      +"This app has been running for "
       ticker()
-      +" seconds."
     }
   }
 }

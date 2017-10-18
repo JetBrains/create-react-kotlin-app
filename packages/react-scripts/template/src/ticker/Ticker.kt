@@ -31,7 +31,7 @@ class Ticker(props: TickerProps): RComponent<TickerProps, TickerState>(props) {
   }
 
   override fun RBuilder.render() {
-    span { +state.secondsElapsed.toString() }
+    +"This app has been running for ${state.secondsElapsed.toString()} seconds."
   }
 }
 
