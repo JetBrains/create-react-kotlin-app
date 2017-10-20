@@ -5,6 +5,8 @@
 
 Create [React](https://facebook.github.io/react/) apps in [Kotlin](https://kotlinlang.org/) with no build configuration.
 
+Please note that this is an **early preview version**. 
+
 ## Quick Overview
 Install `create-react-kotlin-app` using npm:
 ```sh
@@ -132,7 +134,6 @@ With `create-react-kotlin-app` you can quickly bootstrap a new application using
 
 ## Limitations
 
-* The current build configuration does not support Kotlin [dead code elimination](https://kotlinlang.org/docs/reference/javascript-dce.html) for JavaScript.
 * Unit testing is currently not supported in this project. We're now working on the Jest Kotlin wrapper. Stay tuned!
 
 ### Converting to a Custom Setup
