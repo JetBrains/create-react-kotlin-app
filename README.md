@@ -44,6 +44,11 @@ You can skip this step if you have `create-react-app` already installed.
 
 **This tool doesn’t assume a Node backend**. The Node installation is only required for Create React Kotlin App itself.
 
+### Using React with Kotlin
+
+To develop applications in Kotlin that use React you need to use a Kotlin wrapper for React. 
+You can find a documentation for it and examples in the module's [repository](https://github.com/JetBrains/kotlin-wrappers/tree/master/kotlin-react).
+
 ### Creating an App
 
 To create a new app, run:
@@ -136,7 +141,7 @@ With `create-react-kotlin-app` you can quickly bootstrap a new application using
 
 * Unit testing is currently not supported in this project. We're now working on the Jest Kotlin wrapper. Stay tuned!
 
-### Converting to a Custom Setup
+## Converting to a Custom Setup
 
 You can “eject” from the tool and use it as a boilerplate generator.
 
