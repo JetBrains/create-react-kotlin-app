@@ -1,6 +1,6 @@
 # kotlin-webpack-plugin
 
-A webpack plugin that compiles Kotlin sources
+This package allows compiling [Kotlin](https://kotlinlang.org/) files to JavaScript
 
 ## Installation
 
@@ -47,4 +47,4 @@ module.exports = {
 };
 ```
 
-Also see [example](./example).
+You can find a sample configuration in the [example](./example) folder.

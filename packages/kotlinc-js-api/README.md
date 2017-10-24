@@ -1,6 +1,6 @@
-# kotlinc-js
+# kotlinc-js-api
 
-A node wrapper for kotlinc-js compiler.
+This package provides JavaScript APIs for the [Kotlin to JavaScript compiler](https://kotlinlang.org/docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html)
 
 ## Installation
 
