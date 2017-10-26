@@ -79,3 +79,14 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 
 Running `npm run eject` copies all configuration files and transitive dependencies (webpack, Kotlin Compiler, etc) right into your project so you have full control over them. Commands like `npm start` and `npm run build` will still work, but they will point to the copied scripts so you can tweak them. At this point, you’re on your own.
 
+## Debugging the App
+
+You can debug the running app right in IntelliJ IDEA Ultimate using its built-in JavaScript debugger. The IDE will run a new instance of Chrome and attach a debugger to it.
+
+Start your app by running `npm start`. Put the breakpoints in your Kolin code.
+Then select `Debug in Chrome` from the list of run/debug configurations on the top-right and click the green debug icon or press `^D` on macOS or `F9` on Windows and Linux to start debugging.
+
+Currently, debugging is supported only in IntelliJ IDEA Ultimate 2017.3.
+
+You can also debug your application using the developer tools in your browser.
+
