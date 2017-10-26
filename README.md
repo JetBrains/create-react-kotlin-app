@@ -8,19 +8,23 @@ Create [React](https://facebook.github.io/react/) apps in [Kotlin](https://kotli
 Please note that this is an **early preview version**. 
 
 ## Quick Overview
+
 Install `create-react-kotlin-app` using npm:
 ```sh
 npm install -g create-react-kotlin-app
 ```
+
 Create a new project:
 ```sh
 create-react-kotlin-app my-app
-````
+```
+
 Run the project:
 ```sh
 cd my-app/
 npm start
 ```
+
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
 When you’re ready to deploy to production, create a minified bundle with `npm run build`.
 

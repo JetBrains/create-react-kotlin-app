@@ -1,6 +1,6 @@
 # kotlin-webpack-plugin
 
-This package allows compiling [Kotlin](https://kotlinlang.org/) files to JavaScript
+This package allows compiling [Kotlin](https://kotlinlang.org/) files to JavaScript using webpack.
 
 ## Installation
 
@@ -18,7 +18,7 @@ module.exports = {
   entry: 'kotlinApp', // kotlinApp is the default module name
 
   resolve: {
-    // "kotlin_build" is where the compiled Kotlin code (kotlinApp.js) is outputted
+    // "kotlin_build" is the build output directory
     modules: ['node_modules', 'kotlin_build']
   },
 
@@ -29,19 +29,19 @@ module.exports = {
         test: /\.js$/,
         include: path.resolve(__dirname, '../kotlin_build'),
         use: ['source-map-loader'],
-        enforce: 'pre',
-      },
-    ],
+        enforce: 'pre'
+      }
+    ]
   },
 
   output: {
     path: __dirname + '/build',
-    filename: 'build.js',
+    filename: 'build.js'
   },
 
   plugins: [
     new KotlinWebpackPlugin({
-      src: __dirname + '/src',
+      src: __dirname + '/src'
     })
   ]
 };

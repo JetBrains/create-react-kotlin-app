@@ -1,6 +1,6 @@
 # kotlinc-js-api
 
-This package provides JavaScript APIs for the [Kotlin to JavaScript compiler](https://kotlinlang.org/docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html)
+This package provides JavaScript APIs for calling the [Kotlin to JavaScript compiler](https://kotlinlang.org/docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html).
 
 ## Installation
 
@@ -21,7 +21,7 @@ kotlinCompiler
     moduleKind: 'commonjs',
     libraries: [
       'path/to/some.meta.js',
-    ],
+    ]
   })
-  .then(() => console.log('Compiled!'));
+  .then(() => console.log('Compilation successful'));
 ```
