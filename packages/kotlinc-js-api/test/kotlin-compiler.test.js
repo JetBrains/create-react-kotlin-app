@@ -34,6 +34,7 @@ kotlinCompiler
     if (compiledFileContent.toString() !== reference.toString()) {
       console.error('Compiled:', compiledFileContent.toString());
       console.error('Reference:', reference.toString());
+
       throw new Error("Compiled code doesn't match reference");
     } else {
       console.info('Test passed');
