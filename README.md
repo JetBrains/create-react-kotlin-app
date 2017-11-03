@@ -166,9 +166,9 @@ Running `npm run eject` copies all configuration files and transitive dependenci
 
 ## Contributing and reporting issues
 
-Please report the issues on [YouTrack](https://youtrack.jetbrains.com/issues/CRKA).
+Please report issues on [YouTrack](https://youtrack.jetbrains.com/issues/CRKA), GitHub issues are disabled for this project.
 
-The contributing guide is coming soon.
+A contributing guide is coming soon.
 
 ## Acknowledgements
 
