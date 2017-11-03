@@ -1,5 +1,6 @@
 'use strict';
 const spawn = require('child_process').spawn;
+const isWindows = /^win/.test(process.platform);
 
 function addOptionWithValue(options, optionName, optionValue) {
   if (optionValue) {
@@ -62,8 +63,10 @@ function convertOptionsIntoArguments(options) {
 
 function compile(options) {
   return new Promise((resolve, reject) => {
+    const extension = isWindows ? '.bat' : '';
+
     const compilation = spawn(
-      require.resolve('kotlin-compiler/bin/kotlinc-js'),
+      require.resolve(`kotlin-compiler/bin/kotlinc-js${extension}`),
       convertOptionsIntoArguments(options),
       { stdio: [process.stdin, process.stdout, 'pipe'] }
     );
