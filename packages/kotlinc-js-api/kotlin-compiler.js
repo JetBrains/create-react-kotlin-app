@@ -52,7 +52,7 @@ function convertOptionsIntoArguments(options) {
   if (options.libraries && options.libraries.length) {
     argumentsList = argumentsList.concat(
       '-libraries',
-      options.libraries.join(':')
+      options.libraries.join(isWindows ? ';' : ':')
     );
   }
 
