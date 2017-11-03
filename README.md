@@ -9,6 +9,8 @@ Please note that this is an **early preview version**.
 
 ## Quick Overview
 
+Make sure you have [JDK 8](http://www.oracle.com/technetwork/java/index.html) installed before proceeding. Java 9 is not supported yet.
+
 Install `create-react-kotlin-app` using npm:
 ```sh
 npm install -g create-react-kotlin-app
