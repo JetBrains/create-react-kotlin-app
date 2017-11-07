@@ -1,10 +1,13 @@
 'use strict';
 const spawn = require('child_process').spawn;
+const isWindows = /^win/.test(process.platform);
+
+const extension = isWindows ? '.bat' : '';
 
 function eliminateDeadCode(args) {
   return new Promise((resolve, reject) => {
     const compilation = spawn(
-      require.resolve('kotlin-compiler/bin/kotlin-dce-js'),
+      require.resolve(`kotlin-compiler/bin/kotlin-dce-js${extension}`),
       args,
       { stdio: [process.stdin, process.stdout, 'pipe'] }
     );
