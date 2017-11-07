@@ -120,7 +120,8 @@ class KotlinWebpackPlugin {
       cwd: this.options.src,
       absolute: true,
     }).then(paths => {
-      compilation.fileDependencies.push(...paths);
+      const normalizedPaths = paths.map(it => path.normalize(it));
+      compilation.fileDependencies.push(...normalizedPaths);
       done();
     });
   }
