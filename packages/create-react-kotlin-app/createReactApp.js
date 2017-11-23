@@ -90,7 +90,7 @@ const program = new commander.Command(packageJson.name)
     );
     console.log(
       `      ${chalk.cyan(
-        'https://github.com/facebookincubator/create-react-app/issues/new'
+        'https://youtrack.jetbrains.com/newIssue?project=CRKA'
       )}`
     );
     console.log();
@@ -167,7 +167,9 @@ function createApp(name, verbose, version, template) {
   if (!semver.satisfies(process.version, '>=6.0.0')) {
     console.log(
       chalk.yellow(
-        `You are using Node ${process.version} so the project will be boostrapped with an old unsupported version of tools.\n\n` +
+        `You are using Node ${
+          process.version
+        } so the project will be boostrapped with an old unsupported version of tools.\n\n` +
           `Please update to Node 6 or higher for a better, fully supported experience.\n`
       )
     );
@@ -182,7 +184,9 @@ function createApp(name, verbose, version, template) {
       if (npmInfo.npmVersion) {
         console.log(
           chalk.yellow(
-            `You are using npm ${npmInfo.npmVersion} so the project will be boostrapped with an old unsupported version of tools.\n\n` +
+            `You are using npm ${
+              npmInfo.npmVersion
+            } so the project will be boostrapped with an old unsupported version of tools.\n\n` +
               `Please update to npm 3 or higher for a better, fully supported experience.\n`
           )
         );
