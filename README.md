@@ -170,7 +170,7 @@ Running `npm run eject` copies all configuration files and transitive dependenci
 
 Please report issues on [YouTrack](https://youtrack.jetbrains.com/issues/CRKA), GitHub issues are disabled for this project.
 
-A contributing guide is coming soon.
+Contributions to this project are welcome! Please see the open [issues](https://youtrack.jetbrains.com/issues/CRKA?q=State:%20Open) or chat with us on the #javascript channel in our [Slack](http://slack.kotlinlang.org/). 
 
 ## Acknowledgements
 
