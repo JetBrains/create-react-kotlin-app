@@ -94,20 +94,16 @@ class KotlinWebpackPlugin {
   }
 
   compileKotlinSources() {
-    const options = this.options;
     return kotlinCompiler
-      .compile({
-        output: this.outputPath,
-        sources: [].concat(options.src),
-        sourceMaps: options.sourceMaps,
-        sourceMapEmbedSources: options.sourceMapEmbedSources,
-        sourceMapPrefix: options.sourceMapPrefix,
-        sourceMapSourceRoots: options.sourceMapSourceRoots,
-        metaInfo: options.metaInfo,
-        moduleKind: 'commonjs',
-        noWarn: 'true',
-        libraries: options.libraries,
-      })
+      .compile(
+        Object.assign({}, this.options, {
+          output: this.outputPath,
+          sources: [].concat(this.options.src),
+          moduleKind: 'commonjs',
+          noWarn: true,
+          verbose: false,
+        })
+      )
       .then(() => {
         if (this.options.optimize) {
           return this.optimizeDeadCode();
