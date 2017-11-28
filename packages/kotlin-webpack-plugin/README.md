@@ -12,14 +12,14 @@ npm i @jetbrains/kotlin-webpack-plugin --save-dev
 
 Example of webpack configuration:
 ```js
-const KotlinWebpackPlugin = require('../plugin');
+const KotlinWebpackPlugin = require('@jetbrains/kotlin-webpack-plugin');
 
 module.exports = {
   entry: 'kotlinApp', // kotlinApp is the default module name
 
   resolve: {
     // "kotlin_build" is the build output directory
-    modules: ['node_modules', 'kotlin_build']
+    modules: ['kotlin_build', 'node_modules']
   },
 
   // [OPTIONAL] To enable sourcemaps, source-map-loader should be configured
@@ -28,6 +28,9 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, '../kotlin_build'),
+        exclude: [
+          /kotlin\.js$/, // Kotlin runtime doesn't have sourcemaps at the moment
+        ],
         use: ['source-map-loader'],
         enforce: 'pre'
       }
