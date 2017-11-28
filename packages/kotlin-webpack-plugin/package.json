@@ -29,7 +29,7 @@
     "fs-extra": "3.0.1",
     "glob": "7.1.2",
     "globby": "6.1.0",
-    "kotlin-compiler": "^1.2.0-rc-84",
+    "kotlin-compiler": "^1.2.0",
     "read-dir-files": "^0.1.1"
   },
   "devDependencies": {
