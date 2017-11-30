@@ -23,6 +23,6 @@
   "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "kotlin-compiler": "1.2.0-rc-84"
+    "kotlin-compiler": "^1.2.1"
   }
 }
