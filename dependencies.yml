@@ -15,8 +15,8 @@ collectors:
         - dependencies
     # separate PRs for major updates
     - type: js-lerna
-        versions: "Y.0.0"
-        settings:
-          bootstrap_command: yarn
-          github_labels:
-          - dependencies
+      versions: "Y.0.0"
+      settings:
+        bootstrap_command: yarn
+        github_labels:
+        - dependencies
