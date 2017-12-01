@@ -1,50 +1,23 @@
 collectors:
 
-- type: js-npm
-  path: packages/react-scripts
-  actors:
-  # pull requests for all major, minor, and patch updates
-  - type: js-npm
-    versions: "Y.Y.Y"
-
-- type: js-npm
-  path: packages/ts2kt-automator
-  actors:
-  # pull requests for all major, minor, and patch updates
-  - type: js-npm
-    versions: "Y.Y.Y"
-
-- type: js-npm
-  path: packages/create-react-kotlin-app
-  actors:
-  # pull requests for all major, minor, and patch updates
-  - type: js-npm
-    versions: "Y.Y.Y"
-
-- type: js-npm
-  path: packages/kotlinc-js-api
-  actors:
-  # pull requests for all major, minor, and patch updates
-  - type: js-npm
-    versions: "Y.Y.Y"
-
-- type: js-npm
-  path: packages/gen-idea-libs
-  actors:
-  # pull requests for all major, minor, and patch updates
-  - type: js-npm
-    versions: "Y.Y.Y"
-
-- type: js-npm
-  path: packages/kotlin-webpack-plugin
-  actors:
-  # pull requests for all major, minor, and patch updates
-  - type: js-npm
-    versions: "Y.Y.Y"
-
-- type: js-npm
+- type: js-lerna
   path: /
+  settings:
+      collect_root: true
+      bootstrap_command: yarn
   actors:
-  # pull requests for all major, minor, and patch updates
-  - type: js-npm
-    versions: "Y.Y.Y"
+  # batch PR for minor and patch updates
+    - type: js-lerna
+      versions: "L.Y.Y"
+      settings:
+        batch_mode: true
+        bootstrap_command: yarn
+        github_labels:
+        - dependencies
+  # separate PRs for major updates
+  - type: js-lerna
+      versions: "Y.0.0"
+      settings:
+        bootstrap_command: yarn
+        github_labels:
+        - dependencies
