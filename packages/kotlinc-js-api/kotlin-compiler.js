@@ -1,5 +1,5 @@
 'use strict';
-const spawn = require('child_process').spawn;
+const spawn = require('cross-spawn').spawn;
 const isWindows = /^win/.test(process.platform);
 
 function addOptionWithValue(options, optionName, optionValue) {

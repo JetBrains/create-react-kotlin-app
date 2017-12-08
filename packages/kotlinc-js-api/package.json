@@ -23,6 +23,7 @@
   "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
+    "cross-spawn": "^5.1.0",
     "kotlin-compiler": "^1.2.1"
   }
 }
