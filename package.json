@@ -17,7 +17,7 @@
     "@jetbrains/kotlin-extensions": "^1.0.0-pre.15",
     "@jetbrains/kotlin-react": "^16.2.0-pre.15",
     "@jetbrains/kotlin-react-dom": "^16.2.0-pre.15",
-    "eslint": "4.13.0",
+    "eslint": "4.13.1",
     "husky": "^0.14.3",
     "kotlin": "^1.2.0",
     "kotlinx-html": "^0.6.8",
