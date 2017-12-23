@@ -83,7 +83,7 @@ Running `npm run eject` copies all configuration files and transitive dependenci
 
 You can debug the running app right in IntelliJ IDEA Ultimate using its built-in JavaScript debugger. The IDE will run a new instance of Chrome and attach a debugger to it.
 
-Start your app by running `npm start`. Put the breakpoints in your Kolin code.
+Start your app by running `npm start`. Put the breakpoints in your Kotlin code.
 Then select `Debug in Chrome` from the list of run/debug configurations on the top-right and click the green debug icon or press `^D` on macOS or `F9` on Windows and Linux to start debugging.
 
 Currently, debugging is supported only in IntelliJ IDEA Ultimate 2017.3.
