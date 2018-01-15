@@ -47,7 +47,7 @@
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.10",
     "promise": "8.0.1",
-    "react-dev-utils": "^4.1.0",
+    "react-dev-utils": "^5.0.0",
     "react-error-overlay": "^2.0.2",
     "source-map-loader": "0.2.3",
     "style-loader": "0.19.1",
