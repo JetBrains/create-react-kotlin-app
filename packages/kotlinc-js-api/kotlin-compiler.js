@@ -56,6 +56,12 @@ function convertOptionsIntoArguments(options) {
     );
   }
 
+  if (options.experimental) {
+    if (options.experimental.multiPlatform) {
+      argumentsList = argumentsList.concat('-Xmulti-platform');
+    }
+  }
+
   argumentsList = argumentsList.concat(options.sources);
 
   return argumentsList.filter(arg => !!arg);
