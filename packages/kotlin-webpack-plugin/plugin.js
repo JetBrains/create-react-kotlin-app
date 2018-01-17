@@ -41,6 +41,7 @@ class KotlinWebpackPlugin {
     this.startTime = Date.now();
     this.prevTimestamps = {};
     this.initialRun = true;
+    this.sources = [].concat(this.options.src);
   }
 
   log(...args) {
@@ -98,7 +99,7 @@ class KotlinWebpackPlugin {
       .compile(
         Object.assign({}, this.options, {
           output: this.outputPath,
-          sources: [].concat(this.options.src),
+          sources: this.sources,
           moduleKind: 'commonjs',
           noWarn: true,
           verbose: false,
@@ -112,8 +113,8 @@ class KotlinWebpackPlugin {
   }
 
   watchKotlinSources(compilation, done) {
-    globby(['**/*.kt'], {
-      cwd: this.options.src,
+    const patterns = this.sources.map(it => it + '/**/*.kt');
+    globby(patterns, {
       absolute: true,
     }).then(paths => {
       const normalizedPaths = paths.map(it => path.normalize(it));
