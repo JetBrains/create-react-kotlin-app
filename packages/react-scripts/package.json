@@ -44,7 +44,7 @@
     "kotlin": "^1.2.0",
     "kotlinx-html": "^0.6.8",
     "object-assign": "4.1.1",
-    "postcss-flexbugs-fixes": "3.2.0",
+    "postcss-flexbugs-fixes": "3.3.0",
     "postcss-loader": "2.0.10",
     "promise": "8.0.1",
     "react-dev-utils": "^4.1.0",
