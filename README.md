@@ -1,11 +1,11 @@
 [![Build Status](https://teamcity.jetbrains.com/app/rest/builds/buildType:JetBrainsUi_CreateReactKotlinApp/statusIcon.svg)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=JetBrainsUi_CreateReactKotlinApp&guest=1)
 [![JetBrains team project](http://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 
-# Create React Kotlin App 
+# Create React Kotlin App
 
 Create [React](https://facebook.github.io/react/) apps in [Kotlin](https://kotlinlang.org/) with no build configuration.
 
-Please note that this is an **early preview version**. 
+Please note that this is an **early preview version**.
 
 ## Quick Overview
 
@@ -52,7 +52,7 @@ You can skip this step if you have `create-react-app` already installed.
 
 ### Using React with Kotlin
 
-To develop applications in Kotlin that use React you need to use a [Kotlin wrapper for React](https://www.npmjs.com/package/@jetbrains/kotlin-react). 
+To develop applications in Kotlin that use React you need to use a [Kotlin wrapper for React](https://www.npmjs.com/package/@jetbrains/kotlin-react).
 You can find a documentation for it and examples in the [module's repository](https://github.com/JetBrains/kotlin-wrappers/tree/master/kotlin-react).
 
 ### Creating an App
@@ -112,6 +112,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload automatically when you make edits.<br>
 You will see build errors and lint warnings in the console.
 
+Common Error `Kotlin.defineModule is not a function`. If you see the error, you can solve the issue by running :
+
+	rm -rf node_modules/.cache
+
 ### `npm run build` or `yarn build`
 
 Builds the app for production to the `build` folder.<br>
@@ -170,7 +174,7 @@ Running `npm run eject` copies all configuration files and transitive dependenci
 
 Please report issues on [YouTrack](https://youtrack.jetbrains.com/issues/CRKA), GitHub issues are disabled for this project.
 
-Contributions to this project are welcome! Please see the open [issues](https://youtrack.jetbrains.com/issues/CRKA?q=State:%20Open) or chat with us on the **#react** channel in our [Slack](http://slack.kotlinlang.org/). 
+Contributions to this project are welcome! Please see the open [issues](https://youtrack.jetbrains.com/issues/CRKA?q=State:%20Open) or chat with us on the **#react** channel in our [Slack](http://slack.kotlinlang.org/).
 
 ## Acknowledgements
 
