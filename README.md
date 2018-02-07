@@ -112,7 +112,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload automatically when you make edits.<br>
 You will see build errors and lint warnings in the console.
 
-Common Error `Kotlin.defineModule is not a function`. If you see the error, you can solve the issue by running :
+If you are getting a `Kotlin.defineModule is not a function` error, try deleting the npm cache:
 
 	rm -rf node_modules/.cache
 
