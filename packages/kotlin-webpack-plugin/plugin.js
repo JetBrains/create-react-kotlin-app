@@ -29,12 +29,16 @@ class KotlinWebpackPlugin {
     this.outputPath = path.resolve(
       `${this.options.output}/${this.options.moduleName}.js`
     );
+    this.firstCompilationError = null;
 
     this.compileIfKotlinFilesChanged = this.compileIfKotlinFilesChanged.bind(
       this
     );
     this.watchKotlinSources = this.watchKotlinSources.bind(this);
     this.compileIfFirstRun = this.compileIfFirstRun.bind(this);
+    this.reportFirstCompilationError = this.reportFirstCompilationError.bind(
+      this
+    );
     this.optimizeDeadCode = this.optimizeDeadCode.bind(this);
     this.setPastDate = this.setPastDate.bind(this);
 
@@ -52,6 +56,7 @@ class KotlinWebpackPlugin {
 
   apply(compiler) {
     compiler.plugin('before-compile', this.compileIfFirstRun);
+    compiler.plugin('compilation', this.reportFirstCompilationError);
     compiler.plugin('make', this.compileIfKotlinFilesChanged);
     compiler.plugin('emit', this.watchKotlinSources);
   }
@@ -139,7 +144,18 @@ class KotlinWebpackPlugin {
         }
       })
       .then(this.setPastDate)
-      .then(done, done);
+      .then(done)
+      .catch(err => {
+        this.firstCompilationError = err;
+        done();
+      });
+  }
+
+  reportFirstCompilationError(compilation) {
+    if (this.firstCompilationError) {
+      compilation.errors.push(this.firstCompilationError);
+      this.firstCompilationError = null;
+    }
   }
 
   optimizeDeadCode() {
