@@ -28,7 +28,7 @@
     "@jetbrains/kotlinc-js-api": "^1.2.4",
     "fs-extra": "5.0.0",
     "glob": "7.1.2",
-    "globby": "8.0.0",
+    "globby": "8.0.1",
     "kotlin-compiler": "^1.2.1",
     "read-dir-files": "^0.1.1"
   },
