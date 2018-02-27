@@ -36,6 +36,6 @@
     "html-webpack-plugin": "^2.30.1",
     "source-map-loader": "0.2.3",
     "webpack": "^3.7.1",
-    "webpack-dev-server": "2.11.1"
+    "webpack-dev-server": "2.11.2"
   }
 }
