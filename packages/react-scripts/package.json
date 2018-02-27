@@ -38,7 +38,7 @@
     "css-loader": "0.28.10",
     "dotenv": "5.0.1",
     "extract-text-webpack-plugin": "3.0.2",
-    "file-loader": "1.1.9",
+    "file-loader": "1.1.10",
     "fs-extra": "5.0.0",
     "html-webpack-plugin": "2.30.1",
     "kotlin": "^1.2.0",
