@@ -40,7 +40,7 @@
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.10",
     "fs-extra": "5.0.0",
-    "html-webpack-plugin": "2.30.1",
+    "html-webpack-plugin": "3.0.0",
     "kotlin": "^1.2.0",
     "kotlinx-html": "^0.6.8",
     "object-assign": "4.1.1",
