@@ -209,12 +209,8 @@ module.exports = {
       output: paths.kotlinOutputPath,
       moduleName: kotlinModuleName,
       optimize: true,
-      libraries: [
-        '@jetbrains/kotlin-extensions',
-        '@jetbrains/kotlin-react',
-        '@jetbrains/kotlin-react-dom',
-        'kotlinx-html',
-      ].map(pkg => require.resolve(pkg)),
+      librariesAutoLookup: true,
+      librariesAutoLookupPaths: [paths.librariesAutoLookupPath],
     }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:

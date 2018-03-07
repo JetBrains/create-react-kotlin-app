@@ -1,0 +1,25 @@
+{
+  "name": "@jetbrains/kotlin-libraries-lookup",
+  "version": "1.0.0",
+  "description": "NodeJS utility that looks up for Kotlin libraries installed",
+  "main": "lookup.js",
+  "repository": "JetBrains/create-react-kotlin-app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Webpack",
+    "Kotlin"
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
+  "license": "Apache-2.0",
+  "files": [
+    "lookup.js"
+  ],
+  "dependencies": {
+    "walkdir": "0.0.12"
+  }
+}
