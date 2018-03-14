@@ -11,7 +11,6 @@ function lookupInPath(rootPath, options) {
     walk
       .sync(rootPath, {
         max_depth: options.maxDepth,
-        follow_symlinks: true,
       })
       // Kotlin libraries packages has <libraryname>.meta.js file
       .filter(path => path.endsWith('.meta.js'))
