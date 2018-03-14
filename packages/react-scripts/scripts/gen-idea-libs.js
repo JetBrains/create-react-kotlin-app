@@ -2,16 +2,19 @@
  * Created by jetbrains on 31/05/2017.
  */
 'use strict';
+const path = require('path');
 const generate = require('@jetbrains/gen-idea-libs');
+const librariesLookup = require('@jetbrains/kotlin-libraries-lookup');
 
 const paths = require('../config/paths');
 
-generate(
-  {
-    'kotlin-extensions': require.resolve('@jetbrains/kotlin-extensions'),
-    'kotlin-react': require.resolve('@jetbrains/kotlin-react'),
-    'kotlin-react-dom': require.resolve('@jetbrains/kotlin-react-dom'),
-    'kotlinx-html-js': require.resolve('@hypnosphi/kotlinx-html-js'),
-  },
-  paths.projectPath
-);
+const libPaths = librariesLookup.lookupKotlinLibraries([
+  paths.librariesAutoLookupPath,
+]);
+
+const generationConfig = libPaths.reduce((config, libPath) => {
+  config[path.basename(libPath, '.js')] = require.resolve(libPath);
+  return config;
+}, {});
+
+generate(generationConfig, paths.projectPath);
