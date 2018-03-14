@@ -4,7 +4,7 @@ const globby = require('globby');
 const fs = require('fs-extra');
 const path = require('path');
 const DCEPlugin = require('./dce-plugin');
-const librariesLookup = require('@jetbrains/kotlin-libraries-lookup');
+const librariesLookup = require('./libraries-lookup');
 
 const DEFAULT_OPTIONS = {
   src: null, // An array or string with sources path

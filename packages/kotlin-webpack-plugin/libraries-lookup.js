@@ -2,7 +2,7 @@
 const walk = require('walkdir');
 
 const DEFAUL_OPTIONS = {
-  maxDepth: 10,
+  maxDepth: 6,
 };
 
 function lookupInPath(rootPath, options) {

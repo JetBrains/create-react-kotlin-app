@@ -4,7 +4,7 @@
 'use strict';
 const path = require('path');
 const generate = require('@jetbrains/gen-idea-libs');
-const librariesLookup = require('@jetbrains/kotlin-libraries-lookup');
+const librariesLookup = require('@jetbrains/kotlin-webpack-plugin/libraries-lookup');
 
 const paths = require('../config/paths');
 
