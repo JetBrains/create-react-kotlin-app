@@ -17,8 +17,17 @@ const pkgFilename = path.join(packagesDir, 'react-scripts/package.json');
 const data = require(pkgFilename);
 
 fs.readdirSync(packagesDir).forEach(name => {
-  if (data.dependencies[name]) {
-    data.dependencies[name] = 'file:' + path.join(packagesDir, name);
+  const dependencyName = data.dependencies[`@jetbrains/${name}`]
+    ? `@jetbrains/${name}`
+    : name;
+
+  if (data.dependencies[dependencyName]) {
+    data.dependencies[dependencyName] = 'file:' + path.join(packagesDir, name);
+    console.log(
+      'Local dependency replaced:',
+      dependencyName,
+      data.dependencies[dependencyName]
+    );
   }
 });
 
