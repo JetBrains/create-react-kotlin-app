@@ -1,6 +1,6 @@
 {
   "name": "@jetbrains/kotlin-webpack-plugin",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Kotlin plugin for webpack",
   "main": "plugin.js",
   "repository": "JetBrains/create-react-kotlin-app",
