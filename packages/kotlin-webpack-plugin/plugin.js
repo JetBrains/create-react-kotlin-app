@@ -24,7 +24,7 @@ function prepareLibraries(opts) {
   if (opts.librariesAutoLookup) {
     if (opts.libraries.length > 0) {
       console.warn(
-        'KotlinWebpackPlugin: libraries option is ignored because "librariesAutoLookup" option is enabled'
+        'KotlinWebpackPlugin: "libraries" option is ignored because "librariesAutoLookup" option is enabled'
       );
     }
     opts.libraries = librariesLookup.lookupKotlinLibraries(
@@ -35,7 +35,7 @@ function prepareLibraries(opts) {
         `>>> Kotlin Plugin: >>> autolookup found in (${
           opts.librariesAutoLookupPaths
         }) 
-        these Kotlin libs:\n ${opts.libraries.join('\n')}`
+        the following Kotlin libs:\n ${opts.libraries.join('\n')}`
       );
     }
   }
