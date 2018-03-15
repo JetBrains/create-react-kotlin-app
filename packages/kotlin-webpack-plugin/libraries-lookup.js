@@ -26,10 +26,16 @@ function lookupInPackage(pkg) {
   );
 }
 
+function removeDuplicates(libraries) {
+  return [...new Set(libraries)];
+}
+
 module.exports = {
   lookupKotlinLibraries(packages) {
-    return packages.reduce((acc, pkg) => {
+    const libraries = packages.reduce((acc, pkg) => {
       return [...acc, ...lookupInPackage(pkg)];
     }, []);
+
+    return removeDuplicates(libraries);
   },
 };

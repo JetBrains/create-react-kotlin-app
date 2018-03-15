@@ -196,7 +196,12 @@ module.exports = {
       output: paths.kotlinOutputPath,
       moduleName: kotlinModuleName,
       librariesAutoLookup: true,
-      packagesContents: [require(paths.ownPackageJson || paths.appPackageJson)],
+      packagesContents: [
+        // @remove-on-eject-begin
+        require(paths.ownPackageJson),
+        // @remove-on-eject-end
+        require(paths.appPackageJson),
+      ],
     }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
