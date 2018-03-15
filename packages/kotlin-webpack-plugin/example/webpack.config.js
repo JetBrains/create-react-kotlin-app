@@ -35,9 +35,7 @@ module.exports = {
       verbose: true,
       optimize: true,
       librariesAutoLookup: true,
-      librariesAutoLookupPaths: [
-        path.resolve(__dirname, '../../../node_modules'),
-      ],
+      packagesContents: [require('../../react-scripts/package.json')],
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'index.html'),

@@ -6,13 +6,21 @@ const path = require('path');
 const DCEPlugin = require('./dce-plugin');
 const librariesLookup = require('./libraries-lookup');
 
+function getDefaultPackagesContents() {
+  try {
+    return [require(path.resolve(process.cwd(), 'package.json'))];
+  } catch (e) {
+    return [];
+  }
+}
+
 const DEFAULT_OPTIONS = {
   src: null, // An array or string with sources path
   output: 'kotlin_build',
   moduleName: 'kotlinApp',
   libraries: [],
   librariesAutoLookup: false,
-  librariesAutoLookupPaths: [path.resolve(process.cwd(), './node_modules/')],
+  packagesContents: getDefaultPackagesContents(),
   verbose: false,
   sourceMaps: true,
   sourceMapEmbedSources: 'always',
@@ -27,15 +35,14 @@ function prepareLibraries(opts) {
         'KotlinWebpackPlugin: "libraries" option is ignored because "librariesAutoLookup" option is enabled'
       );
     }
+
     opts.libraries = librariesLookup.lookupKotlinLibraries(
-      opts.librariesAutoLookupPaths
+      opts.packagesContents
     );
     if (opts.verbose) {
       console.info(
-        `>>> Kotlin Plugin: >>> autolookup found in (${
-          opts.librariesAutoLookupPaths
-        }) 
-        the following Kotlin libs:\n ${opts.libraries.join('\n')}`
+        `>>> Kotlin Plugin: >>> autolookup found the following Kotlin libs:
+         ${opts.libraries.join('\n')}`
       );
     }
   }

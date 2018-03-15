@@ -9,7 +9,7 @@ const librariesLookup = require('@jetbrains/kotlin-webpack-plugin/libraries-look
 const paths = require('../config/paths');
 
 const libPaths = librariesLookup.lookupKotlinLibraries([
-  paths.librariesAutoLookupPath,
+  require(paths.appPackageJson),
 ]);
 
 const generationConfig = libPaths.reduce((config, libPath) => {

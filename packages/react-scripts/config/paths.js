@@ -60,7 +60,6 @@ module.exports = {
   servedPath: getServedPath(resolveApp('package.json')),
   kotlinOutputPath: resolveApp('node_modules/.cache/kotlin-webpack'),
   projectPath: resolveApp('.'),
-  librariesAutoLookupPath: resolveApp('node_modules'),
 };
 
 // @remove-on-eject-begin
@@ -81,9 +80,9 @@ module.exports = {
   servedPath: getServedPath(resolveApp('package.json')),
   kotlinOutputPath: resolveApp('node_modules/.cache/kotlin-webpack'),
   projectPath: resolveApp('.'),
-  librariesAutoLookupPath: resolveApp('node_modules'),
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),
+  ownPackageJson: resolveOwn('package.json'),
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
 };
 
@@ -112,9 +111,9 @@ if (
     servedPath: getServedPath(resolveOwn('package.json')),
     kotlinOutputPath: resolveOwn('node_modules/.cache/kotlin-webpack'),
     projectPath: resolveOwn('../..'),
-    librariesAutoLookupPath: resolveOwn('../../node_modules'),
     // These properties only exist before ejecting:
     ownPath: resolveOwn('.'),
+    ownPackageJson: resolveOwn('package.json'),
     ownNodeModules: resolveOwn('node_modules'),
   };
 }

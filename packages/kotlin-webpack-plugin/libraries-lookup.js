@@ -1,29 +1,35 @@
 'use strict';
-const walk = require('walkdir');
+const fs = require('fs');
 
-const DEFAULT_OPTIONS = {
-  maxDepth: 6,
-};
-
-function lookupInPath(rootPath, options) {
-  options = Object.assign({}, options, DEFAULT_OPTIONS);
+function lookupInPackage(pkg) {
   return (
-    walk
-      .sync(rootPath, {
-        max_depth: options.maxDepth,
-      })
-      // Kotlin libraries contain a <libraryname>.meta.js file
-      .filter(path => path.endsWith('.meta.js'))
+    [
+      ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.devDependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {}),
+    ]
       // We provide the Kotlin runtime externally, so we aren't looking for it
-      .filter(path => !path.endsWith('/kotlin.meta.js'))
-      .map(path => path.replace('.meta.js', '.js'))
+      .filter(dependencyName => dependencyName !== 'kotlin')
+      .map(dependencyName => {
+        try {
+          const main = require.resolve(dependencyName);
+          // Kotlin libraries contain a <libraryname>.meta.js file
+          const hasKotlinMetaFile = fs.existsSync(
+            main.replace(/(\.js)?$/, '.meta.js')
+          );
+          return hasKotlinMetaFile ? main : null;
+        } catch (err) {
+          return null;
+        }
+      })
+      .filter(dependencyMainFilePath => !!dependencyMainFilePath)
   );
 }
 
 module.exports = {
-  lookupKotlinLibraries(librariesAutoLookupPaths) {
-    return librariesAutoLookupPaths.reduce((acc, rootPath) => {
-      return [...acc, ...lookupInPath(rootPath)];
+  lookupKotlinLibraries(packages) {
+    return packages.reduce((acc, pkg) => {
+      return [...acc, ...lookupInPackage(pkg)];
     }, []);
   },
 };
