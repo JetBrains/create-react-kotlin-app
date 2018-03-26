@@ -11,15 +11,12 @@ Please note that this is an **early preview version**.
 
 Make sure you have [JDK 8](http://www.oracle.com/technetwork/java/index.html) installed before proceeding. Java 9 is not supported yet.
 
-Install `create-react-kotlin-app` using npm:
-```sh
-npm install -g create-react-kotlin-app
-```
-
 Create a new project:
+
 ```sh
-create-react-kotlin-app my-app
+npx create-react-kotlin-app my-app
 ```
+([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher. See [Installation](#installation) for older npm versions.)
 
 Run the project:
 ```sh
@@ -44,7 +41,7 @@ Install it once globally:
 npm install -g create-react-kotlin-app
 ```
 
-You can skip this step if you have `create-react-app` already installed.
+You can skip this step if you have `create-react-app` already installed or you're using `npx`.
 
 **You’ll need to have Node >= 6 on your machine**. You can use [nvm](https://github.com/creationix/nvm#usage) to easily switch between Node versions for different projects.
 
