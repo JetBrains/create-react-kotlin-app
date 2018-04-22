@@ -158,7 +158,14 @@ class KotlinWebpackPlugin {
       absolute: true,
     }).then(paths => {
       const normalizedPaths = paths.map(it => path.normalize(it));
-      compilation.fileDependencies.push(...normalizedPaths);
+      if (compilation.fileDependencies.add) {
+        for (const path of normalizedPaths) {
+          compilation.fileDependencies.add(path);
+        }
+      } else {
+        // Before Webpack 4 - fileDepenencies was an array
+        compilation.fileDependencies.push(...normalizedPaths);
+      }
       done();
     });
   }
