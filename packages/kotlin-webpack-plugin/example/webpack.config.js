@@ -34,12 +34,8 @@ module.exports = {
       src: __dirname,
       verbose: true,
       optimize: true,
-      libraries: [
-        '@jetbrains/kotlin-extensions',
-        '@jetbrains/kotlin-react',
-        '@jetbrains/kotlin-react-dom',
-        'kotlinx-html',
-      ].map(pkg => require.resolve(pkg)),
+      librariesAutoLookup: true,
+      packagesContents: [require('../../react-scripts/package.json')],
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'index.html'),

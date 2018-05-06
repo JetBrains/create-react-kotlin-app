@@ -1,6 +1,7 @@
 'use strict';
 const spawn = require('cross-spawn').spawn;
 const isWindows = /^win/.test(process.platform);
+const SUCCESS_CODE = 0;
 
 function addOptionWithValue(options, optionName, optionValue) {
   if (optionValue) {
@@ -56,6 +57,12 @@ function convertOptionsIntoArguments(options) {
     );
   }
 
+  if (options.experimental) {
+    if (options.experimental.multiPlatform) {
+      argumentsList = argumentsList.concat('-Xmulti-platform');
+    }
+  }
+
   argumentsList = argumentsList.concat(options.sources);
 
   return argumentsList.filter(arg => !!arg);
@@ -70,26 +77,27 @@ function compile(options) {
       convertOptionsIntoArguments(options),
       { stdio: [process.stdin, process.stdout, 'pipe'] }
     );
-    let hasErrors = false;
     let errors = '';
 
     compilation.stderr.on('data', data => {
-      hasErrors = true;
       errors += data.toString();
     });
 
     compilation.on('error', err => {
-      hasErrors = true;
       errors += 'kotlin-js failed. Do you have Kotlin installed?';
       errors += JSON.stringify(err);
     });
 
-    compilation.on('close', () => {
-      if (hasErrors === false) {
-        resolve();
-      } else {
-        reject(errors);
+    compilation.on('close', code => {
+      if (code !== SUCCESS_CODE) {
+        reject(errors || `Kotlin compiler exited with code ${code}`);
+        return;
       }
+
+      if (errors) {
+        console.warn('Kotlin Compiler stderr output:', errors);
+      }
+      resolve();
     });
   });
 }
