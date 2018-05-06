@@ -4,12 +4,23 @@ const globby = require('globby');
 const fs = require('fs-extra');
 const path = require('path');
 const DCEPlugin = require('./dce-plugin');
+const librariesLookup = require('./libraries-lookup');
+
+function getDefaultPackagesContents() {
+  try {
+    return [require(path.resolve(process.cwd(), 'package.json'))];
+  } catch (e) {
+    return [];
+  }
+}
 
 const DEFAULT_OPTIONS = {
   src: null, // An array or string with sources path
   output: 'kotlin_build',
   moduleName: 'kotlinApp',
   libraries: [],
+  librariesAutoLookup: false,
+  packagesContents: getDefaultPackagesContents(),
   verbose: false,
   sourceMaps: true,
   sourceMapEmbedSources: 'always',
@@ -17,15 +28,39 @@ const DEFAULT_OPTIONS = {
   optimize: false,
 };
 
+function prepareLibraries(opts) {
+  if (opts.librariesAutoLookup) {
+    if (opts.libraries.length > 0) {
+      console.warn(
+        'KotlinWebpackPlugin: "libraries" option is ignored because "librariesAutoLookup" option is enabled'
+      );
+    }
+
+    opts.libraries = librariesLookup.lookupKotlinLibraries(
+      opts.packagesContents
+    );
+    if (opts.verbose) {
+      console.info(
+        `>>> Kotlin Plugin: >>> autolookup found the following Kotlin libs:
+         ${opts.libraries.join('\n')}`
+      );
+    }
+  }
+
+  return Object.assign({}, opts, {
+    libraries: opts.libraries.map(main =>
+      main.replace(/(?:\.js)?$/, '.meta.js')
+    ),
+    librariesMainFiles: opts.libraries,
+  });
+}
+
 class KotlinWebpackPlugin {
   constructor(options) {
     const opts = Object.assign({}, DEFAULT_OPTIONS, options);
-    this.librariesMainFiles = opts.libraries;
-    this.options = Object.assign({}, opts, {
-      libraries: opts.libraries.map(main =>
-        main.replace(/(?:\.js)?$/, '.meta.js')
-      ),
-    });
+
+    this.options = prepareLibraries(opts);
+
     this.outputPath = path.resolve(
       `${this.options.output}/${this.options.moduleName}.js`
     );
@@ -62,8 +97,8 @@ class KotlinWebpackPlugin {
   }
 
   copyLibraries() {
-    const files = this.librariesMainFiles.concat(
-      this.librariesMainFiles.map(main => `${main}.map`)
+    const files = this.options.librariesMainFiles.concat(
+      this.options.librariesMainFiles.map(main => `${main}.map`)
     );
     return Promise.all(
       files.map(file =>
@@ -123,7 +158,14 @@ class KotlinWebpackPlugin {
       absolute: true,
     }).then(paths => {
       const normalizedPaths = paths.map(it => path.normalize(it));
-      compilation.fileDependencies.push(...normalizedPaths);
+      if (compilation.fileDependencies.add) {
+        for (const path of normalizedPaths) {
+          compilation.fileDependencies.add(path);
+        }
+      } else {
+        // Before Webpack 4 - fileDepenencies was an array
+        compilation.fileDependencies.push(...normalizedPaths);
+      }
       done();
     });
   }
@@ -159,11 +201,14 @@ class KotlinWebpackPlugin {
   }
 
   optimizeDeadCode() {
-    this.log(`Optimizing Kotlin runtime...`);
+    this.log(
+      `Optimizing Kotlin runtime... \nLibraries:`,
+      this.options.librariesMainFiles.join('\n')
+    );
     return DCEPlugin.optimize({
       outputDir: this.options.output,
       outputPath: this.outputPath,
-      librariesPaths: [].concat(this.librariesMainFiles),
+      librariesPaths: [].concat(this.options.librariesMainFiles),
     });
   }
 

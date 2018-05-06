@@ -156,7 +156,7 @@ inquirer
     delete appPackage.scripts['eject'];
     Object.keys(appPackage.scripts).forEach(key => {
       Object.keys(ownPackage.bin).forEach(binKey => {
-        const regex = new RegExp(binKey + ' (\\w+)', 'g');
+        const regex = new RegExp(binKey + ' ([\\w-]+)', 'g');
         appPackage.scripts[key] = appPackage.scripts[key].replace(
           regex,
           'node scripts/$1.js'

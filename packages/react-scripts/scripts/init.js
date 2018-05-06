@@ -43,6 +43,7 @@ module.exports = function(
     eject: 'react-scripts-kotlin eject',
     'gen-idea-libs': 'react-scripts-kotlin gen-idea-libs',
     'get-types': 'react-scripts-kotlin get-types --dest=src/types',
+    postinstall: 'npm run gen-idea-libs',
   };
 
   fs.writeFileSync(

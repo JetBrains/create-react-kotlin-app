@@ -11,15 +11,12 @@ Please note that this is an **early preview version**.
 
 Make sure you have [JDK 8](http://www.oracle.com/technetwork/java/index.html) installed before proceeding. Java 9 is not supported yet.
 
-Install `create-react-kotlin-app` using npm:
-```sh
-npm install -g create-react-kotlin-app
-```
-
 Create a new project:
+
 ```sh
-create-react-kotlin-app my-app
+npx create-react-kotlin-app my-app
 ```
+([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher. See [Installation](#installation) for older npm versions.)
 
 Run the project:
 ```sh
@@ -44,7 +41,7 @@ Install it once globally:
 npm install -g create-react-kotlin-app
 ```
 
-You can skip this step if you have `create-react-app` already installed.
+You can skip this step if you have `create-react-app` already installed or you're using `npx`.
 
 **You’ll need to have Node >= 6 on your machine**. You can use [nvm](https://github.com/creationix/nvm#usage) to easily switch between Node versions for different projects.
 
@@ -54,6 +51,12 @@ You can skip this step if you have `create-react-app` already installed.
 
 To develop applications in Kotlin that use React you need to use a [Kotlin wrapper for React](https://www.npmjs.com/package/@jetbrains/kotlin-react).
 You can find a documentation for it and examples in the [module's repository](https://github.com/JetBrains/kotlin-wrappers/tree/master/kotlin-react).
+
+### Adding Kotlin/JS packages
+
+**No configuration is required** to add packages written in Kotlin to a project based on Create React Kotlin App, we take care of it for you. 
+Simply run `npm install kotlinx-coroutines-core` to add [https://www.npmjs.com/package/kotlinx-coroutines-core](coroutines) support, 
+or `npm install @jetbrains/kotlin-react-router-dom` to install the [wrapper for React Router DOM](https://www.npmjs.com/package/@jetbrains/kotlin-react-router-dom).
 
 ### Creating an App
 
