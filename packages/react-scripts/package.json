@@ -48,7 +48,7 @@
     "postcss-loader": "2.1.5",
     "promise": "8.0.1",
     "react-dev-utils": "^5.0.0",
-    "react-error-overlay": "^2.0.2",
+    "react-error-overlay": "^4.0.0",
     "source-map-loader": "0.2.3",
     "style-loader": "0.21.0",
     "url-loader": "1.0.1",
