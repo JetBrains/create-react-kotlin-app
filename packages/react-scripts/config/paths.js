@@ -82,6 +82,7 @@ module.exports = {
   projectPath: resolveApp('.'),
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),
+  ownPackageJson: resolveOwn('package.json'),
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
 };
 
@@ -112,6 +113,7 @@ if (
     projectPath: resolveOwn('../..'),
     // These properties only exist before ejecting:
     ownPath: resolveOwn('.'),
+    ownPackageJson: resolveOwn('package.json'),
     ownNodeModules: resolveOwn('node_modules'),
   };
 }

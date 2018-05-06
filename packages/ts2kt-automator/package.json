@@ -1,6 +1,6 @@
 {
   "name": "@jetbrains/ts2kt-automator",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A package that downloads TypeScript annotations from @types/*-group of packages and converts them to Kotlin.",
   "main": "index.js",
   "repository": "JetBrains/create-react-kotlin-app",
@@ -26,7 +26,7 @@
   "dependencies": {
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",
-    "ts2kt": "0.1.2"
+    "ts2kt": "0.1.3"
   },
   "engines": {
     "node": ">=6"
