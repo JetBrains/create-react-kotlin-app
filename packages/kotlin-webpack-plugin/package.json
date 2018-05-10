@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "@jetbrains/kotlinc-js-api": "^1.2.7",
-    "fs-extra": "6.0.0",
+    "fs-extra": "6.0.1",
     "glob": "7.1.2",
     "globby": "8.0.1",
     "kotlin-compiler": "^1.2.41"
