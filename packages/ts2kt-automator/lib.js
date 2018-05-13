@@ -43,7 +43,7 @@ function getPackageVersion(packageName) {
 }
 
 function getPackageTypeFilePath(name) {
-  const typePackage = require(`@types/${name}/package.json`);
+  const typePackage = require(path.resolve(process.cwd(), `./node_modules/@types/${name}/package.json`));
   // Looks like types packages always have just index.d.ts file
   // See https://github.com/DefinitelyTyped/DefinitelyTyped#create-a-new-package
   const typesFileName = typePackage.typings || 'index.d.ts';
@@ -59,7 +59,7 @@ function getPackageTypeFilePath(name) {
 
   console.log("Looks like package has embedded types. Let's check...");
 
-  const packageItself = require(`${name}/package.json`);
+  const packageItself = require(path.resolve(process.cwd(), `./node_modules/${name}/package.json`));
   if (!packageItself.typings) {
     throw new Error(
       `Cannot find types for package ${name}. It has no types in @types/${name} and no "typings" field in package.json`
