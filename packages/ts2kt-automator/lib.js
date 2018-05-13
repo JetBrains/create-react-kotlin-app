@@ -24,8 +24,8 @@ function spawnChildProcess(command, args) {
     });
 
     proc.on('close', (code) => {
-      if (code !== 0 && errors.length) {
-        return reject(errors.join(''));
+      if (code !== 0) {
+        return errors.join('') | `Error. \`${command} ${args.join(' ')}\` exited with code=${code}`;
       }
       resolve();
     });
