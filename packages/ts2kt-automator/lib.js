@@ -8,6 +8,7 @@ function spawnChildProcess(command, args) {
   return new Promise((resolve, reject) => {
     const proc = spawn(command, args, {
       stdio: [process.stdin, process.stdout, 'pipe'],
+	  shell: true,
     });
 
     const errors = [];
@@ -19,11 +20,11 @@ function spawnChildProcess(command, args) {
 
     proc.on('error', err => {
       console.error(`\`${command} ${args.join(' ')}\` failed`, err);
-      reject(err);
+      reject(err.toString());
     });
 
-    proc.on('close', () => {
-      if (errors.length) {
+    proc.on('close', (code) => {
+      if (code !== 0 && errors.length) {
         return reject(errors.join(''));
       }
       resolve();
@@ -79,20 +80,15 @@ function installTypes(packageName) {
       console.log(
         `Package ${packageName} has been installed to node_modules/@types/${packageName}.`
       )
-    )
-    .catch(errorMessage => {
-      if (errorMessage.indexOf('npm WARN') !== -1) {
-        return;
-      }
-      return Promise.reject(errorMessage);
-    });
+    );
 }
 
 function convertTypesToKotlin(packageName, destinationDir) {
   const [name] = packageName.split('@');
-  const command = require.resolve('ts2kt');
+  const command = 'node';
+  const ts2ktPath = require.resolve('ts2kt');
 
-  const args = ['-d', destinationDir, getPackageTypeFilePath(name)];
+  const args = [ts2ktPath, '-d', destinationDir, getPackageTypeFilePath(name)];
 
   return spawnChildProcess(command, args).then(() =>
     console.log(
