@@ -8,7 +8,7 @@ function spawnChildProcess(command, args) {
   return new Promise((resolve, reject) => {
     const proc = spawn(command, args, {
       stdio: [process.stdin, process.stdout, 'pipe'],
-	  shell: true,
+      shell: true,
     });
 
     const errors = [];
@@ -23,10 +23,12 @@ function spawnChildProcess(command, args) {
       reject(err.toString());
     });
 
-    proc.on('close', (code) => {
+    proc.on('close', code => {
       if (code !== 0) {
-        const errorMessage = errors.join('') || `Error. \`${command} ${args.join(' ')}\` exited with code=${code}`;
-        return reject(errorMessage)
+        const errorMessage =
+          errors.join('') ||
+          `Error. \`${command} ${args.join(' ')}\` exited with code=${code}`;
+        return reject(errorMessage);
       }
       resolve();
     });
@@ -43,7 +45,10 @@ function getPackageVersion(packageName) {
 }
 
 function getPackageTypeFilePath(name) {
-  const typePackage = require(path.resolve(process.cwd(), `./node_modules/@types/${name}/package.json`));
+  const typePackage = require(path.resolve(
+    process.cwd(),
+    `./node_modules/@types/${name}/package.json`
+  ));
   // Looks like types packages always have just index.d.ts file
   // See https://github.com/DefinitelyTyped/DefinitelyTyped#create-a-new-package
   const typesFileName = typePackage.typings || 'index.d.ts';
@@ -59,7 +64,10 @@ function getPackageTypeFilePath(name) {
 
   console.log("Looks like package has embedded types. Let's check...");
 
-  const packageItself = require(path.resolve(process.cwd(), `./node_modules/${name}/package.json`));
+  const packageItself = require(path.resolve(
+    process.cwd(),
+    `./node_modules/${name}/package.json`
+  ));
   if (!packageItself.typings) {
     throw new Error(
       `Cannot find types for package ${name}. It has no types in @types/${name} and no "typings" field in package.json`
@@ -76,12 +84,11 @@ function installTypes(packageName) {
 
   const args = ['install', `@types/${name}@${version}`, '--no-save'];
 
-  return spawnChildProcess(command, args)
-    .then(() =>
-      console.log(
-        `Package ${packageName} has been installed to node_modules/@types/${packageName}.`
-      )
-    );
+  return spawnChildProcess(command, args).then(() =>
+    console.log(
+      `Package ${packageName} has been installed to node_modules/@types/${packageName}.`
+    )
+  );
 }
 
 function convertTypesToKotlin(packageName, destinationDir) {
