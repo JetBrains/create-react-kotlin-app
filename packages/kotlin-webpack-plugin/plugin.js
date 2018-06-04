@@ -78,7 +78,7 @@ class KotlinWebpackPlugin {
     this.setPastDate = this.setPastDate.bind(this);
 
     this.startTime = Date.now();
-    this.prevTimestamps = {};
+    this.prevTimestamps = new Map();
     this.initialRun = true;
     this.sources = [].concat(this.options.src);
   }
@@ -109,9 +109,7 @@ class KotlinWebpackPlugin {
 
   compileIfKotlinFilesChanged(compilation, done) {
     const changedFiles = Object.keys(compilation.fileTimestamps).filter(
-      watchfile =>
-        (this.prevTimestamps[watchfile] || this.startTime) <
-        (compilation.fileTimestamps[watchfile] || Infinity)
+      watchfile => (this.prevTimestamps[watchfile] || this.startTime) < (compilation.fileTimestamps[watchfile] || Infinity)
     );
 
     this.prevTimestamps = compilation.fileTimestamps;
