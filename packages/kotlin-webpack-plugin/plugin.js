@@ -108,8 +108,8 @@ class KotlinWebpackPlugin {
   }
 
   compileIfKotlinFilesChanged(compilation, done) {
-    const changedFiles = Object.keys(compilation.fileTimestamps).filter(
-      watchfile => (this.prevTimestamps[watchfile] || this.startTime) < (compilation.fileTimestamps[watchfile] || Infinity)
+    const changedFiles = Array.from(compilation.fileTimestamps.keys()).filter(
+      watchfile => (this.prevTimestamps.get(watchfile) || this.startTime) < (compilation.fileTimestamps.get(watchfile) || Infinity)
     );
 
     this.prevTimestamps = compilation.fileTimestamps;
