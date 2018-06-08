@@ -53,7 +53,9 @@ module.exports = function generate(packages, projectDir, imlPath) {
       iml = iml.replace(/(\n\s+)<\/component>/, `$1  ${dep}$&`);
     }
   });
-  fs.writeFile(_imlPath, iml, (err) => {
-    if (err) throw err;
+  fs.writeFile(_imlPath, iml, err => {
+    if (err) {
+      throw err;
+    }
   });
 };
