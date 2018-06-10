@@ -45,7 +45,12 @@ module.exports = function generate(packages, projectDir, imlPath) {
     const classes = path.relative(projectDir, path.join(pkg, '..'));
     fs.writeFile(
       path.join(projectDir, `.idea/libraries/${name.replace(/-/g, '_')}.xml`),
-      libTemplate.replace(/%name%/g, name).replace(/%classes%/g, classes)
+      libTemplate.replace(/%name%/g, name).replace(/%classes%/g, classes),
+      err => {
+        if (err) {
+          throw err;
+        }
+      }
     );
 
     const dep = depTemplate.replace(/%name%/g, name);
