@@ -30,7 +30,7 @@
     "fs-extra": "6.0.1",
     "glob": "7.1.2",
     "globby": "8.0.1",
-    "kotlin-compiler": "^1.2.41"
+    "kotlin-compiler": "^1.2.50"
   },
   "devDependencies": {
     "html-webpack-plugin": "^3.0.0",

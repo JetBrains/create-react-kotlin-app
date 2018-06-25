@@ -24,6 +24,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cross-spawn": "^6.0.0",
-    "kotlin-compiler": "^1.2.41"
+    "kotlin-compiler": "^1.2.50"
   }
 }
