@@ -21,7 +21,7 @@
     "husky": "^0.14.3",
     "kotlin": "^1.2.61",
     "kotlinx-html": "^0.6.11",
-    "lerna": "^3.1.4",
+    "lerna": "^2.11.0",
     "lerna-changelog": "^0.8.0",
     "lint-staged": "^7.2.2",
     "prettier": "^1.14.2",
