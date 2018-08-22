@@ -14,19 +14,19 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "@jetbrains/kotlin-extensions": "^1.0.1-pre.31",
-    "@jetbrains/kotlin-react": "^16.4.0-pre.31",
-    "@jetbrains/kotlin-react-dom": "^16.4.0-pre.31",
-    "eslint": "5.0.0",
+    "@jetbrains/kotlin-extensions": "^1.0.1-pre.49",
+    "@jetbrains/kotlin-react": "^16.4.2-pre.49",
+    "@jetbrains/kotlin-react-dom": "^16.4.2-pre.49",
+    "eslint": "5.4.0",
     "husky": "^0.14.3",
-    "kotlin": "^1.2.50",
-    "kotlinx-html": "^0.6.10",
-    "lerna": "^2.11.0",
+    "kotlin": "^1.2.61",
+    "kotlinx-html": "^0.6.11",
+    "lerna": "^3.1.4",
     "lerna-changelog": "^0.8.0",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.13.5",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
   },
   "lint-staged": {
     "*.js": [

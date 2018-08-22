@@ -3,10 +3,10 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/packages/kotlinc-js-api" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/packages/kotlin-webpack-plugin" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/demo/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/packages/react-scripts/template/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/kotlinc-js-api" type="kotlin-source" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/kotlin-webpack-plugin" type="kotlin-source" />
+      <sourceFolder url="file://$MODULE_DIR$/demo/src" type="kotlin-source" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/react-scripts/template/src" type="kotlin-source" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -27,15 +27,15 @@
   ],
   "dependencies": {
     "@jetbrains/kotlinc-js-api": "^1.2.7",
-    "fs-extra": "6.0.1",
-    "glob": "7.1.2",
-    "globby": "8.0.1",
-    "kotlin-compiler": "^1.2.50"
+    "fs-extra": "^7.0.0",
+    "glob": "^7.1.2",
+    "globby": "^8.0.1",
+    "kotlin-compiler": "^1.2.61"
   },
   "devDependencies": {
-    "html-webpack-plugin": "^3.0.0",
-    "source-map-loader": "0.2.3",
-    "webpack": "^3.11.0",
-    "webpack-dev-server": "2.11.1"
+    "html-webpack-plugin": "^3.2.0",
+    "source-map-loader": "^0.2.4",
+    "webpack": "^3.12.0",
+    "webpack-dev-server": "^2.11.3"
   }
 }
