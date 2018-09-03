@@ -37,7 +37,14 @@ module.exports = function generate(packages, projectDir, imlPath) {
         projectDir,
         `${path.basename(path.resolve(projectDir))}.iml`
       );
-      iml = fs.readFileSync(_imlPath, 'utf8');
+      try {
+        iml = fs.readFileSync(_imlPath, 'utf8');
+      } catch (err) {
+        console.warn(
+          'gen-idea-libs failed to find %project-name%.iml file, skipping generation'
+        );
+        return;
+      }
     }
   }
   Object.keys(packages).forEach(name => {
