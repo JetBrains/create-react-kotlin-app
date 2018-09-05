@@ -9,7 +9,7 @@ Please note that this is an **early preview version**.
 
 ## Quick Overview
 
-Make sure you have [JDK 8](http://www.oracle.com/technetwork/java/index.html) installed before proceeding. Java 9 is not supported yet.
+**Make sure you have [JDK 8](http://www.oracle.com/technetwork/java/index.html) installed before proceeding.** Java 9 is not supported yet.
 
 Create a new project:
 
