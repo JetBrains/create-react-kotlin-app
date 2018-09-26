@@ -38,4 +38,8 @@ kotlinCompiler
     } else {
       console.info('Test passed');
     }
+  })
+  .catch(err => {
+    console.error('kotlinc-js-api test failed:', err);
+    process.exit(1);
   });
