@@ -188,6 +188,7 @@ class KotlinWebpackPlugin {
       .then(this.setPastDate)
       .then(done)
       .catch(err => {
+        this.generateErrorBundle(err.toString());
         this.firstCompilationError = err;
         done();
       });
@@ -234,6 +235,26 @@ class KotlinWebpackPlugin {
         // discard the value
         .then(() => {})
     );
+  }
+
+  generateErrorBundle(errorMessage) {
+    const file = path.join(
+      this.options.output,
+      `${this.options.moduleName}.js`
+    );
+
+    if (this.options.verbose) {
+      console.log('>>> Kotlin Plugin: >>> Generating error entry', file);
+    }
+
+    if (!fs.existsSync(this.options.output)) {
+      fs.mkdirSync(this.options.output);
+    }
+
+    const message = `throw new Error("Failed to compile Kotlin code: ${(
+      errorMessage || ''
+    ).replace(/\n/g, ' ')}")`;
+    fs.writeFileSync(file, message);
   }
 }
 
