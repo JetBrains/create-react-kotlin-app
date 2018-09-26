@@ -1,10 +1,11 @@
-(function (_, Kotlin, $module$react, $module$kotlin_extensions) {
+(function (_, Kotlin, $module$kotlin_extensions, $module$react) {
   'use strict';
   var $$importsForInline$$ = _.$$importsForInline$$ || (_.$$importsForInline$$ = {});
+  var createElement = $module$react.createElement;
   var println = Kotlin.kotlin.io.println_s8jyv4$;
   function main(args) {
     var obj = {};
-    var el = $module$react.createElement('test', obj, 'test');
+    var el = createElement('test', obj, 'test');
     println(JSON.stringify(el));
   }
   $$importsForInline$$['kotlin-extensions'] = $module$kotlin_extensions;
@@ -13,6 +14,6 @@
   main([]);
   Kotlin.defineModule('dist', _);
   return _;
-}(module.exports, require('kotlin'), require('react'), require('kotlin-extensions')));
+}(module.exports, require('kotlin'), require('kotlin-extensions'), require('react')));
 
 //# sourceMappingURL=dist.js.map
