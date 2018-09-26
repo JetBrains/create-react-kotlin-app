@@ -244,7 +244,7 @@ class KotlinWebpackPlugin {
     );
 
     if (this.options.verbose) {
-      console.log('>>> Kotlin Plugin: >>> Generating error entry', file);
+      console.log('>>> Kotlin Plugin: >>> generating error entry', file);
     }
 
     if (!fs.existsSync(this.options.output)) {
