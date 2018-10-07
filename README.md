@@ -1,4 +1,5 @@
 [![JetBrains team project](http://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+[![Slack][slack-badge]][slack-url]
 [![JetBrains community Discord](https://goo.gl/xe5fjk)](https://discord.gg/X6xNzjx)
 
 [![Build Status](https://teamcity.jetbrains.com/app/rest/builds/buildType:JetBrainsUi_CreateReactKotlinApp/statusIcon.svg)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=JetBrainsUi_CreateReactKotlinApp&guest=1)
@@ -184,3 +185,8 @@ Contributions to this project are welcome! Please see the open [issues](https://
 ## Acknowledgements
 
 This project is based on Facebook's [Create React App](https://github.com/facebookincubator/create-react-app). Many thanks to its authors for their work and inspiration.
+
+
+[slack-url]: http://slack.kotlinlang.org
+[slack-badge-broken]: http://slack.kotlinlang.org/badge.svg
+[slack-badge]: https://goo.gl/6v9NMJ
