@@ -8,6 +8,9 @@ This package allows compiling [Kotlin](https://kotlinlang.org/) files to JavaScr
 npm i @jetbrains/kotlin-webpack-plugin --save-dev
 ```
 
+## Requirements
+This plugin requires a minimum of Node v8.6.0 and Webpack v4.0.0. To use this plugin with Webpack v3.0.0, you need to use v1.2.11 of this plugin.
+
 ## Usage
 
 Example of webpack configuration:
