@@ -3,6 +3,7 @@ const kotlinCompiler = require('@jetbrains/kotlinc-js-api');
 const globby = require('globby');
 const fs = require('fs-extra');
 const path = require('path');
+const log = require('webpack-log');
 const DCEPlugin = require('./dce-plugin');
 const librariesLookup = require('./libraries-lookup');
 
@@ -76,16 +77,19 @@ class KotlinWebpackPlugin {
     );
     this.optimizeDeadCode = this.optimizeDeadCode.bind(this);
     this.setPastDate = this.setPastDate.bind(this);
+    this.log = this.log.bind(this);
 
     this.startTime = Date.now();
     this.prevTimestamps = {};
     this.initialRun = true;
     this.sources = [].concat(this.options.src);
+
+    this.logger = log({ name: 'Kotlin Plugin' });
   }
 
   log(...args) {
     if (this.options.verbose) {
-      console.info('>>> Kotlin Plugin: >>>', ...args);
+      this.logger.info(...args);
     }
   }
 
@@ -243,9 +247,7 @@ class KotlinWebpackPlugin {
       `${this.options.moduleName}.js`
     );
 
-    if (this.options.verbose) {
-      console.log('>>> Kotlin Plugin: >>> generating error entry', file);
-    }
+    this.log('Generating error entry', file);
 
     if (!fs.existsSync(this.options.output)) {
       fs.mkdirSync(this.options.output);
