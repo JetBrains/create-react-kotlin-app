@@ -13,10 +13,8 @@ function lookupInPackage(pkg) {
       .filter(dependencyName => dependencyName !== 'kotlin')
       .map(dependencyName => {
         try {
-          const nodeVersion = process.versions.node.split('.');
-          const major = parseInt(nodeVersion[0]);
-          var main;
-          if (major > 8 || (major == 8 && parseInt(nodeVersion[1]) == 9)) {
+          let main;
+          if (require.resolve.paths) {
             // resolve only searches this scripts node_modules for the dependency in newer versions
             const paths = require.resolve.paths(dependencyName);
             paths.push(path.resolve(process.cwd(), 'node_modules'));

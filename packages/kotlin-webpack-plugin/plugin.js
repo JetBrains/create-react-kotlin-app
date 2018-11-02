@@ -31,6 +31,9 @@ const DEFAULT_OPTIONS = {
 
 class KotlinWebpackPlugin {
   constructor(options) {
+    const logLevel = !options.verbose ? 'silent' : 'info';
+    this.log = log({ name: pluginName, level: logLevel });
+
     const opts = Object.assign({}, DEFAULT_OPTIONS, options);
     this.prepareLibraries = this.prepareLibraries.bind(this);
     this.options = this.prepareLibraries(opts);
@@ -55,9 +58,6 @@ class KotlinWebpackPlugin {
     this.prevTimestamps = new Map();
     this.initialRun = true;
     this.sources = [].concat(this.options.src);
-
-    const logLevel = !opts.verbose ? 'silent' : 'info';
-    this.log = log({ name: pluginName, level: logLevel });
   }
 
   apply(compiler) {
