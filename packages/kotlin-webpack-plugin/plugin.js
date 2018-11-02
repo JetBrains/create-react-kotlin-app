@@ -1,8 +1,8 @@
-'use strict';
 const kotlinCompiler = require('@jetbrains/kotlinc-js-api');
 const globby = require('globby');
 const fs = require('fs-extra');
 const path = require('path');
+const log = require('webpack-log');
 const DCEPlugin = require('./dce-plugin');
 const librariesLookup = require('./libraries-lookup');
 
@@ -14,6 +14,7 @@ function getDefaultPackagesContents() {
   }
 }
 
+const pluginName = 'Kotlin Plugin';
 const DEFAULT_OPTIONS = {
   src: null, // An array or string with sources path
   output: 'kotlin_build',
@@ -28,38 +29,11 @@ const DEFAULT_OPTIONS = {
   optimize: false,
 };
 
-function prepareLibraries(opts) {
-  if (opts.librariesAutoLookup) {
-    if (opts.libraries.length > 0) {
-      console.warn(
-        'KotlinWebpackPlugin: "libraries" option is ignored because "librariesAutoLookup" option is enabled'
-      );
-    }
-
-    opts.libraries = librariesLookup.lookupKotlinLibraries(
-      opts.packagesContents
-    );
-    if (opts.verbose) {
-      console.info(
-        `>>> Kotlin Plugin: >>> autolookup found the following Kotlin libs:
-         ${opts.libraries.join('\n')}`
-      );
-    }
-  }
-
-  return Object.assign({}, opts, {
-    libraries: opts.libraries.map(main =>
-      main.replace(/(?:\.js)?$/, '.meta.js')
-    ),
-    librariesMainFiles: opts.libraries,
-  });
-}
-
 class KotlinWebpackPlugin {
   constructor(options) {
     const opts = Object.assign({}, DEFAULT_OPTIONS, options);
-
-    this.options = prepareLibraries(opts);
+    this.prepareLibraries = this.prepareLibraries.bind(this);
+    this.options = this.prepareLibraries(opts);
 
     this.outputPath = path.resolve(
       `${this.options.output}/${this.options.moduleName}.js`
@@ -78,22 +52,49 @@ class KotlinWebpackPlugin {
     this.setPastDate = this.setPastDate.bind(this);
 
     this.startTime = Date.now();
-    this.prevTimestamps = {};
+    this.prevTimestamps = new Map();
     this.initialRun = true;
     this.sources = [].concat(this.options.src);
-  }
 
-  log(...args) {
-    if (this.options.verbose) {
-      console.info('>>> Kotlin Plugin: >>>', ...args);
-    }
+    const logLevel = !opts.verbose ? 'silent' : 'info';
+    this.log = log({ name: pluginName, level: logLevel });
   }
 
   apply(compiler) {
-    compiler.plugin('before-compile', this.compileIfFirstRun);
-    compiler.plugin('compilation', this.reportFirstCompilationError);
-    compiler.plugin('make', this.compileIfKotlinFilesChanged);
-    compiler.plugin('emit', this.watchKotlinSources);
+    compiler.hooks.beforeCompile.tapAsync(pluginName, this.compileIfFirstRun);
+    compiler.hooks.compilation.tap(
+      pluginName,
+      this.reportFirstCompilationError
+    );
+    compiler.hooks.make.tapAsync(pluginName, this.compileIfKotlinFilesChanged);
+    compiler.hooks.emit.tapAsync(pluginName, this.watchKotlinSources);
+  }
+
+  prepareLibraries(opts) {
+    if (opts.librariesAutoLookup) {
+      if (opts.libraries.length > 0) {
+        this.log.warn(
+          '"libraries" option is ignored because "librariesAutoLookup" option is enabled'
+        );
+      }
+
+      opts.libraries = librariesLookup.lookupKotlinLibraries(
+        opts.packagesContents
+      );
+
+      this.log.info(
+        `Autolookup found the following Kotlin libs:
+       ${opts.libraries.join('\n')}`
+      );
+    }
+
+    return {
+      ...opts,
+      libraries: opts.libraries.map(main =>
+        main.replace(/(?:\.js)?$/, '.meta.js')
+      ),
+      librariesMainFiles: opts.libraries,
+    };
   }
 
   copyLibraries() {
@@ -107,11 +108,11 @@ class KotlinWebpackPlugin {
     );
   }
 
-  compileIfKotlinFilesChanged(compilation, done) {
-    const changedFiles = Object.keys(compilation.fileTimestamps).filter(
+  async compileIfKotlinFilesChanged(compilation, done) {
+    const changedFiles = Array.from(compilation.fileTimestamps.keys()).filter(
       watchfile =>
-        (this.prevTimestamps[watchfile] || this.startTime) <
-        (compilation.fileTimestamps[watchfile] || Infinity)
+        (this.prevTimestamps.get(watchfile) || this.startTime) <
+        (compilation.fileTimestamps.get(watchfile) || Infinity)
     );
 
     this.prevTimestamps = compilation.fileTimestamps;
@@ -121,77 +122,79 @@ class KotlinWebpackPlugin {
       return;
     }
 
-    this.log(
+    this.log.info(
       `Compiling Kotlin sources because the following files were changed: ${changedFiles.join(
         ', '
       )}`
     );
-    this.compileKotlinSources()
-      .then(done)
-      .catch(err => {
-        compilation.errors.push(err);
-        done();
-      });
-  }
 
-  compileKotlinSources() {
-    return kotlinCompiler
-      .compile(
-        Object.assign({}, this.options, {
-          output: this.outputPath,
-          sources: this.sources,
-          moduleKind: 'commonjs',
-          noWarn: true,
-          verbose: false,
-        })
-      )
-      .then(() => {
-        if (this.options.optimize) {
-          return this.optimizeDeadCode();
-        }
-      });
-  }
-
-  watchKotlinSources(compilation, done) {
-    const patterns = this.sources.map(it => it + '/**/*.kt');
-    globby(patterns, {
-      absolute: true,
-    }).then(paths => {
-      const normalizedPaths = paths.map(it => path.normalize(it));
-      if (compilation.fileDependencies.add) {
-        for (const path of normalizedPaths) {
-          compilation.fileDependencies.add(path);
-        }
-      } else {
-        // Before Webpack 4 - fileDepenencies was an array
-        compilation.fileDependencies.push(...normalizedPaths);
-      }
+    try {
+      await this.compileKotlinSources();
+    } catch (e) {
+      compilation.errors.push(e);
+    } finally {
       done();
+    }
+  }
+
+  async compileKotlinSources() {
+    await kotlinCompiler.compile({
+      ...this.options,
+      output: this.outputPath,
+      sources: this.sources,
+      moduleKind: 'commonjs',
+      noWarn: true,
+      verbose: false,
     });
+
+    if (this.options.optimize) {
+      return this.optimizeDeadCode();
+    }
   }
 
-  compileIfFirstRun(compilationParams, done) {
+  async watchKotlinSources(compilation, done) {
+    const patterns = this.sources.map(it => `${it}/**/*.kt`);
+    const paths = await globby(patterns, {
+      absolute: true,
+    });
+
+    const normalizedPaths = paths.map(it => path.normalize(it));
+
+    if (compilation.fileDependencies.add) {
+      for (const path of normalizedPaths) {
+        compilation.fileDependencies.add(path);
+      }
+    } else {
+      // Before Webpack 4 - fileDepenencies was an array
+      compilation.fileDependencies.push(...normalizedPaths);
+    }
+
+    done();
+  }
+
+  async compileIfFirstRun(params, done) {
     if (!this.initialRun) {
-      done();
-      return;
+      return done();
     }
 
     this.initialRun = false;
 
-    this.log('Initial compilation of Kotlin sources...');
-    this.compileKotlinSources()
-      .then(() => {
-        if (!this.options.optimize) {
-          return this.copyLibraries();
-        }
-      })
-      .then(this.setPastDate)
-      .then(done)
-      .catch(err => {
-        this.generateErrorBundle(err.toString());
-        this.firstCompilationError = err;
-        done();
-      });
+    this.log.info('Initial compilation of Kotlin sources...');
+
+    try {
+      await this.compileKotlinSources();
+
+      if (!this.options.optimize) {
+        await this.copyLibraries();
+      }
+
+      await this.setPastDate();
+    } catch (e) {
+      this.generateErrorBundle(e.toString());
+      this.firstCompilationError = e;
+    } finally {
+      done();
+    }
   }
 
   reportFirstCompilationError(compilation) {
@@ -202,10 +205,11 @@ class KotlinWebpackPlugin {
   }
 
   optimizeDeadCode() {
-    this.log(
+    this.log.info(
       `Optimizing Kotlin runtime... \nLibraries:`,
       this.options.librariesMainFiles.join('\n')
     );
+
     return DCEPlugin.optimize({
       outputDir: this.options.output,
       outputPath: this.outputPath,
@@ -213,27 +217,16 @@ class KotlinWebpackPlugin {
     });
   }
 
-  setPastDate() {
-    //Hack around multiple recompilations on start: set past modify date
+  async setPastDate() {
+    // Hack around multiple recompilations on start: set past modify date
     const timestamp = 100;
     const output = this.options.output;
 
-    return (
-      fs
-        .readdir(output)
-        .then(files =>
-          Promise.all(
-            files.map(file => {
-              return fs.utimes(
-                path.resolve(output, file),
-                timestamp,
-                timestamp
-              );
-            })
-          )
-        )
-        // discard the value
-        .then(() => {})
+    const files = await fs.readdir(output);
+    await Promise.all(
+      files.map(file =>
+        fs.utimes(path.resolve(output, file), timestamp, timestamp)
+      )
     );
   }
 
@@ -243,9 +236,7 @@ class KotlinWebpackPlugin {
       `${this.options.moduleName}.js`
     );
 
-    if (this.options.verbose) {
-      console.log('>>> Kotlin Plugin: >>> generating error entry', file);
-    }
+    this.log.info('Generating error entry', file);
 
     if (!fs.existsSync(this.options.output)) {
       fs.mkdirSync(this.options.output);
