@@ -26,6 +26,14 @@ set -x
 cd ..
 root_path=$PWD
 
+trigger_commit_message="[Publish release versions]"
+
+# Release after trigger only
+if [[ "$(git log -1 --pretty=tformat:%B)" != *"$trigger_commit_message"* ]]; then
+  echo "Commit message does not contain \"$trigger_commit_message\", not releasing RELEASE versions";
+  exit 0;
+fi;
+
 # You can only release with npm >= 3
 if [ $(npm -v | head -c 1) -lt 3 ]; then
   echo "Releasing requires npm >= 3. Aborting.";
