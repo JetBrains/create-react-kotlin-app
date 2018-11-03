@@ -53,4 +53,4 @@ module.exports = {
 };
 ```
 
-You can find a sample configuration in the [example](./example) folder.
+You can find a sample configuration in the [example](https://github.com/JetBrains/create-react-kotlin-app/tree/master/packages/kotlin-webpack-plugin/example) folder.
