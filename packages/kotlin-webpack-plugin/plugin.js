@@ -89,13 +89,12 @@ class KotlinWebpackPlugin {
       );
     }
 
-    return {
-      ...opts,
+    return Object.assign({}, opts, {
       libraries: opts.libraries.map(main =>
         main.replace(/(?:\.js)?$/, '.meta.js')
       ),
       librariesMainFiles: opts.libraries,
-    };
+    });
   }
 
   copyLibraries() {
@@ -139,14 +138,15 @@ class KotlinWebpackPlugin {
   }
 
   async compileKotlinSources() {
-    await kotlinCompiler.compile({
-      ...this.options,
-      output: this.outputPath,
-      sources: this.sources,
-      moduleKind: 'commonjs',
-      noWarn: true,
-      verbose: false,
-    });
+    await kotlinCompiler.compile(
+      Object.assign({}, this.options, {
+        output: this.outputPath,
+        sources: this.sources,
+        moduleKind: 'commonjs',
+        noWarn: true,
+        verbose: false,
+      })
+    );
 
     if (this.options.optimize) {
       return this.optimizeDeadCode();
@@ -167,7 +167,9 @@ class KotlinWebpackPlugin {
       }
     } else {
       // Before Webpack 4 - fileDepenencies was an array
-      compilation.fileDependencies.push(...normalizedPaths);
+      for (const path of normalizedPaths) {
+        compilation.fileDependencies.push(path);
+      }
     }
 
     done();
