@@ -49,6 +49,7 @@ function convertOptionsIntoArguments(options) {
     '-module-kind',
     options.moduleKind
   );
+  argumentsList = addOptionWithValue(argumentsList, '-XPlugin', options.plugin);
 
   if (options.libraries && options.libraries.length) {
     argumentsList = argumentsList.concat(
@@ -60,6 +61,11 @@ function convertOptionsIntoArguments(options) {
   if (options.experimental) {
     if (options.experimental.multiPlatform) {
       argumentsList = argumentsList.concat('-Xmulti-platform');
+    }
+    if (options.experimental.customArguments) {
+      argumentsList = argumentsList.concat(
+        options.experimental.customArguments
+      );
     }
   }
 
