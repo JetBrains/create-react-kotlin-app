@@ -12,6 +12,9 @@ kotlinCompiler
     sources: [__dirname],
     sourceMaps: true,
     moduleKind: 'commonjs',
+    plugin: require.resolve(
+      `kotlin-compiler/lib/kotlinx-serialization-compiler-plugin.jar`
+    ),
     libraries: ['@jetbrains/kotlin-extensions', '@jetbrains/kotlin-react'].map(
       lib => require.resolve(lib).replace(/(?:\.js)?$/, '.meta.js')
     ),

@@ -3,8 +3,11 @@ const spawn = require('cross-spawn').spawn;
 const isWindows = /^win/.test(process.platform);
 const SUCCESS_CODE = 0;
 
-function addOptionWithValue(options, optionName, optionValue) {
+function addOptionWithValue(options, optionName, optionValue, useEqual) {
   if (optionValue) {
+    if (useEqual) {
+      return options.concat(`${optionName}=${optionValue}`);
+    }
     return options.concat(optionName, optionValue);
   }
   return options;
@@ -49,7 +52,12 @@ function convertOptionsIntoArguments(options) {
     '-module-kind',
     options.moduleKind
   );
-  argumentsList = addOptionWithValue(argumentsList, '-Xplugin', options.plugin);
+  argumentsList = addOptionWithValue(
+    argumentsList,
+    '-Xplugin',
+    options.plugin,
+    true
+  );
 
   if (options.libraries && options.libraries.length) {
     argumentsList = argumentsList.concat(
