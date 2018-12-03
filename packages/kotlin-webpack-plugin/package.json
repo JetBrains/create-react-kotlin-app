@@ -1,6 +1,6 @@
 {
   "name": "@jetbrains/kotlin-webpack-plugin",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Kotlin plugin for webpack",
   "main": "plugin.js",
   "repository": "JetBrains/create-react-kotlin-app",
@@ -26,7 +26,7 @@
     "dce-plugin.js"
   ],
   "dependencies": {
-    "@jetbrains/kotlinc-js-api": "^1.2.11",
+    "@jetbrains/kotlinc-js-api": "^1.2.12",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.3",
     "globby": "^8.0.1",
