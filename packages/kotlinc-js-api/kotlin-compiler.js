@@ -49,7 +49,7 @@ function convertOptionsIntoArguments(options) {
     '-module-kind',
     options.moduleKind
   );
-  argumentsList = addOptionWithValue(argumentsList, '-XPlugin', options.plugin);
+  argumentsList = addOptionWithValue(argumentsList, '-Xplugin', options.plugin);
 
   if (options.libraries && options.libraries.length) {
     argumentsList = argumentsList.concat(
