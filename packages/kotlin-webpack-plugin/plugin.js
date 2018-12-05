@@ -214,6 +214,7 @@ class KotlinWebpackPlugin {
     );
 
     return DCEPlugin.optimize({
+      moduleName: this.options.moduleName,
       outputDir: this.options.output,
       outputPath: this.outputPath,
       librariesPaths: [].concat(this.options.librariesMainFiles),

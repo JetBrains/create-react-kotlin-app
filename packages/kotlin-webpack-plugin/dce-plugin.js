@@ -33,6 +33,8 @@ function optimize(options) {
   const args = [
     '-output-dir',
     options.outputDir,
+    '-keep',
+    options.moduleName,
     options.outputPath,
     options.runtimePath || require.resolve('kotlin'),
   ].concat(options.librariesPaths);
