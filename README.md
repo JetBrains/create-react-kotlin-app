@@ -182,3 +182,4 @@ Contributions to this project are welcome! Please see the open [issues](https://
 ## Acknowledgements
 
 This project is based on Facebook's [Create React App](https://github.com/facebookincubator/create-react-app). Many thanks to its authors for their work and inspiration.
+
