@@ -188,7 +188,10 @@ class KotlinWebpackPlugin {
       await this.compileKotlinSources();
 
       if (!this.options.optimize) {
-        await this.copyLibraries();
+        await Promise.all([
+          fs.remove(path.join(this.options.output, 'kotlin.js')),
+          this.copyLibraries(),
+        ]);
       }
 
       await this.setPastDate();
