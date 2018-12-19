@@ -27,7 +27,7 @@
     "lint-staged": "^8.1.0",
     "prettier": "^1.14.3",
     "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react-dom": "^16.6.3"
   },
   "lint-staged": {
     "*.js": [
