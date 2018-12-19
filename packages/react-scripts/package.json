@@ -35,7 +35,7 @@
     "autoprefixer": "^9.3.1",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "chalk": "^2.4.1",
-    "core-js": "^2.5.7",
+    "core-js": "^2.6.1",
     "css-loader": "^1.0.1",
     "dotenv": "^6.1.0",
     "file-loader": "^2.0.0",
