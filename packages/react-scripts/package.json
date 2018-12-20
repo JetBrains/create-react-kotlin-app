@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@jetbrains/gen-idea-libs": "^1.0.11",
-    "@jetbrains/kotlin-extensions": "^1.0.1-pre.58",
+    "@jetbrains/kotlin-extensions": "^1.0.1-pre.61",
     "@jetbrains/kotlin-react": "^16.5.2-pre.58",
     "@jetbrains/kotlin-react-dom": "^16.5.2-pre.58",
     "@jetbrains/kotlin-webpack-plugin": "^2.0.3",
