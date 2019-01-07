@@ -21,7 +21,7 @@
     "create-react-kotlin-app": "./index.js"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
+    "chalk": "^2.4.2",
     "commander": "^2.19.0",
     "cross-spawn": "^6.0.5",
     "fs-extra": "^7.0.1",
