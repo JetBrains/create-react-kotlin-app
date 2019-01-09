@@ -13,6 +13,14 @@ const fs = require('fs');
   }, '.')
 */
 
+const findIml = function(directory) {
+  const imlList = fs.readdirSync(directory).filter((element) => {
+    var extName = path.extname(element);
+    return extName === '.iml';
+  });
+  return imlList.length > 0 && imlList[0] || null
+}
+
 module.exports = function generate(packages, projectDir, imlPath) {
   const libTemplate = fs.readFileSync(
     path.join(__dirname, './libTemplate.xml'),
@@ -26,11 +34,10 @@ module.exports = function generate(packages, projectDir, imlPath) {
     iml = fs.readFileSync(_imlPath, 'utf8');
   } else {
     try {
-      _imlPath = path.join(
-        projectDir,
-        '.idea',
-        `${path.basename(path.resolve(projectDir))}.iml`
-      );
+      const ideaDir = path.join(projectDir, '.idea');
+      let imlFileName = findIml(ideaDir)
+      _imlPath = path.join(ideaDir, imlFileName);
+
       iml = fs.readFileSync(_imlPath, 'utf8');
     } catch (e) {
       _imlPath = path.join(
@@ -38,6 +45,8 @@ module.exports = function generate(packages, projectDir, imlPath) {
         `${path.basename(path.resolve(projectDir))}.iml`
       );
       try {
+        let imlFileName = findIml(projectDir)
+        _imlPath = path.join(projectDir, imlFileName);
         iml = fs.readFileSync(_imlPath, 'utf8');
       } catch (err) {
         console.warn(
@@ -45,6 +54,7 @@ module.exports = function generate(packages, projectDir, imlPath) {
         );
         return;
       }
+      
     }
   }
   Object.keys(packages).forEach(name => {
