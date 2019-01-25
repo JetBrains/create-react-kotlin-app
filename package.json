@@ -14,7 +14,7 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "@jetbrains/kotlin-extensions": "^1.0.1-pre.61",
+    "@jetbrains/kotlin-extensions": "^1.0.1-pre.67",
     "@jetbrains/kotlin-react": "^16.5.2-pre.58",
     "@jetbrains/kotlin-react-dom": "^16.5.2-pre.58",
     "core-js": "^2.6.3",
