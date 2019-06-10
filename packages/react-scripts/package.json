@@ -32,7 +32,7 @@
     "@jetbrains/kotlin-react-dom": "^16.5.2-pre.58",
     "@jetbrains/kotlin-webpack-plugin": "^2.0.3",
     "@jetbrains/ts2kt-automator": "^1.0.12",
-    "autoprefixer": "^9.4.7",
+    "autoprefixer": "^9.6.0",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "chalk": "^2.4.2",
     "core-js": "^2.6.4",
