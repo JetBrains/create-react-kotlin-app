@@ -1,6 +1,8 @@
 [![Build Status](https://teamcity.jetbrains.com/app/rest/builds/buildType:JetBrainsUi_CreateReactKotlinApp/statusIcon.svg)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=JetBrainsUi_CreateReactKotlinApp&guest=1)
 [![JetBrains team project](http://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 
+[English](https://github.com/JetBrains/create-react-kotlin-app/blob/master/README.md)
+
 # Create React Kotlin App
 
 ビルド構成をせずに [React](https://facebook.github.io/react/) のアプリを [Kotlin](https://kotlinlang.org/) でコーディングすることができます。
