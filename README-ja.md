@@ -17,7 +17,7 @@
 npx create-react-kotlin-app my-app
 ```
 
-([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) にはnpm 5.2以降が付属しています。より古いnpmバージョンについてはインストールを参照してください。）
+([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) にはnpm 5.2以降が付属しています。より古いnpmバージョンについては[インストール](#インストール)を参照してください。）
 
 プロジェクトを動かす:
 
