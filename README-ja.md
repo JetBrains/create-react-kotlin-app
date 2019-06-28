@@ -124,7 +124,7 @@ my-app/
 rm -rf node_modules/.cache
 ```
 
-### `npm run build` or `yarn build`
+### `npm run build` または `yarn build`
 
 `build` フォルダにプロダクト用のアプリをビルドします。
 これは、Reactが本番環境用にバンドルされていることを約束し、パフォーマンスのために最適化されたものです。
