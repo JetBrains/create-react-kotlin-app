@@ -194,7 +194,7 @@ module.exports = {
       src: paths.appSrc,
       output: paths.kotlinOutputPath,
       moduleName: kotlinModuleName,
-      optimize: true,
+      optimize: env.raw.REACT_APP_FORCE_DCE || false,
       librariesAutoLookup: true,
       packagesContents: [
         // @remove-on-eject-begin
