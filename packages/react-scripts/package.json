@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@jetbrains/gen-idea-libs": "^1.0.11",
-    "@jetbrains/kotlin-extensions": "^1.0.1-pre.67",
+    "@jetbrains/kotlin-extensions": "^1.0.1-pre.80",
     "@jetbrains/kotlin-react": "^16.5.2-pre.58",
     "@jetbrains/kotlin-react-dom": "^16.5.2-pre.58",
     "@jetbrains/kotlin-webpack-plugin": "^2.0.3",
@@ -35,7 +35,7 @@
     "autoprefixer": "^9.4.7",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "chalk": "^2.4.2",
-    "core-js": "^2.6.4",
+    "core-js": "^3.1.4",
     "css-loader": "^2.1.0",
     "dotenv": "^6.2.0",
     "file-loader": "^3.0.1",
