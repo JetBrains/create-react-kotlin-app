@@ -50,4 +50,4 @@ yarn -v || curl -o- -L https://yarnpkg.com/install.sh | bash
 yarn install
 
 # Go!
-./node_modules/.bin/lerna publish --independent --yes --cd-version patch "$@"
+./node_modules/.bin/lerna publish --yes --cd-version patch "$@"

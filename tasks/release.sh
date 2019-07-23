@@ -47,4 +47,4 @@ fi
 
 cd "$root_path"
 # Go!
-./node_modules/.bin/lerna publish --npm-client=npm --independent --yes --cd-version major "$@"
+./node_modules/.bin/lerna publish --npm-client=npm --yes --cd-version major "$@"
