@@ -251,6 +251,8 @@ echo yes | npm run eject
 
 # ...but still link to the local packages
 npm link "$root_path"/packages/gen-idea-libs
+# Fixes "Refusing to delete ...  isn't under npm's control" error
+rm -rf "$root_path"/packages/kotlin-webpack-plugin/node_modules/.bin
 npm link "$root_path"/packages/kotlin-webpack-plugin
 npm link "$root_path"/packages/kotlinc-js-api
 npm link "$root_path"/packages/react-scripts
