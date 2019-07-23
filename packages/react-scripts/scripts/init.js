@@ -104,6 +104,12 @@ module.exports = function(
     }
   );
 
+  fs.move(
+    path.join(appPath, 'browserslistrc'),
+    path.join(appPath, '.browserslistrc'),
+    []
+  );
+
   let command;
   let args;
 
