@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "commander": "^2.19.0",
+    "commander": "^2.20.0",
     "cross-spawn": "^6.0.5",
     "fs-extra": "^7.0.1",
     "hyperquest": "^2.1.3",
