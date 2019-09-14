@@ -55,8 +55,7 @@ You can find a documentation for it and examples in the [module's repository](ht
 ### Adding Kotlin/JS packages
 
 **No configuration is required** to add packages written in Kotlin to a project based on Create React Kotlin App, we take care of it for you. 
-Simply run `npm install kotlinx-coroutines-core` to add [https://www.npmjs.com/package/kotlinx-coroutines-core](coroutines) support, 
-or `npm install @jetbrains/kotlin-react-router-dom` to install the [wrapper for React Router DOM](https://www.npmjs.com/package/@jetbrains/kotlin-react-router-dom).
+Simply run `npm install @jetbrains/kotlin-react-router-dom` to install the [wrapper for React Router DOM](https://www.npmjs.com/package/@jetbrains/kotlin-react-router-dom).
 
 ### Creating an App
 
