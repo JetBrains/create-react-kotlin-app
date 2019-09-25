@@ -27,9 +27,9 @@
   },
   "dependencies": {
     "@jetbrains/gen-idea-libs": "^1.0.12",
-    "@jetbrains/kotlin-extensions": "^1.0.1-pre.82",
-    "@jetbrains/kotlin-react": "^16.9.0-pre.82",
-    "@jetbrains/kotlin-react-dom": "^16.9.0-pre.82",
+    "@jetbrains/kotlin-extensions": "^1.0.1-pre.83",
+    "@jetbrains/kotlin-react": "^16.9.0-pre.83",
+    "@jetbrains/kotlin-react-dom": "^16.9.0-pre.83",
     "@jetbrains/kotlin-webpack-plugin": "^2.0.4",
     "@jetbrains/ts2kt-automator": "^1.0.12",
     "autoprefixer": "^9.6.1",

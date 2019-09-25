@@ -14,9 +14,9 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "@jetbrains/kotlin-extensions": "^1.0.1-pre.82",
-    "@jetbrains/kotlin-react": "^16.9.0-pre.82",
-    "@jetbrains/kotlin-react-dom": "^16.9.0-pre.82",
+    "@jetbrains/kotlin-extensions": "^1.0.1-pre.83",
+    "@jetbrains/kotlin-react": "^16.9.0-pre.83",
+    "@jetbrains/kotlin-react-dom": "^16.9.0-pre.83",
     "core-js": "^3.2.1",
     "eslint": "^6.4.0",
     "husky": "^3.0.5",
