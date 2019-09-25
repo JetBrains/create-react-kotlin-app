@@ -14,20 +14,21 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "@jetbrains/kotlin-extensions": "^1.0.1-pre.67",
-    "@jetbrains/kotlin-react": "^16.5.2-pre.58",
-    "@jetbrains/kotlin-react-dom": "^16.5.2-pre.58",
-    "core-js": "^3.1.4",
-    "eslint": "^5.13.0",
-    "husky": "^1.3.1",
-    "kotlin": "^1.3.41",
+    "@jetbrains/kotlin-extensions": "^1.0.1-pre.82",
+    "@jetbrains/kotlin-react": "^16.9.0-pre.82",
+    "@jetbrains/kotlin-react-dom": "^16.9.0-pre.82",
+    "core-js": "^3.2.1",
+    "eslint": "^6.4.0",
+    "husky": "^3.0.5",
+    "kotlin": "^1.3.50",
+    "kotlinx-coroutines-core": "^1.3.1",
     "kotlinx-html": "^0.6.12",
-    "lerna": "^3.16.2",
+    "lerna": "^3.16.4",
     "lerna-changelog": "^0.8.2",
-    "lint-staged": "^8.1.3",
-    "prettier": "^1.16.4",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "lint-staged": "^9.3.0",
+    "prettier": "^1.18.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "lint-staged": {
     "*.js": [
@@ -39,7 +40,7 @@
     "git rm --cached"
   ],
   "engines": {
-    "node": ">=8.0.0",
+    "node": ">=8.9.0",
     "yarn": ">=1.0.0"
   }
 }
