@@ -93,7 +93,9 @@ measureFileSizesBeforeBuild(paths.appBuild)
     err => {
       console.log(chalk.red('Failed to compile.\n'));
       console.log((err.message || err) + '\n');
-      console.log('stacktrace:', err.stack);
+      if (err.stack) {
+        console.log('stacktrace:', err.stack);
+      }
       process.exit(1);
     }
   );
