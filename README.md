@@ -1,7 +1,7 @@
 [![Build Status](https://teamcity.jetbrains.com/app/rest/builds/buildType:JetBrainsUi_CreateReactKotlinApp/statusIcon.svg)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=JetBrainsUi_CreateReactKotlinApp&guest=1)
 [![JetBrains team project](http://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 
-[Japanese](https://github.com/jetbrains/create-react-kotlin-app/blob/Add/README-ja/README-ja.md)
+[Japanese](https://github.com/JetBrains/create-react-kotlin-app/blob/master/README-ja.md)
 
 # Create React Kotlin App
 
