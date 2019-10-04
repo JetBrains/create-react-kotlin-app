@@ -27,7 +27,7 @@
     "lerna-changelog": "^0.8.2",
     "lint-staged": "^9.4.1",
     "prettier": "^1.18.2",
-    "react": "^16.10.1",
+    "react": "^16.10.2",
     "react-dom": "^16.10.1"
   },
   "lint-staged": {
