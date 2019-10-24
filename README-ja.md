@@ -2,6 +2,7 @@
 [![JetBrains team project](http://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 
 [English](https://github.com/JetBrains/create-react-kotlin-app/blob/master/README.md)
+[Korean](https://github.com/JetBrains/create-react-kotlin-app/blob/master/README-ko.md)
 
 # Create React Kotlin App
 
