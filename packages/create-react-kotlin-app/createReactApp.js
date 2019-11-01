@@ -51,6 +51,21 @@ const packageJson = require('./package.json');
 
 let projectName;
 
+function collectLayout(value, layout) {
+  const items = value.split(',');
+  items.forEach(item => updateLayout(layout, item));
+  return layout;
+}
+
+function updateLayout(layout, config) {
+  const items = config.split('=');
+  if (items.length == 2) {
+    layout[items[0]] = items[1];
+  } else {
+    console.warn(`Invalid layout config ignored: ${chalk.green(config)}`);
+  }
+}
+
 const program = new commander.Command(packageJson.name)
   .version(packageJson.version)
   .arguments('<project-directory>')
@@ -62,6 +77,12 @@ const program = new commander.Command(packageJson.name)
   .option(
     '--scripts-version <alternative-package>',
     'use a non-standard version of react-scripts'
+  )
+  .option(
+    '--layout <layout>',
+    'custom project layout config. e.g. src=fontend',
+    collectLayout,
+    {}
   )
   .allowUnknownOption()
   .on('--help', () => {
@@ -156,6 +177,9 @@ function createApp(name, verbose, version, template) {
     name: appName,
     version: '0.1.0',
     private: true,
+    kotlin: {
+      src: program.layout.src || 'src',
+    },
   };
   fs.writeFileSync(
     path.join(root, 'package.json'),
@@ -167,9 +191,7 @@ function createApp(name, verbose, version, template) {
   if (!semver.satisfies(process.version, '>=6.0.0')) {
     console.log(
       chalk.yellow(
-        `You are using Node ${
-          process.version
-        } so the project will be boostrapped with an old unsupported version of tools.\n\n` +
+        `You are using Node ${process.version} so the project will be boostrapped with an old unsupported version of tools.\n\n` +
           `Please update to Node 6 or higher for a better, fully supported experience.\n`
       )
     );
@@ -184,9 +206,7 @@ function createApp(name, verbose, version, template) {
       if (npmInfo.npmVersion) {
         console.log(
           chalk.yellow(
-            `You are using npm ${
-              npmInfo.npmVersion
-            } so the project will be boostrapped with an old unsupported version of tools.\n\n` +
+            `You are using npm ${npmInfo.npmVersion} so the project will be boostrapped with an old unsupported version of tools.\n\n` +
               `Please update to npm 3 or higher for a better, fully supported experience.\n`
           )
         );
@@ -296,7 +316,7 @@ function run(
         'init.js'
       );
       const init = require(scriptsPath);
-      init(root, appName, verbose, originalDirectory, template);
+      init(root, appName, verbose, originalDirectory, template, program.layout);
 
       if (version === 'react-scripts@0.9.x') {
         console.log(

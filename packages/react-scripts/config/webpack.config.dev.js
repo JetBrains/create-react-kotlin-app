@@ -34,6 +34,10 @@ const env = getClientEnvironment(publicUrl);
 // The production configuration is different and lives in a separate file.
 
 const kotlinModuleName = 'kotlinApp';
+const sourcePaths = {};
+[]
+  .concat(paths.appSrc)
+  .forEach(source => (sourcePaths[path.basename(source)] = source));
 
 module.exports = {
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
@@ -97,12 +101,14 @@ module.exports = {
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
     extensions: ['.js', '.json', '.jsx'],
-    alias: {
-      // Support React Native Web
-      // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'react-native': 'react-native-web',
-      src: paths.appSrc,
-    },
+    alias: Object.assign(
+      {
+        // Support React Native Web
+        // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+        'react-native': 'react-native-web',
+      },
+      sourcePaths
+    ),
   },
   module: {
     strictExportPresence: true,
