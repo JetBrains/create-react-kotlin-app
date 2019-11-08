@@ -44,7 +44,7 @@ function format(filePath, params) {
   let changed = false;
   const content = buffer.toString().replace(/\{\{(\w+)\}\}/g, function(m, w) {
     changed = true;
-    return params.hasOwnProperty(w) ? params[w] : w;
+    return Object.prototype.hasOwnProperty.call(params, w) ? params[w] : w;
   });
   if (changed) {
     fs.writeFileSync(filePath, content);

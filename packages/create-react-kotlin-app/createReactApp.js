@@ -80,7 +80,7 @@ const program = new commander.Command(packageJson.name)
   )
   .option(
     '--layout <layout>',
-    'custom project layout config. e.g. src=fontend',
+    'custom project layout config. e.g. src=frontend',
     collectLayout,
     {}
   )
