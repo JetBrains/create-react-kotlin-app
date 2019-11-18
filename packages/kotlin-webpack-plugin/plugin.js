@@ -246,7 +246,7 @@ class KotlinWebpackPlugin {
     this.log.info('Generating error entry', file);
 
     if (!fs.existsSync(this.options.output)) {
-      fs.mkdirSync(this.options.output);
+      fs.mkdirSync(this.options.output, {recursive: true});
     }
 
     const message = `throw new Error("Failed to compile Kotlin code: ${(
