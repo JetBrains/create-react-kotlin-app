@@ -38,6 +38,6 @@
     "source-map-loader": "^0.2.4",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.9.0"
   }
 }
