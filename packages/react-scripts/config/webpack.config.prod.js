@@ -31,6 +31,7 @@ const shouldUseRelativeAssetPaths = publicPath === './';
 const publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
+const DEFAULT_DCE_ENABLED = true;
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
@@ -188,7 +189,10 @@ module.exports = {
       src: paths.appSrc,
       output: paths.kotlinOutputPath,
       moduleName: kotlinModuleName,
-      optimize: env.raw.REACT_APP_FORCE_DCE || false,
+      optimize:
+        'REACT_APP_FORCE_DCE' in env.raw
+          ? env.raw.REACT_APP_FORCE_DCE
+          : DEFAULT_DCE_ENABLED,
       librariesAutoLookup: true,
       packagesContents: [
         // @remove-on-eject-begin
