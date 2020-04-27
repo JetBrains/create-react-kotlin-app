@@ -19,6 +19,11 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
 
+function resolveCfg(name, defaults) {
+  const json = require(resolveApp('package.json')).kotlin || {};
+  return json[name] || defaults;
+}
+
 function ensureSlash(path, needsSlash) {
   const hasSlash = path.endsWith('/');
   if (hasSlash && !needsSlash) {
@@ -53,7 +58,7 @@ module.exports = {
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('src'),
+  appSrc: [].concat(resolveCfg('src', 'src')).map(resolveApp),
   yarnLockFile: resolveApp('yarn.lock'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
@@ -73,7 +78,7 @@ module.exports = {
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('src'),
+  appSrc: [].concat(resolveCfg('src', 'src')).map(resolveApp),
   yarnLockFile: resolveApp('yarn.lock'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),

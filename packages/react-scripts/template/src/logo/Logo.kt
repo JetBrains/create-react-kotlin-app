@@ -5,9 +5,9 @@ import react.dom.*
 import kotlinext.js.*
 import kotlinx.html.style
 
-@JsModule("src/logo/react.svg")
+@JsModule("{{src}}/logo/react.svg")
 external val reactLogo: dynamic
-@JsModule("src/logo/kotlin.svg")
+@JsModule("{{src}}/logo/kotlin.svg")
 external val kotlinLogo: dynamic
 
 fun RBuilder.logo(height: Int = 100) {
