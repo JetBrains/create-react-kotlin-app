@@ -24,7 +24,7 @@
   "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.5",
     "mkdirp": "^0.5.1",
     "ts2kt": "^0.1.3"
   },
