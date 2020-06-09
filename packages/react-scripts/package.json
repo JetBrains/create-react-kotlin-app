@@ -34,7 +34,7 @@
     "@jetbrains/ts2kt-automator": "^2.0.0",
     "autoprefixer": "^9.7.6",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
-    "chalk": "^2.4.2",
+    "chalk": "^4.1.0",
     "core-js": "^3.5.0",
     "css-loader": "^3.5.2",
     "dotenv": "^8.2.0",
