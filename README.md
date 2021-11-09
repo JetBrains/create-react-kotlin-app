@@ -165,7 +165,7 @@ With `create-react-kotlin-app` you can quickly bootstrap a new application using
 
 ## Limitations
 
-* Unit testing is currently not supported in this project. We're now working on the Jest Kotlin wrapper. Stay tuned!
+* Unit testing is currently not supported in this project. We're now working on the Jest Kotlin wrapper. Unit-testing React is tracked in [KT-49610](https://youtrack.jetbrains.com/issue/KT-49610). Stay tuned!
 
 ## Converting to a Custom Setup
 
