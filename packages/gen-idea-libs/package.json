@@ -7,6 +7,6 @@
   "repository": "JetBrains/create-react-kotlin-app",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=16.13.0"
+    "node": ">=8.9.0"
   }
 }

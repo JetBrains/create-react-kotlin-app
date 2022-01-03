@@ -8,7 +8,7 @@
   },
   "repository": "JetBrains/create-react-kotlin-app",
   "engines": {
-    "node": ">=16.13.0"
+    "node": ">=8.9.0"
   },
   "files": [
     "compiler",
