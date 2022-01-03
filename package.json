@@ -25,7 +25,7 @@
     "kotlinx-html": "^0.7.2",
     "lerna": "^4.0.0",
     "lerna-changelog": "^2.2.0",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^12.1.5",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
