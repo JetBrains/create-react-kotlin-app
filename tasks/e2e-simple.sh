@@ -132,6 +132,9 @@ mv package.json.orig package.json
 # Install the CLI in a temporary location
 cd "$temp_cli_path"
 
+# Create .nvmrc
+echo "v14.18.2" > .nvmrc
+
 # Initialize package.json before installing the CLI because npm will not install
 # the CLI properly in the temporary location if it is missing.
 npm init --yes
