@@ -16,7 +16,7 @@
     "Kotlin"
   ],
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=16.13.0"
   },
   "author": "Andrey Skladchikov <andrey.skladchikov@gmail.com>",
   "license": "Apache-2.0",
