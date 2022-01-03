@@ -24,7 +24,7 @@
     "kotlinx-coroutines-core": "^1.5.2",
     "kotlinx-html": "^0.7.2",
     "lerna": "^4.0.0",
-    "lerna-changelog": "^1.0.1",
+    "lerna-changelog": "^2.2.0",
     "lint-staged": "^10.5.4",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
