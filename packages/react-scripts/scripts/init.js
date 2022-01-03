@@ -10,7 +10,7 @@
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -19,15 +19,18 @@ const path = require('path');
 const chalk = require('chalk');
 const spawn = require('react-dev-utils/crossSpawn');
 
-module.exports = function(
+module.exports = function (
   appPath,
   appName,
   verbose,
   originalDirectory,
   template
 ) {
-  const ownPackageName = require(path.join(__dirname, '..', 'package.json'))
-    .name;
+  const ownPackageName = require(path.join(
+    __dirname,
+    '..',
+    'package.json'
+  )).name;
   const ownPath = path.join(appPath, 'node_modules', ownPackageName);
   const appPackage = require(path.join(appPath, 'package.json'));
   const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
@@ -90,7 +93,7 @@ module.exports = function(
     path.join(appPath, 'gitignore'),
     path.join(appPath, '.gitignore'),
     [],
-    err => {
+    (err) => {
       if (err) {
         // Append if there's already a `.gitignore` file there
         if (err.code === 'EEXIST') {
@@ -118,7 +121,7 @@ module.exports = function(
     args = ['add'];
   } else {
     command = 'npm';
-    args = ['install', '--save', verbose && '--verbose'].filter(e => e);
+    args = ['install', '--save', verbose && '--verbose'].filter((e) => e);
   }
   args.push('react', 'react-dom');
 
@@ -130,7 +133,7 @@ module.exports = function(
   if (fs.existsSync(templateDependenciesPath)) {
     const templateDependencies = require(templateDependenciesPath).dependencies;
     args = args.concat(
-      Object.keys(templateDependencies).map(key => {
+      Object.keys(templateDependencies).map((key) => {
         return `${key}@${templateDependencies[key]}`;
       })
     );

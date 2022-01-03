@@ -10,7 +10,7 @@
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -43,7 +43,7 @@ inquirer
     message: 'Are you sure you want to eject? This action is permanent.',
     default: false,
   })
-  .then(answer => {
+  .then((answer) => {
     if (!answer.shouldEject) {
       console.log(cyan('Close one! Eject aborted.'));
       return;
@@ -54,7 +54,7 @@ inquirer
       console.error(
         chalk.red(
           `This git repository has untracked files or uncommitted changes:\n\n` +
-            gitStatus.split('\n').map(line => '  ' + line) +
+            gitStatus.split('\n').map((line) => '  ' + line) +
             '\n\n' +
             'Remove untracked files, stash or commit any changes, and try again.'
         )
@@ -87,9 +87,9 @@ inquirer
         fs
           .readdirSync(path.join(ownPath, folder))
           // set full path
-          .map(file => path.join(ownPath, folder, file))
+          .map((file) => path.join(ownPath, folder, file))
           // omit dirs from file list
-          .filter(file => fs.lstatSync(file).isFile())
+          .filter((file) => fs.lstatSync(file).isFile())
       );
     }, []);
 
@@ -100,11 +100,11 @@ inquirer
     console.log();
     console.log(cyan(`Copying files into ${appPath}`));
 
-    folders.forEach(folder => {
+    folders.forEach((folder) => {
       fs.mkdirSync(path.join(appPath, folder));
     });
 
-    files.forEach(file => {
+    files.forEach((file) => {
       let content = fs.readFileSync(file, 'utf8');
 
       // Skip flagged files
@@ -143,7 +143,7 @@ inquirer
       delete appPackage.dependencies[ownPackageName];
     }
 
-    Object.keys(ownPackage.dependencies).forEach(key => {
+    Object.keys(ownPackage.dependencies).forEach((key) => {
       // For some reason optionalDependencies end up in dependencies after install
       if (ownPackage.optionalDependencies[key]) {
         return;
@@ -154,8 +154,8 @@ inquirer
     console.log();
     console.log(cyan('Updating the scripts'));
     delete appPackage.scripts['eject'];
-    Object.keys(appPackage.scripts).forEach(key => {
-      Object.keys(ownPackage.bin).forEach(binKey => {
+    Object.keys(appPackage.scripts).forEach((key) => {
+      Object.keys(ownPackage.bin).forEach((binKey) => {
         const regex = new RegExp(binKey + ' ([\\w-]+)', 'g');
         appPackage.scripts[key] = appPackage.scripts[key].replace(
           regex,
@@ -188,7 +188,7 @@ inquirer
     if (ownPath.indexOf(appPath) === 0) {
       try {
         // remove react-scripts and react-scripts binaries from app node_modules
-        Object.keys(ownPackage.bin).forEach(binKey => {
+        Object.keys(ownPackage.bin).forEach((binKey) => {
           fs.removeSync(path.join(appPath, 'node_modules', '.bin', binKey));
         });
         fs.removeSync(ownPath);

@@ -28,7 +28,7 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    load().then(users => {
+    load().then((users) => {
       this.setState({ users });
     });
   }
@@ -40,7 +40,9 @@ export default class extends Component {
   render() {
     return (
       <div id="feature-promises">
-        {this.state.users.map(user => <div key={user.id}>{user.name}</div>)}
+        {this.state.users.map((user) => (
+          <div key={user.id}>{user.name}</div>
+        ))}
       </div>
     );
   }

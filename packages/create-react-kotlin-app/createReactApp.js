@@ -55,7 +55,7 @@ const program = new commander.Command(packageJson.name)
   .version(packageJson.version)
   .arguments('<project-directory>')
   .usage(`${chalk.green('<project-directory>')} [options]`)
-  .action(name => {
+  .action((name) => {
     projectName = name;
   })
   .option('--verbose', 'print additional logs')
@@ -114,7 +114,7 @@ if (typeof projectName === 'undefined') {
 
 function printValidationResults(results) {
   if (typeof results !== 'undefined') {
-    results.forEach(error => {
+    results.forEach((error) => {
       console.error(chalk.red(`  *  ${error}`));
     });
   }
@@ -167,9 +167,7 @@ function createApp(name, verbose, version, template) {
   if (!semver.satisfies(process.version, '>=6.0.0')) {
     console.log(
       chalk.yellow(
-        `You are using Node ${
-          process.version
-        } so the project will be boostrapped with an old unsupported version of tools.\n\n` +
+        `You are using Node ${process.version} so the project will be boostrapped with an old unsupported version of tools.\n\n` +
           `Please update to Node 6 or higher for a better, fully supported experience.\n`
       )
     );
@@ -184,9 +182,7 @@ function createApp(name, verbose, version, template) {
       if (npmInfo.npmVersion) {
         console.log(
           chalk.yellow(
-            `You are using npm ${
-              npmInfo.npmVersion
-            } so the project will be boostrapped with an old unsupported version of tools.\n\n` +
+            `You are using npm ${npmInfo.npmVersion} so the project will be boostrapped with an old unsupported version of tools.\n\n` +
               `Please update to npm 3 or higher for a better, fully supported experience.\n`
           )
         );
@@ -234,7 +230,7 @@ function install(useYarn, dependencies, verbose, isOnline) {
     }
 
     const child = spawn(command, args, { stdio: 'inherit' });
-    child.on('close', code => {
+    child.on('close', (code) => {
       if (code !== 0) {
         reject({
           command: `${command} ${args.join(' ')}`,
@@ -260,13 +256,13 @@ function run(
 
   console.log('Installing packages. This might take a couple minutes.');
   getPackageName(packageToInstall)
-    .then(packageName =>
-      checkIfOnline(useYarn).then(isOnline => ({
+    .then((packageName) =>
+      checkIfOnline(useYarn).then((isOnline) => ({
         isOnline: isOnline,
         packageName: packageName,
       }))
     )
-    .then(info => {
+    .then((info) => {
       const isOnline = info.isOnline;
       const packageName = info.packageName;
       console.log(
@@ -280,7 +276,7 @@ function run(
         () => packageName
       );
     })
-    .then(packageName => {
+    .then((packageName) => {
       checkNodeVersion(packageName);
 
       // Since react-scripts has been installed with --save
@@ -307,7 +303,7 @@ function run(
         );
       }
     })
-    .catch(reason => {
+    .catch((reason) => {
       console.log();
       console.log('Aborting installation.');
       if (reason.command) {
@@ -327,8 +323,8 @@ function run(
         'node_modules',
       ];
       const currentFiles = fs.readdirSync(path.join(root));
-      currentFiles.forEach(file => {
-        knownGeneratedFiles.forEach(fileToMatch => {
+      currentFiles.forEach((file) => {
+        knownGeneratedFiles.forEach((fileToMatch) => {
           // This will catch `(npm-debug|yarn-error|yarn-debug).log*` files
           // and the rest of knownGeneratedFiles.
           if (
@@ -395,7 +391,7 @@ function getTemporaryDirectory() {
 function extractStream(stream, dest) {
   return new Promise((resolve, reject) => {
     stream.pipe(
-      unpack(dest, err => {
+      unpack(dest, (err) => {
         if (err) {
           reject(err);
         } else {
@@ -410,7 +406,7 @@ function extractStream(stream, dest) {
 function getPackageName(installPackage) {
   if (installPackage.indexOf('.tgz') > -1) {
     return getTemporaryDirectory()
-      .then(obj => {
+      .then((obj) => {
         let stream;
         if (/^http/.test(installPackage)) {
           stream = hyperquest(installPackage);
@@ -419,12 +415,12 @@ function getPackageName(installPackage) {
         }
         return extractStream(stream, obj.tmpdir).then(() => obj);
       })
-      .then(obj => {
+      .then((obj) => {
         const packageName = require(path.join(obj.tmpdir, 'package.json')).name;
         obj.cleanup();
         return packageName;
       })
-      .catch(err => {
+      .catch((err) => {
         // The package name could be with or without semver version, e.g. react-scripts-0.2.0-alpha.1.tgz
         // However, this function returns package name only without semver version.
         console.log(
@@ -458,9 +454,7 @@ function checkNpmVersion() {
   let hasMinNpm = false;
   let npmVersion = null;
   try {
-    npmVersion = execSync('npm --version')
-      .toString()
-      .trim();
+    npmVersion = execSync('npm --version').toString().trim();
     hasMinNpm = semver.gte(npmVersion, '3.0.0');
   } catch (err) {
     // ignore
@@ -522,7 +516,9 @@ function checkAppName(appName) {
         )} because a dependency with the same name exists.\n` +
           `Due to the way npm works, the following names are not allowed:\n\n`
       ) +
-        chalk.cyan(allDependencies.map(depName => `  ${depName}`).join('\n')) +
+        chalk.cyan(
+          allDependencies.map((depName) => `  ${depName}`).join('\n')
+        ) +
         chalk.red('\n\nPlease choose a different project name.')
     );
     process.exit(1);
@@ -594,7 +590,7 @@ function isSafeToCreateProjectIn(root) {
     '.hgignore',
     '.hgcheck',
   ];
-  return fs.readdirSync(root).every(file => validFiles.indexOf(file) >= 0);
+  return fs.readdirSync(root).every((file) => validFiles.indexOf(file) >= 0);
 }
 
 function checkIfOnline(useYarn) {
@@ -604,8 +600,8 @@ function checkIfOnline(useYarn) {
     return Promise.resolve(true);
   }
 
-  return new Promise(resolve => {
-    dns.lookup('registry.yarnpkg.com', err => {
+  return new Promise((resolve) => {
+    dns.lookup('registry.yarnpkg.com', (err) => {
       resolve(err === null);
     });
   });

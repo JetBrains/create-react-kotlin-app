@@ -79,7 +79,7 @@ function convertOptionsIntoArguments(options) {
 
   argumentsList = argumentsList.concat(options.sources);
 
-  return argumentsList.filter(arg => !!arg);
+  return argumentsList.filter((arg) => !!arg);
 }
 
 function compile(options) {
@@ -93,16 +93,16 @@ function compile(options) {
     );
     let errors = '';
 
-    compilation.stderr.on('data', data => {
+    compilation.stderr.on('data', (data) => {
       errors += data.toString();
     });
 
-    compilation.on('error', err => {
+    compilation.on('error', (err) => {
       errors += 'kotlin-js failed. Do you have Kotlin installed?';
       errors += JSON.stringify(err);
     });
 
-    compilation.on('close', code => {
+    compilation.on('close', (code) => {
       if (code !== SUCCESS_CODE) {
         reject(errors || `Kotlin compiler exited with code ${code}`);
         return;

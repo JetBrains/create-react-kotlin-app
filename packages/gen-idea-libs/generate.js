@@ -13,13 +13,13 @@ const fs = require('fs');
   }, '.')
 */
 
-const findIml = function(directory) {
+const findIml = function (directory) {
   const imlList = fs.readdirSync(directory).filter((element) => {
     var extName = path.extname(element);
     return extName === '.iml';
   });
-  return imlList.length > 0 && imlList[0] || null
-}
+  return (imlList.length > 0 && imlList[0]) || null;
+};
 
 module.exports = function generate(packages, projectDir, imlPath) {
   const libTemplate = fs.readFileSync(
@@ -35,7 +35,7 @@ module.exports = function generate(packages, projectDir, imlPath) {
   } else {
     try {
       const ideaDir = path.join(projectDir, '.idea');
-      let imlFileName = findIml(ideaDir)
+      let imlFileName = findIml(ideaDir);
       _imlPath = path.join(ideaDir, imlFileName);
 
       iml = fs.readFileSync(_imlPath, 'utf8');
@@ -45,7 +45,7 @@ module.exports = function generate(packages, projectDir, imlPath) {
         `${path.basename(path.resolve(projectDir))}.iml`
       );
       try {
-        let imlFileName = findIml(projectDir)
+        let imlFileName = findIml(projectDir);
         _imlPath = path.join(projectDir, imlFileName);
         iml = fs.readFileSync(_imlPath, 'utf8');
       } catch (err) {
@@ -54,16 +54,15 @@ module.exports = function generate(packages, projectDir, imlPath) {
         );
         return;
       }
-      
     }
   }
-  Object.keys(packages).forEach(name => {
+  Object.keys(packages).forEach((name) => {
     const pkg = packages[name];
     const classes = path.relative(projectDir, path.join(pkg, '..'));
     fs.writeFile(
       path.join(projectDir, `.idea/libraries/${name.replace(/-/g, '_')}.xml`),
       libTemplate.replace(/%name%/g, name).replace(/%classes%/g, classes),
-      err => {
+      (err) => {
         if (err) {
           throw err;
         }
@@ -75,7 +74,7 @@ module.exports = function generate(packages, projectDir, imlPath) {
       iml = iml.replace(/(\n\s+)<\/component>/, `$1  ${dep}$&`);
     }
   });
-  fs.writeFile(_imlPath, iml, err => {
+  fs.writeFile(_imlPath, iml, (err) => {
     if (err) {
       throw err;
     }

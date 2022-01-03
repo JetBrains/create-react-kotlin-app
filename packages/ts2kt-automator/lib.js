@@ -13,17 +13,17 @@ function spawnChildProcess(command, args) {
 
     const errors = [];
 
-    proc.stderr.on('data', err => {
+    proc.stderr.on('data', (err) => {
       const errorMessage = err.toString();
       errors.push(errorMessage);
     });
 
-    proc.on('error', err => {
+    proc.on('error', (err) => {
       console.error(`\`${command} ${args.join(' ')}\` failed`, err);
       reject(err.toString());
     });
 
-    proc.on('close', code => {
+    proc.on('close', (code) => {
       if (code !== 0) {
         const errorMessage =
           errors.join('') ||

@@ -73,7 +73,7 @@ function testTypingsInPackage() {
 testLatestVersion()
   .then(testSpecificVersion)
   .then(testTypingsInPackage)
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
     process.exit(1);
   });

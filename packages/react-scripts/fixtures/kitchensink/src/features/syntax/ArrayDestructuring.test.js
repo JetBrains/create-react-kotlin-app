@@ -12,7 +12,7 @@ import ArrayDestructuring from './ArrayDestructuring';
 describe('array destructuring', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       ReactDOM.render(<ArrayDestructuring onReady={resolve} />, div);
     });
   });

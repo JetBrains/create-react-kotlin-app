@@ -44,14 +44,12 @@ class KotlinWebpackPlugin {
     );
     this.firstCompilationError = null;
 
-    this.compileIfKotlinFilesChanged = this.compileIfKotlinFilesChanged.bind(
-      this
-    );
+    this.compileIfKotlinFilesChanged =
+      this.compileIfKotlinFilesChanged.bind(this);
     this.watchKotlinSources = this.watchKotlinSources.bind(this);
     this.compileIfFirstRun = this.compileIfFirstRun.bind(this);
-    this.reportFirstCompilationError = this.reportFirstCompilationError.bind(
-      this
-    );
+    this.reportFirstCompilationError =
+      this.reportFirstCompilationError.bind(this);
     this.optimizeDeadCode = this.optimizeDeadCode.bind(this);
     this.setPastDate = this.setPastDate.bind(this);
 
@@ -90,7 +88,7 @@ class KotlinWebpackPlugin {
     }
 
     return Object.assign({}, opts, {
-      libraries: opts.libraries.map(main =>
+      libraries: opts.libraries.map((main) =>
         main.replace(/(?:\.js)?$/, '.meta.js')
       ),
       librariesMainFiles: opts.libraries,
@@ -99,10 +97,10 @@ class KotlinWebpackPlugin {
 
   copyLibraries() {
     const files = this.options.librariesMainFiles.concat(
-      this.options.librariesMainFiles.map(main => `${main}.map`)
+      this.options.librariesMainFiles.map((main) => `${main}.map`)
     );
     return Promise.all(
-      files.map(file =>
+      files.map((file) =>
         fs.copy(file, path.join(this.options.output, path.basename(file)))
       )
     );
@@ -110,14 +108,14 @@ class KotlinWebpackPlugin {
 
   async compileIfKotlinFilesChanged(compilation, done) {
     const changedFiles = Array.from(compilation.fileTimestamps.keys()).filter(
-      watchfile =>
+      (watchfile) =>
         (this.prevTimestamps.get(watchfile) || this.startTime) <
         (compilation.fileTimestamps.get(watchfile) || Infinity)
     );
 
     this.prevTimestamps = compilation.fileTimestamps;
 
-    if (!changedFiles.some(it => /\.kt$/.test(it))) {
+    if (!changedFiles.some((it) => /\.kt$/.test(it))) {
       done();
       return;
     }
@@ -154,12 +152,12 @@ class KotlinWebpackPlugin {
   }
 
   async watchKotlinSources(compilation, done) {
-    const patterns = this.sources.map(it => `${it}/**/*.kt`);
+    const patterns = this.sources.map((it) => `${it}/**/*.kt`);
     const paths = await globby(patterns, {
       absolute: true,
     });
 
-    const normalizedPaths = paths.map(it => path.normalize(it));
+    const normalizedPaths = paths.map((it) => path.normalize(it));
 
     if (compilation.fileDependencies.add) {
       for (const path of normalizedPaths) {
@@ -231,7 +229,7 @@ class KotlinWebpackPlugin {
 
     const files = await fs.readdir(output);
     await Promise.all(
-      files.map(file =>
+      files.map((file) =>
         fs.utimes(path.resolve(output, file), timestamp, timestamp)
       )
     );
@@ -246,7 +244,7 @@ class KotlinWebpackPlugin {
     this.log.info('Generating error entry', file);
 
     if (!fs.existsSync(this.options.output)) {
-      fs.mkdirSync(this.options.output, {recursive: true});
+      fs.mkdirSync(this.options.output, { recursive: true });
     }
 
     const message = `throw new Error("Failed to compile Kotlin code: ${(

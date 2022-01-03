@@ -16,18 +16,18 @@ kotlinCompiler
       `kotlin-compiler/lib/kotlinx-serialization-compiler-plugin.jar`
     ),
     libraries: ['@jetbrains/kotlin-extensions', '@jetbrains/kotlin-react'].map(
-      lib => require.resolve(lib).replace(/(?:\.js)?$/, '.meta.js')
+      (lib) => require.resolve(lib).replace(/(?:\.js)?$/, '.meta.js')
     ),
   })
   .then(() => {
-    return new Promise(resolve =>
+    return new Promise((resolve) =>
       fs.readFile(DIST_FILE_PATH, (error, data) => resolve(data))
     );
   })
-  .then(compiledFileContent => {
-    return new Promise(resolve =>
+  .then((compiledFileContent) => {
+    return new Promise((resolve) =>
       fs.readFile(REFERENCE_PATH, (error, data) => resolve(data))
-    ).then(reference => ({
+    ).then((reference) => ({
       compiledFileContent,
       reference,
     }));
@@ -42,7 +42,7 @@ kotlinCompiler
       console.info('Test passed');
     }
   })
-  .catch(err => {
+  .catch((err) => {
     console.error('kotlinc-js-api test failed:', err);
     process.exit(1);
   });

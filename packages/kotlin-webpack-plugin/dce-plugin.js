@@ -14,12 +14,12 @@ function eliminateDeadCode(args) {
     let hasErrors = false;
     let errors = '';
 
-    compilation.stderr.on('data', data => {
+    compilation.stderr.on('data', (data) => {
       hasErrors = true;
       errors += data.toString();
     });
 
-    compilation.on('error', err => {
+    compilation.on('error', (err) => {
       hasErrors = true;
       errors += 'kotlin-dce-js failed';
       errors += JSON.stringify(err);

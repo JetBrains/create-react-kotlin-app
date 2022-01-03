@@ -10,8 +10,8 @@ function lookupInPackage(pkg) {
       ...Object.keys(pkg.peerDependencies || {}),
     ]
       // We provide the Kotlin runtime externally, so we aren't looking for it
-      .filter(dependencyName => dependencyName !== 'kotlin')
-      .map(dependencyName => {
+      .filter((dependencyName) => dependencyName !== 'kotlin')
+      .map((dependencyName) => {
         try {
           let main;
           if (require.resolve.paths) {
@@ -31,7 +31,7 @@ function lookupInPackage(pkg) {
           return null;
         }
       })
-      .filter(dependencyMainFilePath => !!dependencyMainFilePath)
+      .filter((dependencyMainFilePath) => !!dependencyMainFilePath)
   );
 }
 

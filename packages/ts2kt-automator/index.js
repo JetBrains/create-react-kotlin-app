@@ -21,7 +21,7 @@ function installOnePackage(packageName, destFolder) {
   const dest = `${destFolder}/${name}`;
 
   return new Promise((resolve, reject) => {
-    mkdirp(dest, function() {
+    mkdirp(dest, function () {
       lib
         .installTypes(name)
         .then(() => lib.convertTypesToKotlin(name, dest))
@@ -49,16 +49,18 @@ function installAllPackages() {
         return promise;
       }
 
-      return promise.then(() => installOnePackage(name, dest)).catch(err => {
-        try {
-          fs.unlinkSync(packageDest);
-        } catch (err) {
-          console.error('Cannot clear folder after error', packageDest, err);
-        }
-        console.error(err);
-      });
+      return promise
+        .then(() => installOnePackage(name, dest))
+        .catch((err) => {
+          try {
+            fs.unlinkSync(packageDest);
+          } catch (err) {
+            console.error('Cannot clear folder after error', packageDest, err);
+          }
+          console.error(err);
+        });
     }, Promise.resolve())
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
       process.exit(1);
     });
@@ -67,7 +69,7 @@ function installAllPackages() {
 if (!packageName) {
   installAllPackages();
 } else {
-  installOnePackage(packageName, dest).catch(err => {
+  installOnePackage(packageName, dest).catch((err) => {
     console.error(err);
     process.exit(1);
   });

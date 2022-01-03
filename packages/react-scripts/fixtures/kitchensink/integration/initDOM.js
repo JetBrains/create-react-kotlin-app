@@ -37,10 +37,10 @@ if (process.env.E2E_FILE) {
     );
 } else if (process.env.E2E_URL) {
   getMarkup = () =>
-    new Promise(resolve => {
-      http.get(process.env.E2E_URL, res => {
+    new Promise((resolve) => {
+      http.get(process.env.E2E_URL, (res) => {
         let rawData = '';
-        res.on('data', chunk => (rawData += chunk));
+        res.on('data', (chunk) => (rawData += chunk));
         res.on('end', () => resolve(rawData));
       });
     });
@@ -54,8 +54,8 @@ if (process.env.E2E_FILE) {
   });
 }
 
-export default feature =>
-  new Promise(async resolve => {
+export default (feature) =>
+  new Promise(async (resolve) => {
     const markup = await getMarkup();
     const host = process.env.E2E_URL || 'http://www.example.org/spa:3000';
     const doc = jsdom.jsdom(markup, {

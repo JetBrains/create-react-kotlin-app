@@ -12,7 +12,7 @@ import TemplateInterpolation from './TemplateInterpolation';
 describe('template interpolation', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       ReactDOM.render(<TemplateInterpolation onReady={resolve} />, div);
     });
   });
