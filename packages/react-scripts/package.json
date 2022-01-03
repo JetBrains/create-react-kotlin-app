@@ -57,7 +57,7 @@
     "webpack": "^4.41.3",
     "webpack-dev-server": "^3.10.1",
     "webpack-manifest-plugin": "^2.2.0",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.6.2"
   },
   "optionalDependencies": {
     "fsevents": "^2.1.3"
