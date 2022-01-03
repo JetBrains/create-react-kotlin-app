@@ -144,6 +144,7 @@ npm install "$cli_path"
 
 # Install the app in a temporary location
 cd $temp_app_path
+echo "v14.18.2" > .nvmrc
 create_react_app --scripts-version="$scripts_path" test-app
 
 # ******************************************************************************
