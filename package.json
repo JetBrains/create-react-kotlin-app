@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@jetbrains/kotlin-extensions": "^1.0.1-pre.89",
-    "@jetbrains/kotlin-react": "^16.9.0-pre.89",
+    "@jetbrains/kotlin-react": "^16.9.0-pre.91",
     "@jetbrains/kotlin-react-dom": "^16.9.0-pre.89",
     "core-js": "^3.20.2",
     "eslint": "^7.32.0",
