@@ -38,7 +38,7 @@
     "core-js": "^3.20.2",
     "css-loader": "^3.5.2",
     "dotenv": "^8.2.0",
-    "file-loader": "^4.3.0",
+    "file-loader": "^6.2.0",
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^4.5.1",
     "kotlin": "~1.5.32",
