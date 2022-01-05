@@ -20,7 +20,7 @@
     "core-js": "^3.20.2",
     "eslint": "^7.32.0",
     "husky": "^7.0.4",
-    "kotlin": "~1.5.32",
+    "kotlin": "~1.6.10",
     "kotlinx-coroutines-core": "^1.5.2",
     "kotlinx-html": "^0.7.2",
     "lerna": "^4.0.0",
