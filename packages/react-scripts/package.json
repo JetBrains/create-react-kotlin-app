@@ -40,7 +40,7 @@
     "dotenv": "^8.2.0",
     "file-loader": "^6.2.0",
     "fs-extra": "^10.0.0",
-    "html-webpack-plugin": "^4.5.1",
+    "html-webpack-plugin": "^4.5.2",
     "kotlin": "~1.5.32",
     "kotlinx-coroutines-core": "~1.5.2",
     "kotlinx-html": "^0.7.2",
