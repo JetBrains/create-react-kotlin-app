@@ -41,7 +41,7 @@
     "file-loader": "^6.2.0",
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^4.5.1",
-    "kotlin": "~1.5.32",
+    "kotlin": "~1.6.21",
     "kotlinx-coroutines-core": "~1.5.2",
     "kotlinx-html": "^0.7.2",
     "mini-css-extract-plugin": "^0.8.2",
