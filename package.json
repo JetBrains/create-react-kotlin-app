@@ -21,7 +21,7 @@
     "eslint": "^7.32.0",
     "husky": "^7.0.4",
     "kotlin": "~1.5.32",
-    "kotlinx-coroutines-core": "^1.5.2",
+    "kotlinx-coroutines-core": "^1.6.3",
     "kotlinx-html": "^0.7.2",
     "lerna": "^4.0.0",
     "lerna-changelog": "^2.2.0",
