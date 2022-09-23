@@ -33,7 +33,7 @@ npm start
 
 実際にビルドする準備が整ったら `npm run build` を使用して縮小バンドルを作成します。
 
-Create React Kotlin App を使用するだけで、Kotlin,WebPack,IntelliJ IDEAの構成が行われます。それにより、あなたはコードを書くことだけに集中することができます。
+Create React Kotlin App を使用するだけで、Kotlin,webpack,IntelliJ IDEAの構成が行われます。それにより、あなたはコードを書くことだけに集中することができます。
 
 プロジェクトを作成するだけで、全てが上手くいくでしょう。
 
@@ -47,7 +47,7 @@ Create React Kotlin App を使用するだけで、Kotlin,WebPack,IntelliJ IDEA�
 npm install -g create-react-kotlin-app
 ```
 
-`create-react-app` がすでにインストールされているか、もしくは `npx` を利用している場合、この手順はステップでキます。
+`create-react-app` がすでにインストールされているか、もしくは `npx` を利用している場合、この手順はスキップできます。
 
 **Node6以上が必要です**。 [nvm](https://github.com/creationix/nvm#usage) を使用すれば、プロジェクトごとに簡単にNodeバージョンを切り替えることができます。
 
@@ -147,7 +147,7 @@ rm -rf node_modules/.cache
 
 ## 哲学
 
-* **依存関係は一つだけ:** ビルドの依存関係は一つだけです。これは、WebPackとその他の素晴らしいプロジェクトを使っていますが、それらの上でよりまとまりのある、精巧な体験を提供します。
+* **依存関係は一つだけ:** ビルドの依存関係は一つだけです。これは、webpackとその他の素晴らしいプロジェクトを使っていますが、それらの上でよりまとまりのある、精巧な体験を提供します。
 
 * **設定不要:** 何も設定する必要はありません。 開発ビルドと本番ビルドの両方の素晴らしい設定があなたのためにされているので、あなたはコードを書くことだけに集中することができます。
 
