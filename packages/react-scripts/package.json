@@ -36,7 +36,7 @@
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "chalk": "^2.4.2",
     "core-js": "^3.20.2",
-    "css-loader": "^3.5.2",
+    "css-loader": "^6.7.3",
     "dotenv": "^8.2.0",
     "file-loader": "^6.2.0",
     "fs-extra": "^10.0.0",
